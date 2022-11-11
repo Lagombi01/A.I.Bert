@@ -1,0 +1,23 @@
+{
+  "name": "a.i.bert",
+  "version": "1.0.0",
+  "description": "Repo for Software Engineering Group 11 22/23",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LSlayer123/A.I.Bert.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LSlayer123/A.I.Bert/issues"
+  },
+  "homepage": "https://github.com/LSlayer123/A.I.Bert#readme",
+  "devDependencies": {
+    "electron": "^21.2.3"
+  }
+}
