@@ -1,0 +1,19 @@
+[
+    {"id":101,
+    "name":"Getting Started with Enterprise-grade AI",
+    "description":"This course covers the foundations of Artificial Intelligence for business, including the following topics: AI Evolution, AI Industry Adoption Trends, Natural Language Processing and Virtual Agents.",
+    "image":"AI.jpg",
+    "prereq":[],
+    "postreq":[102],
+    "difficulty":2,
+    "terms":["AI","Business","Industry","Natural Language Processing","Foundation","Evolution"]},
+
+    {"id":102,
+    "name":"IBM Watson Machine Learning Essentials",
+    "description":"Watson Machine Learning is a service on IBM Cloud with features for training and deploying machine learning models and neural networks. This course consists of a series of videos showing how to use the Watson Machine Learning in Watson Studio.",
+    "image":"AI.jpg",
+    "prereq":[101],
+    "postreq":[],
+    "difficulty":3,
+    "terms":["Watson","Chatbot","Cloud","Neural Networks","Video","Machine Learning","Watson Studio","Tutorial"]}
+]
