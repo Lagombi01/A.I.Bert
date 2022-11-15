@@ -5,10 +5,11 @@
     "duration":-1,
     "image":"AI.jpg",
     "prereq":[],
-    "postreq":[],
+    "postreq":[101,102,103,104],
     "difficulty":1,
     "terms":["AI","Software","Resources","Basics","Skills","IBM"],
-    "link":"https://www.ibm.com/training/watson"},
+    "link":"https://www.ibm.com/training/watson",
+    "complete":false},
     
     {"id":002,
     "name":"Watson Academy",
@@ -19,7 +20,8 @@
     "postreq":[],
     "difficulty":2,
     "terms":["AI","Watson","Studio","Machine Learning","Natural Language Processing","Cloud","Data","Basics","IBM"],
-    "link":"https://www.ibm.com/training/watson"},
+    "link":"https://www.ibm.com/training/watson",
+    "complete":false},
     
     {"id":003,
     "name":"Mindspark AI Education",
@@ -30,7 +32,8 @@
     "postreq":[],
     "difficulty":1,
     "terms":["AI","Basics","Ethics","Humans","Inclusivity","Machine Learning","Natural Language Processing"],
-    "link":"https://www.mindspark.org/ibm-ai"},
+    "link":"https://www.mindspark.org/ibm-ai",
+    "complete":false},
     
     {"id":004,
     "name":"IBM Developer",
@@ -41,7 +44,8 @@
     "postreq":[],
     "difficulty":2,
     "terms":["AI","Development","Software","Machine Learning","Deep Learning","Programming","Languages","Application Modernization","Messaging","IBM"],
-    "link":"https://developer.ibm.com/"},
+    "link":"https://developer.ibm.com/",
+    "complete":false},
     
     {"id":101,
     "name":"Getting Started with Enterprise-grade AI",
@@ -52,7 +56,9 @@
     "postreq":[102,103,104],
     "difficulty":1,
     "terms":["AI","Business","Industry","Natural Language Processing","Foundation","Evolution","Watson","Basics","Chatbot"],
-    "link":"https://keyskill-clms.comprehend.ibm.com/course/view.php?id=236"},
+    "link":"https://keyskill-clms.comprehend.ibm.com/course/view.php?id=236",
+    "bookmark":false,
+    "complete":false},
 
     {"id":102,
     "name":"IBM Watson Machine Learning Essentials",
@@ -63,7 +69,9 @@
     "postreq":[],
     "difficulty":2,
     "terms":["AI","Watson","Cloud","Neural Networks","Videos","Machine Learning","Data"],
-    "link":"https://learn.ibm.com/course/view.php?id=4482"},
+    "link":"https://learn.ibm.com/course/view.php?id=4482",
+    "bookmark":false,
+    "complete":false},
     
     {"id":103,
     "name":"Data Refinery Essentials",
@@ -74,7 +82,9 @@
     "postreq":[],
     "difficulty":2,
     "terms":["AI","Watson","Data","Refinery","CSV","Raw"],
-    "link":"https://learn.ibm.com/course/view.php?id=4480"},
+    "link":"https://learn.ibm.com/course/view.php?id=4480",
+    "bookmark":false,
+    "complete":false},
     
     {"id":104,
     "name":"IBM Watson Knowledge Catalog Essentials",
@@ -85,5 +95,7 @@
     "postreq":[],
     "difficulty":2,
     "terms":["AI","Watson","Data","Catalogue","Analysis","Assets","Profiling","Classification"],
-    "link":"https://learn.ibm.com/course/view.php?id=4481"}
+    "link":"https://learn.ibm.com/course/view.php?id=4481",
+    "bookmark":false,
+    "complete":false}
 ]
