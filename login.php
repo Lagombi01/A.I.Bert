@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en"
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <title>Login / Sign Up Form</title>
-    <link rel="shortcut icon" href="/assets/favicon.ico">
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
+<?php
+require_once("header.php")
+?>
     <div class="container">
         <form class="form" id="login">
             <h1 class="form__title">Login</h1>
@@ -54,6 +46,15 @@
             </p>
         </form>
     </div>
-    <script src="login.js"></script>
-</body>
-</html>
+
+<?php
+require_once("footer.php")
+?>
+
+
+<!-- TO LOAD THE DOC
+
+
+http://localhost/AI-BERT/login_code/login.php
+
+Whilst xampp is running-->

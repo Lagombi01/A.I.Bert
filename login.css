@@ -16,6 +16,59 @@ body {
     background-size: cover;
 }
 
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .dropdown{
+        height: 0%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #27155e;
+        overflow-y: hidden;
+        transition: 0.5s;
+    }
+
+    .dropdown_lists{
+        position: relative;
+        top: 25%;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .dropdown a{
+        padding: 8px;
+        text-decoration: none;
+        font-size: 30px;
+        color: grey;
+        display: block;
+        transition: 0.3s;
+    }
+
+    .dropdown a:hover, dropdown a:focus{
+        color: whitesmoke;
+    }
+
+    .hamburger{
+        color: rgb(0, 0, 0);
+        left: 10px;
+        top: 20px;
+        font-size: 50px;
+        cursor: pointer;
+    }
+
+    .dropdown .buttonX{
+        top: 20px;
+        right: 50px;
+        font-size: 70px;
+        color:rgb(0, 0, 0);
+    }
+
 .container {
     width: 400px;
     max-width: 400px;

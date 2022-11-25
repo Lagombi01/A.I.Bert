@@ -11,6 +11,24 @@ function setInputError(inputElement, message) {
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
 }
 
+
+const hamburger = document.querySelector(".hamburger");
+
+
+function openMenu(){
+    document.getElementById("MyMenu").style.height = "100%"
+
+    document.querySelector("HOME").addEventListener("click", e => {
+        e.preventDefault();
+        window.open("home.php", "_self");
+    });
+}
+
+function closeMenu(){
+    document.getElementById("MyMenu").style.height = "0%"
+}
+
+
 function clearInputError(inputElement) {
     inputElement.classList.remove("form__input--error");
     inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
