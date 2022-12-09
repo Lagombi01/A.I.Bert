@@ -1,13 +1,15 @@
-import Navigation from './navigation';
-
-
-
-
 export default function courses(){
     return(
         <div>
-            <Navigation />
-            <h1>List of Courses</h1>
+            <Dropdown />
+            <button class="dropdownButton">More Features</button>
+            <div class="dropdownOptions">
+            <!-- Below links currently using placeholders - CHANGE THESE TO RESPECTIVE PAGES -->
+            <a href="[LINK]">User Profile</a>
+            <a href="[LINK]">View All Courses</a>
+            <a href="[LINK]">Saved Courses</a>
+            <a href="[LINK]">Learning Journeys</a>
+            </div>
             
         </div>
         <style>
