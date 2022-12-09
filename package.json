@@ -1,23 +1,49 @@
 {
-  "name": "a.i.bert",
-  "version": "1.0.0",
-  "description": "Repo for Software Engineering Group 11 22/23",
-  "main": "main.js",
+  "name": "aibert",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@carbon/colors": "^11.8.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "main": "src/electron.js",
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
+    "electron": "wait-on tcp:3000 && electron ."
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LSlayer123/A.I.Bert.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/LSlayer123/A.I.Bert/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/LSlayer123/A.I.Bert#readme",
   "devDependencies": {
-    "electron": "^21.2.3"
+    "concurrently": "^7.6.0",
+    "electron": "^21.3.1",
+    "electron-is-dev": "^2.0.0",
+    "wait-on": "^6.0.1"
   }
 }
