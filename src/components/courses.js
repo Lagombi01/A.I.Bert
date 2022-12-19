@@ -1,7 +1,13 @@
 import Navigation from './navigation';
 
+window.addEventListener("load", () => {
+	fetch("./data.json").then(response => {
+		return response.json();
+	 }).then(data => main(data));
+});
 
 
+function main(courseData){}
 
 export default function courses(){
     return(
