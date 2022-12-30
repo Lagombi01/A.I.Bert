@@ -226,7 +226,7 @@
     "image":"developer.png",
     "prereq":[],
     "postreq":[401,402],
-    "difficulty"1:,
+    "difficulty":1,
     "terms":["AI","Machine Learning","Introduction","Deep learning", "Neural Networks","Natural Language Processing","Visual recognition","Supervised","Unsupervised","Python","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-artificial-intelligence/"},
     
@@ -237,7 +237,7 @@
     "image":"developer.png",
     "prereq":[401],
     "postreq":[],
-    "difficulty"3:,
+    "difficulty":3,
     "terms":["Data","Watson","Policy","Govern","Categories","CSV","Analytics"],
     "link":"https://developer.ibm.com/tutorials/find-prepare-and-understand-data-with-watson-knowledge-catalog/"},
     
