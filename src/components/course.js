@@ -5,7 +5,7 @@ export default function course(){
         <div>
             <style>
                 body{
-                background-color: pink;
+                    background-color: pink;
                 }
             
                 .acorn-icon, .acorn-icon-hover, .acorn-icon-bookmarked{
