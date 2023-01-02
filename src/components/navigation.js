@@ -22,19 +22,16 @@ export default function Navigation() {
             class="bubble flex-container"
             onClick={() => navigate("/bookmarks")}
           >
-            <i class="fa fa-github colored-text">
+            <i class="fa colored-text">
               <img src={acorn} alt=""></img>
             </i>
             <p>BookMarks</p>
           </div>
- 
-
-       
           <div
             class="bubble flex-container"
             onClick={() => navigate("/courses")}
           >
-            <i class="fa fa-github colored-text">
+            <i class="fa colored-text">
               <img src={courses} alt=""></img>
             </i>
             <p>Courses</p>
@@ -49,7 +46,7 @@ export default function Navigation() {
         </div>
 
         <div class="bubble flex-container" onClick={() => navigate("/profile")}>
-          <i class="fa fa-google-plus colored-text">
+          <i class="fa  colored-text">
             <img src={house} alt=""></img>
           </i>
           <p>Profile</p>
@@ -59,7 +56,7 @@ export default function Navigation() {
           class="bubble flex-container"
           onClick={() => navigate("/learningjourney")}
         >
-          <i class="fa fa-whatsapp colored-text">
+          <i class="fa colored-text">
             <img src={tree} alt=""></img>
           </i>
           <p>Learning Journeys</p>

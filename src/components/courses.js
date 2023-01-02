@@ -1,4 +1,4 @@
-import { courseData } from "./../courseData";
+import { courseData } from "./../courseData.js";
 import Navigation from './navigation';
 
 const wrapperStyle = {
