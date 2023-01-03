@@ -25,7 +25,7 @@ export default function Navigation() {
             <i class="fa fa-github colored-text">
               <img src={acorn} alt=""></img>
             </i>
-            <p>BookMarks</p>
+            <p>Bookmarks</p>
           </div>
  
 
@@ -44,6 +44,7 @@ export default function Navigation() {
         <div class="bubble flex-container" onClick={() => navigate("/home")}>
           <i class="chatbotIcon">
             <img src={leaves} alt=""></img>
+            <img src={squirrel} class="miniMascot" alt=""></img>
           </i>
           <p className="title">AI-Bert</p>
         </div>
