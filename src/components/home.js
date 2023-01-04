@@ -1,6 +1,6 @@
 import Navigation from './navigation';
 import AIBert from './chatbot.js'
-import { createElement, useEffect } from 'react';
+import { createElement, useEffect, useState } from 'react';
 import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
 
@@ -199,6 +199,7 @@ export default function Home(){
         }
     },false);
     
+	
     return(
         <div>
             <Navigation />
