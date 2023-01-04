@@ -1,6 +1,6 @@
 import Navigation from "./navigation"
 
-export default function learningJourney(){
+export default function LearningJourney(){
     return(
         <div>
             <Navigation />

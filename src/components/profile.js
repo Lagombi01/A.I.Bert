@@ -1,6 +1,6 @@
 import Navigation from './navigation';
 
-export default function profile(){
+export default function Profile(){
     return(
         <div>
             <Navigation />
