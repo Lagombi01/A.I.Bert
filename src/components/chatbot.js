@@ -2,6 +2,7 @@ import squirrel from "../Images/squirrel.png";
 import skillsbuild from "../Images/skillsbuild.png";
 import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
+import Details from "./details.js";
 
 export default function chatbot() {
   return (
@@ -9,19 +10,7 @@ export default function chatbot() {
       <div className="mascot">
         <img src={squirrel} alt=""></img>
       </div>
-        <div className="courseSpan">
-            <div className="courseDetails">
-                <div className="courseImage">
-                    <img src={developer} alt=""></img>
-                </div>
-                <div className="courseTitle">
-                    Implement trustworthy AI and data governance on AWS using IBM Cloud Pak for Data
-                </div>
-                <div className="courseDescription">
-                    An online webinar designed primarily for teachers. Examine your own tech experience as you explore the roles of gender, race, and bias in technology and STEM fields. Gain the resources needed to make your students aware of how AI affects them, and join the fight against algorithmic bias and injustice.
-                </div>
-            </div>
-        </div>
+        <Details />
         <div className="responseButtons">
             <div className="responseButton" id="openCourse">Open Course</div>
             <div className="responseButton" id="notRelevant">Not Relevant</div>
