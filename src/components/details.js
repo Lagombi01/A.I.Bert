@@ -15,7 +15,7 @@ export default function Details() {
                 </div>
                 <div className="courseDescription">
                     <p>Description</p>
-                    <p><i>Length</i></p>
+                    <p><i></i></p>
                 </div>
             </div>
         </div>

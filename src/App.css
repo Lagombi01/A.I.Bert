@@ -380,12 +380,11 @@ body {
 }
 
 .courseDescription {
-    position: relative;
     float: right;
     font-size: 26px;
     width: 440px;
     margin-right: 140px;
-    margin-top: -210px;
+    margin-top: -240px;
 }
 
 /*Quick Response Button Styling*/
