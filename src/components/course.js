@@ -1,11 +1,18 @@
 import Navigation from './navigation';
+import './components.css';
 
 export default function course(){
     return(
         <div>
+<<<<<<< Updated upstream
             <style>
                 body{
                 background-color: pink;
+=======
+            {/* <style>
+                #courseBody{
+                    background-color: pink;
+>>>>>>> Stashed changes
                 }
             
                 .acorn-icon, .acorn-icon-hover, .acorn-icon-bookmarked{
@@ -30,9 +37,9 @@ export default function course(){
                 .acorn-icon-bookmarked:hover .acorn-icon-hover{
                     background-image: url("Images/AcornGlow.svg");
                 }
-            </style>
+            </style> */}
          
-            <body>
+            <body id = "courseBody">
             
                 <div id="Top Bar">
                     <div class="row">
