@@ -5,8 +5,7 @@ import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
 
 export default function Home(){
-    var transitioning = false; //a boolean storing whether or not AI-Bert is currently transitioning between states
-    var presenting = false; //whether or not AI-Bert is currently presenting a course to the user
+    globalVariables.presenting = false;
 
     function fade(elem,step,toEnd,toBegin = []) {
         elem.style.opacity = String(parseFloat(elem.style.opacity) + step);
@@ -22,12 +21,12 @@ export default function Home(){
     }
 
     function transitionComplete() {
-        transitioning = false;
+        globalVariables.transitioning = false;
     }
 
     function chatbotVanish() {
-        transitioning = true;
-        presenting = true;
+        globalVariables.transitioning = true;
+        globalVariables.presenting = true;
         var elem = document.getElementsByClassName("mascot").item(0).firstChild;
         var pos = '150px';
         elem.style.setProperty('margin-top',pos);
@@ -54,7 +53,7 @@ export default function Home(){
             if (parseInt(pos.slice(0,-2)) < 150) {
                 elem.style.setProperty('margin-top','150px');
                 clearInterval(moveFunc);
-                transitioning = false;
+                globalVariables.transitioning = false;
                 return;
             }
         }, 30)
@@ -65,8 +64,8 @@ export default function Home(){
     }
 
     function miniVanish() {
-        transitioning = true;
-        presenting = false;
+        globalVariables.transitioning = true;
+        globalVariables.presenting = false;
         var elem = document.getElementsByClassName("miniMascot").item(0);
         var pos = '-85px';
         elem.style.setProperty('top',pos);
@@ -106,6 +105,7 @@ export default function Home(){
     }
 
     function courseAppear() {
+        fillDetails(globalVariables.currentCourseID);
         document.getElementsByClassName("AI-Bert-speech").item(0).childNodes[1].style.opacity = 0;
         var textFadeFunc = setInterval(function() {fade(document.getElementsByClassName("AI-Bert-speech").item(0).childNodes[1],0.1,[textFadeFunc],[buttonsAppear])},30);
         document.getElementsByClassName("courseDetails").item(0).style.opacity = 0;
@@ -179,19 +179,19 @@ export default function Home(){
 
     document.addEventListener('keydown', (event) => {
         var name = event.key;
-        var code = event.code;
-        if (name == "Enter" && !transitioning) {
-            if (presenting) {
+        if (name == "Enter" && !globalVariables.transitioning) {
+            if (globalVariables.presenting) {
                 if (document.getElementById('input').value != "") {
-                    transitioning = true;
+                    globalVariables.currentCourseID = document.getElementById('input').value; //Temporary line which skips watson/NLU, will be replaced
+                    globalVariables.transitioning = true;
                     buttonsVanish();
                     courseVanish();
                     setTimeout(courseAppear,500);
                 } else miniVanish();
             } else if (document.getElementById('input').value != "") {
                 globalVariables.currentCourseID = document.getElementById('input').value; //Temporary line which skips watson/NLU, will be replaced
-                fillDetails(globalVariables.currentCourseID);
-                transitioning = true;
+                globalVariables.transitioning = true;
+                console.log("here");
                 chatbotVanish();
             }
             document.getElementById('input').value = "";
