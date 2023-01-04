@@ -159,14 +159,22 @@
 
 .mascot img{
   width: 65%;
-  margin-top: 200px;
+  margin-top: 150px;
   margin-left: 100px;
+  opacity: 1;
 }
 
 .chatbot{
   display: flex
 }
 
+.miniMascot {
+    position: absolute;
+    opacity: 0;
+    scale: 92%;
+    top: -85px;
+    left: -3px;
+}
 
 .box {
   width: 300px;
@@ -182,24 +190,59 @@
   border-radius: 20px;
 }
 
+.topbox {
+  width: fit-content;
+  float: right;
+  left: -640px;
+  margin-top: -295px;
+  background: #4861e7 ;
+  opacity: 0;
+  padding: 15px;
+  text-align: right;
+  font-weight: 900;
+  color: #fff;
+  position:relative;
+  border-radius: 20px;
+}
+
+.topbox div {
+    width: fit-content;
+    margin-left: auto;
+}
+
 .sb3:before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    border-left: 10px solid #4861e7;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #4861e7;
+    border-bottom: 10px solid transparent;
+    left: 19px;
+    bottom: -19px;
+}
+
+.sb4:before {
   content: "";
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 10px solid #4861e7;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #4861e7;
-  border-bottom: 10px solid transparent;
-  left: 19px;
-  bottom: -19px;
+  border-right: 10px solid #4861e7;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #4861e7;
+  border-top: 10px solid transparent;
+  right: 19px;
+  top: -19px;
 }
 
 /* input text styling  */
+
 .form__group {
   position: relative;
   padding: 20px 0 0;
-  margin-top: 10px;
+  margin-top: 50px; /*270px*/
+  margin-left: 0px; /*-200px*/
   width: 70%;
   font-weight: 600;
 }
@@ -252,6 +295,7 @@
 }
 
 /* reset input */
+
 .form__field:required, .form__field:invalid {
   box-shadow: none;
 }
@@ -264,7 +308,6 @@ body {
   min-height: 100vh;
   font-size: 1.5rem;
   background-color: #ffda6c;
-
 }
 
 /* chatbot styling */
@@ -295,4 +338,83 @@ body {
 }
 .dropdownOptions a:hover {
   background-color: #fce883;
+}
+
+/*Course Return styling*/
+
+.courseSpan {
+    position: absolute;
+    width: 1166px; /*Want this to span the width of the app, not sure how else to do it!*/
+    height: fit-content;
+    height: 360px;
+    margin-top: 62px;
+}
+
+.courseDetails {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    opacity: 0;
+}
+
+.courseImage img {
+    display: inline-block;
+    width: 360px;
+    margin-left: 165px;
+    border-radius: 20px;
+    border: 4px solid black;
+}
+
+.courseTitle {
+    float:left;
+    font-weight: bold;
+    font-size: 28px;
+    width: 350px;
+    margin-top: 8px;
+    margin-left: 169px;
+    text-align: left;
+}
+
+.courseDescription {
+    float:right;
+    font-size: 28px;
+    width: 450px;
+    margin-right: 130px;
+    margin-top: -215px;
+
+}
+
+/*Quick Response Button Styling*/
+
+.responseButtons {
+    position: absolute;
+    width: 1166px;/*Again, want this to span the width of the app*/
+    height: 50px;
+    margin-top: 440px;
+    text-align: center;
+}
+
+.responseButton {
+    position: relative;
+    border-style: solid;
+    border-color:black;
+    border-width: 3px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #eecb60;
+    width:fit-content;
+    display: inline-block;
+    cursor:default;
+    font-size: 26px;
+    margin-left: 10px;
+    margin-right: 10px;
+    top: 0px;
+    opacity: 0;
 }
