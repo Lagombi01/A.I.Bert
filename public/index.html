@@ -141,14 +141,9 @@
             }, 30)
             elem.style.opacity = 1;
             var mascotFadeFunc = setInterval(function() {fade(elem,-0.1,[mascotFadeFunc,moveFunc],[chatbotAppear])},30);
-            document.getElementsByClassName("AI-Bert-speech").item(0).childNodes[1].style.opacity = 1;
-            var textFadeFunc = setInterval(function() {fade(document.getElementsByClassName("AI-Bert-speech").item(0).childNodes[1],-0.1,[textFadeFunc])},30);
             moveInput(true);
             courseVanish();
-            buttonDisappear(document.getElementById('openCourse'));
-            buttonDisappear(document.getElementById('notRelevant'));
-            buttonDisappear(document.getElementById('tooEasy'));
-            buttonDisappear(document.getElementById('tooHard'));
+            buttonsVanish();
         }
 
         function miniAppear() {
@@ -182,20 +177,34 @@
             var courseFadeFunc = setInterval(function() {fade(document.getElementsByClassName("courseDetails").item(0),0.1,[courseFadeFunc])},30);
         }
 
+        function buttonsVanish() {
+            buttonVanish(document.getElementById('openCourse'));
+            buttonVanish(document.getElementById('notRelevant'));
+            buttonVanish(document.getElementById('tooEasy'));
+            buttonVanish(document.getElementById('tooHard'));
+        }
+
         function buttonsAppear() {
             var buttons = document.getElementsByClassName('responseButton');
             for (let button of buttons) {
                 button.addEventListener('click', (event) => {
-                    document.getElementById('input').value = button.innerHTML;
+                    if (button.style.opacity > 0) document.getElementById('input').value = button.innerHTML;
                 },false);
             }
             setTimeout(function() { buttonAppear(document.getElementById('openCourse')); }, 0);
             setTimeout(function() { buttonAppear(document.getElementById('notRelevant')); }, 200);
             setTimeout(function() { buttonAppear(document.getElementById('tooEasy')); }, 400);
-            setTimeout(function() { buttonAppear(document.getElementById('tooHard')); }, 600);
+            setTimeout(function() { buttonAppear(document.getElementById('tooHard'),true); }, 600);
         }
 
-        function buttonAppear(elem) {
+        function buttonVanish(elem) {
+            elem.style.cursor = 'default';
+            elem.style.opacity = 1;
+            var fadeFunc = setInterval(function() {fade(elem,-0.1,[fadeFunc])},30);
+        }
+
+        function buttonAppear(elem,complete = false) {
+            elem.style.cursor = 'pointer';
             elem.style.opacity = 0;
             var fadeFunc = setInterval(function() {fade(elem,0.1,[fadeFunc])},30);
             elem.style.top = "10px";
@@ -203,16 +212,9 @@
                 elem.style.top = String(parseInt(elem.style.top.slice(0,-2)) - 1) + "px";
                 if (elem.style.top == "0px") {
                     clearInterval(moveFunc);
-                    if (elem.id == 'tooHard') {
-                        transitionComplete();
-                    }
+                    if (complete) transitionComplete();
                 }
             }, 30)
-        }
-
-        function buttonDisappear(elem) {
-            elem.style.opacity = 1;
-            var fadeFunc = setInterval(function() {fade(elem,-0.1,[fadeFunc])},30);
         }
 
         function progToPosition(prog) {
@@ -244,11 +246,18 @@
             var name = event.key;
             var code = event.code;
             if (name == "Enter" && !transitioning) {
+                if (presenting) {
+                    if (document.getElementById('input').value != "") {
+                        transitioning = true;
+                        buttonsVanish();
+                        courseVanish();
+                        setTimeout(courseAppear,500);
+                    } else miniVanish();
+                } else if (document.getElementById('input').value != "") {
+                    chatbotVanish();
+                }
                 document.getElementById('input').value = "";
                 document.getElementById('input').blur();
-                if (presenting) {
-                    miniVanish();
-                } else chatbotVanish();
             }
         },false);
 

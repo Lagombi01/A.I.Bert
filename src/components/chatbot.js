@@ -34,7 +34,7 @@ export default function chatbot() {
             Hi! I'm AI-Bert, I am here to assist you with your learning in AI!
           </div>
           <div className="topbox sb4">
-            Here's a course I found:
+            <div>Here's a course I found:</div>
           </div>
         </div>
         <div className="userInput">

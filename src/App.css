@@ -191,18 +191,23 @@
 }
 
 .topbox {
-  width: 260px;
-  margin: 50px auto;
-  margin-left: -370px;
+  width: fit-content;
+  float: right;
+  left: -640px;
   margin-top: -295px;
   background: #4861e7 ;
   opacity: 0;
   padding: 15px;
-  text-align: center;
+  text-align: right;
   font-weight: 900;
   color: #fff;
-  position:absolute;
+  position:relative;
   border-radius: 20px;
+}
+
+.topbox div {
+    width: fit-content;
+    margin-left: auto;
 }
 
 .sb3:before {
@@ -303,7 +308,6 @@ body {
   min-height: 100vh;
   font-size: 1.5rem;
   background-color: #ffda6c;
-
 }
 
 /* chatbot styling */
@@ -407,7 +411,7 @@ body {
     background-color: #eecb60;
     width:fit-content;
     display: inline-block;
-    cursor: pointer;
+    cursor:default;
     font-size: 26px;
     margin-left: 10px;
     margin-right: 10px;
