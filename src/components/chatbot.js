@@ -1,11 +1,18 @@
+import { useState, useEffect } from "react";
 import squirrel from "../Images/squirrel.png";
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> main
 import skillsbuild from "../Images/skillsbuild.png";
 import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
 import Details from "./details";
+<<<<<<< HEAD
 import './components.css';
+=======
+>>>>>>> main
 
 export default function Chatbot() {
 
@@ -45,20 +52,35 @@ export default function Chatbot() {
         console.log(session)
       });
   }, []);
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> main
 
-export default function chatbot() {
   return (
     <div className="chatbot flex-container">
       <div className="mascot">
         <img src={squirrel} alt=""></img>
       </div>
+      <Details/>
+        <div className="responseButtons">
+            <div className="responseButton" id="openCourse">Open Course</div>
+            <div className="responseButton" id="notRelevant">Not Relevant</div>
+            <div className="responseButton" id="tooEasy">Too Easy</div>
+            <div className="responseButton" id="tooHard">Too Hard</div>
+        </div>
       <div className="input-output-fields">
+      
         <div className="AI-Bert-speech">
           <div className="box sb3">
             Hi! I'm AI-Bert, I am here to assist you with your learning in AI!
           </div>
+          <div className="topbox sb4">
+            <div>Here's a course I found:</div>
+          </div>
         </div>
+
+        {/* Input goes here */}
         <div className="userInput">
           <div class="form__group field">
             <input
@@ -68,10 +90,14 @@ export default function chatbot() {
               name="input"
               id="input"
               required
+              onChange={(e) => setMessage(e.target.value)}
+              onKeyPress={handleClick}
+              value={message}
             />
             <label for="name" class="form__label">
-            What would you like to learn?
+              What would you like to learn?
             </label>
+            <p>Session ID: <br></br>{session}</p>
           </div>
         </div>
       </div>

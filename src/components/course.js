@@ -1,18 +1,22 @@
 import Navigation from './navigation';
 import './components.css';
 
-export default function course(){
+export default function Course(){
     return(
         <div>
 <<<<<<< Updated upstream
             <style>
                 body{
+<<<<<<< HEAD
                 background-color: pink;
 =======
             {/* <style>
                 #courseBody{
                     background-color: pink;
 >>>>>>> Stashed changes
+=======
+                    background-color: pink;
+>>>>>>> main
                 }
             
                 .acorn-icon, .acorn-icon-hover, .acorn-icon-bookmarked{

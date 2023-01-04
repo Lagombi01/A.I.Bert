@@ -39,7 +39,9 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
     <script>
+        var currentCourseID; //Stores whichever course is being talked about, whether it be the result of an AI-Bert search or a manual lookup
       window.watsonAssistantChatOptions = {
         integrationID: "b19eff58-c330-4fb0-8ba0-8b8a8b6947a1", // The ID of this integration.
         region: "eu-gb", // The region your integration is hosted in.

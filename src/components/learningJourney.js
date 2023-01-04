@@ -1,7 +1,7 @@
 import Navigation from "./navigation"
 import './components.css';
 
-export default function learningJourney(){
+export default function LearningJourney(){
     return(
         <div>
             <Navigation />

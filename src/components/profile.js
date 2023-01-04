@@ -1,7 +1,7 @@
 import Navigation from './navigation';
 import './components.css';
 
-export default function profile(){
+export default function Profile(){
     return(
         <div>
             <Navigation />
