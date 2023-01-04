@@ -1,4 +1,4 @@
-export default function courses(){
+export default function Dropdown(){
     return(
         <div>
             <Dropdown />

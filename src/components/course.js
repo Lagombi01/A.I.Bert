@@ -1,6 +1,6 @@
 import Navigation from './navigation';
 
-export default function course(){
+export default function Course(){
     return(
         <div>
             <style>

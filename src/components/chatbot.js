@@ -2,15 +2,15 @@ import squirrel from "../Images/squirrel.png";
 import skillsbuild from "../Images/skillsbuild.png";
 import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
-import Details from "./details.js";
+import Details from "./details";
 
-export default function chatbot() {
+export default function Chatbot() {
   return (
     <div className="chatbot flex-container">
       <div className="mascot">
         <img src={squirrel} alt=""></img>
       </div>
-        <Details />
+      <Details/>
         <div className="responseButtons">
             <div className="responseButton" id="openCourse">Open Course</div>
             <div className="responseButton" id="notRelevant">Not Relevant</div>

@@ -25,7 +25,7 @@ const descriptionStyle = {
 
 const courseImage = {width: "100%"};
 
-export default function courses() {
+export default function Courses() {
     return (
     <div>
         <Navigation />

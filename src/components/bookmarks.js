@@ -1,6 +1,6 @@
 import Navigation from './navigation';
 
-export default function bookmarks(){
+export default function Bookmarks(){
     return(
         <div>
             <Navigation />
