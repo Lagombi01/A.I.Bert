@@ -414,8 +414,9 @@ body {
     margin-left: 10px;
     margin-right: 10px;
     top: 0px;
-<<<<<<< HEAD
-    opacity
-=======
     opacity: 0;
+}
+
+.responseButton img {
+    width: 20px;
 }
