@@ -6,6 +6,7 @@ import fillDetails from './globals/detailsFiller';
 
 export default function Home(){
     globalVariables.presenting = false;
+    globalVariables.transitioning = false;
 
     function fade(elem,step,toEnd,toBegin = []) {
         elem.style.opacity = String(parseFloat(elem.style.opacity) + step);
