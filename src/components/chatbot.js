@@ -6,6 +6,8 @@ import developer from "../Images/developer.png";
 import Details from "./details";
 import bookmark from "../Images/bookmark.png";
 import globalVariables from "./globals/globalVariables";
+import './components.css';
+
 
 export default function Chatbot() {
 
