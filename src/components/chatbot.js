@@ -4,6 +4,7 @@ import skillsbuild from "../Images/skillsbuild.png";
 import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
 import Details from "./details";
+import './components.css';
 
 export default function Chatbot() {
 

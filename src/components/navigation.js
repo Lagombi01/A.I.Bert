@@ -3,7 +3,7 @@ import { useState } from "react";
 
 // Import useLocation hook
 import { NavLink } from "react-router-dom";
-
+import './components.css';
 import house from "../Images/house.png";
 import courses from "../Images/open-book.png";
 import tree from "../Images/tree.png";

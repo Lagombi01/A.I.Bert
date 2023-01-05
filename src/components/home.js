@@ -3,6 +3,7 @@ import AIBert from './chatbot.js'
 import { createElement, useEffect, useState } from 'react';
 import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
+import './components.css';
 
 export default function Home(){
     globalVariables.presenting = false;
