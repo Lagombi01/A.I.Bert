@@ -118,6 +118,7 @@ export default function Home(){
         buttonVanish(document.getElementById('notRelevant'));
         buttonVanish(document.getElementById('tooEasy'));
         buttonVanish(document.getElementById('tooHard'));
+        buttonVanish(document.getElementById('bookmark'));
     }
 
     function buttonsAppear() {
@@ -130,7 +131,8 @@ export default function Home(){
         setTimeout(function() { buttonAppear(document.getElementById('openCourse')); }, 0);
         setTimeout(function() { buttonAppear(document.getElementById('notRelevant')); }, 200);
         setTimeout(function() { buttonAppear(document.getElementById('tooEasy')); }, 400);
-        setTimeout(function() { buttonAppear(document.getElementById('tooHard'),true); }, 600);
+        setTimeout(function() { buttonAppear(document.getElementById('tooHard')); }, 600);
+        setTimeout(function() { buttonAppear(document.getElementById('bookmark'),true); }, 800);
     }
 
     function buttonVanish(elem) {

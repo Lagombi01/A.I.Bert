@@ -417,3 +417,7 @@ body {
     top: 0px;
     opacity: 0;
 }
+
+.responseButton img {
+    width: 20px;
+}

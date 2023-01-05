@@ -4,6 +4,7 @@ import skillsbuild from "../Images/skillsbuild.png";
 import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
 import Details from "./details";
+import bookmark from "../Images/bookmark.png";
 
 export default function Chatbot() {
 
@@ -55,6 +56,7 @@ export default function Chatbot() {
             <div className="responseButton" id="notRelevant">Not Relevant</div>
             <div className="responseButton" id="tooEasy">Too Easy</div>
             <div className="responseButton" id="tooHard">Too Hard</div>
+            <div className="responseButton" id="bookmark"><img src={bookmark} alt="Bookmark"/></div>
         </div>
       <div className="input-output-fields">
       
