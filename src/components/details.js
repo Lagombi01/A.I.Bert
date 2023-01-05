@@ -2,10 +2,7 @@ import skillsbuild from "../Images/skillsbuild.png";
 import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
 import { useEffect } from 'react';
-<<<<<<< HEAD
 import './components.css';
-=======
->>>>>>> main
 
 export default function Details() {
     return (

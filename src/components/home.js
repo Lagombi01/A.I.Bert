@@ -1,21 +1,14 @@
 import Navigation from './navigation';
 import AIBert from './chatbot.js'
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
 import { createElement, useEffect, useState } from 'react';
 import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
 import './components.css';
->>>>>>> Stashed changes
-=======
-import { createElement, useEffect, useState } from 'react';
-import globalVariables from './globals/globalVariables';
-import fillDetails from './globals/detailsFiller';
->>>>>>> main
+
 
 export default function Home(){
     globalVariables.presenting = false;
+    globalVariables.transitioning = false;
 
     function fade(elem,step,toEnd,toBegin = []) {
         elem.style.opacity = String(parseFloat(elem.style.opacity) + step);

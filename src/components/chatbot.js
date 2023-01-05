@@ -1,18 +1,10 @@
 import { useState, useEffect } from "react";
 import squirrel from "../Images/squirrel.png";
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> main
 import skillsbuild from "../Images/skillsbuild.png";
 import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
 import Details from "./details";
-<<<<<<< HEAD
 import './components.css';
-=======
->>>>>>> main
 
 export default function Chatbot() {
 
@@ -52,10 +44,6 @@ export default function Chatbot() {
         console.log(session)
       });
   }, []);
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> main
 
   return (
     <div className="chatbot flex-container">
