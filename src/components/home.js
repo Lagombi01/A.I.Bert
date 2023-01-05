@@ -3,23 +3,12 @@ import AIBert from './chatbot.js'
 import { createElement, useEffect, useState } from 'react';
 import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
+import fade from './globals/elementFader';
 
 export default function Home(){
     globalVariables.presenting = false;
     globalVariables.transitioning = false;
-
-    function fade(elem,step,toEnd,toBegin = []) {
-        elem.style.opacity = String(parseFloat(elem.style.opacity) + step);
-        if (elem.style.opacity > 1 || elem.style.opacity < 0) {
-            for (var id of toEnd) {
-                clearInterval(id);
-            }
-            for (var func of toBegin) {
-                func();
-            }
-            return;
-        }
-    }
+    globalVariables.home = true;
 
     function transitionComplete() {
         globalVariables.transitioning = false;
@@ -64,6 +53,14 @@ export default function Home(){
         var textFadeFunc = setInterval(function() {fade(document.getElementsByClassName("AI-Bert-speech").item(0).firstChild,0.1,[textFadeFunc])},30);
     }
 
+    function inputBarAppear() {
+        var elem = document.getElementsByClassName("userInput").item(0);
+        if (elem.style.opacity >= 1) return;
+        elem.style.opacity = 0;
+        var mascotFadeFunc = setInterval(function() {fade(elem,0.1,[mascotFadeFunc])},30);
+        elem.style = "";
+    }
+
     function miniVanish() {
         globalVariables.transitioning = true;
         globalVariables.presenting = false;
@@ -75,10 +72,8 @@ export default function Home(){
             elem.style.setProperty('top',pos);
         }, 30)
         elem.style.opacity = 1;
-        var mascotFadeFunc = setInterval(function() {fade(elem,-0.1,[mascotFadeFunc,moveFunc],[chatbotAppear])},30);
-        moveInput(true);
-        courseVanish();
-        buttonsVanish();
+        var mascotFadeFunc = setInterval(function() {fade(elem,-0.1,[mascotFadeFunc,moveFunc],[chatbotAppear,inputBarAppear])},30);
+        globalVariables.mini = false;
     }
 
     function miniAppear() {
@@ -96,6 +91,7 @@ export default function Home(){
         }, 30)
         elem.style.opacity = 0;
         var mascotFadeFunc = setInterval(function() {fade(elem,0.1,[mascotFadeFunc],[courseAppear])},30);
+        globalVariables.mini = true;
     }
 
     function courseVanish() {
@@ -190,17 +186,26 @@ export default function Home(){
                     buttonsVanish();
                     courseVanish();
                     setTimeout(courseAppear,500);
-                } else miniVanish();
+                } else {
+                    miniVanish();
+                    moveInput(true);
+                    courseVanish();
+                    buttonsVanish();
+                }
             } else if (document.getElementById('input').value != "") {
                 globalVariables.currentCourseID = document.getElementById('input').value; //Temporary line which skips watson/NLU, will be replaced
                 globalVariables.transitioning = true;
-                console.log("here");
                 chatbotVanish();
             }
             document.getElementById('input').value = "";
             document.getElementById('input').blur();
         }
     },false);
+
+    
+    if (globalVariables.mini) {
+        setTimeout(miniVanish,10);
+    }
     
 	
     return(

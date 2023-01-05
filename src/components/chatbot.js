@@ -5,6 +5,7 @@ import mindspark from "../Images/mindspark.png";
 import developer from "../Images/developer.png";
 import Details from "./details";
 import bookmark from "../Images/bookmark.png";
+import globalVariables from "./globals/globalVariables";
 
 export default function Chatbot() {
 
@@ -48,7 +49,7 @@ export default function Chatbot() {
   return (
     <div className="chatbot flex-container">
       <div className="mascot">
-        <img src={squirrel} alt=""></img>
+        <img src={squirrel} alt="" style={{opacity: globalVariables.mini?0:1}}></img>
       </div>
       <Details/>
         <div className="responseButtons">
@@ -61,7 +62,7 @@ export default function Chatbot() {
       <div className="input-output-fields">
       
         <div className="AI-Bert-speech">
-          <div className="box sb3">
+          <div className="box sb3" style={{opacity: globalVariables.mini?0:1}}>
             Hi! I'm AI-Bert, I am here to assist you with your learning in AI!
           </div>
           <div className="topbox sb4">
@@ -70,7 +71,7 @@ export default function Chatbot() {
         </div>
 
         {/* Input goes here */}
-        <div className="userInput">
+        <div className="userInput" style={{opacity: globalVariables.mini?0:1}}>
           <div class="form__group field">
             <input
               type="input"
