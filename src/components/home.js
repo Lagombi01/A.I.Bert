@@ -4,6 +4,8 @@ import { createElement, useEffect, useState } from 'react';
 import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
 import fade from './globals/elementFader';
+import './components.css';
+
 
 export default function Home(){
     globalVariables.presenting = false;

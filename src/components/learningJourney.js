@@ -1,4 +1,5 @@
 import Navigation from "./navigation"
+import './components.css';
 
 export default function LearningJourney(){
     return(
