@@ -53,7 +53,7 @@ export default function Chatbot() {
       </div>
       <Details/>
         <div className="responseButtons">
-            <div className="responseButton" id="openCourse">Open Course</div>
+            <div className="responseButton" id="openCourse">Open</div>
             <div className="responseButton" id="notRelevant">Not Relevant</div>
             <div className="responseButton" id="tooEasy">Too Easy</div>
             <div className="responseButton" id="tooHard">Too Hard</div>
@@ -71,7 +71,7 @@ export default function Chatbot() {
         </div>
 
         {/* Input goes here */}
-        <div className="userInput" style={{opacity: globalVariables.mini?0:1}}>
+        <div className="userInput">
           <div class="form__group field">
             <input
               type="input"

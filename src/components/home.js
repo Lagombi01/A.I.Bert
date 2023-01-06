@@ -53,14 +53,6 @@ export default function Home(){
         var textFadeFunc = setInterval(function() {fade(document.getElementsByClassName("AI-Bert-speech").item(0).firstChild,0.1,[textFadeFunc])},30);
     }
 
-    function inputBarAppear() {
-        var elem = document.getElementsByClassName("userInput").item(0);
-        if (elem.style.opacity >= 1) return;
-        elem.style.opacity = 0;
-        var mascotFadeFunc = setInterval(function() {fade(elem,0.1,[mascotFadeFunc])},30);
-        elem.style = "";
-    }
-
     function miniVanish() {
         globalVariables.transitioning = true;
         globalVariables.presenting = false;
@@ -72,7 +64,7 @@ export default function Home(){
             elem.style.setProperty('top',pos);
         }, 30)
         elem.style.opacity = 1;
-        var mascotFadeFunc = setInterval(function() {fade(elem,-0.1,[mascotFadeFunc,moveFunc],[chatbotAppear,inputBarAppear])},30);
+        var mascotFadeFunc = setInterval(function() {fade(elem,-0.1,[mascotFadeFunc,moveFunc],[chatbotAppear])},30);
         globalVariables.mini = false;
     }
 
