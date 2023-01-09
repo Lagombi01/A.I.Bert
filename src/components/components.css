@@ -33,14 +33,14 @@
 /* -----------------------------------details.js---------------------------------------- */
 
 /* -----------------------------------courses.js---------------------------------------- */
-#wrapperStyle {
+.wrapperStyle {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     column-gap: 10px;
     row-gap: 1em;
 }
 
-#descriptionStyle {
+.descriptionStyle {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -48,15 +48,36 @@
     text-overflow: ellipsis;
 }
 
-#cardStyle {
+.cardStyle {
     background-color: dodgerblue; 
     color: white;
     padding: 1rem;
     height: fit-content;
 }
 
-#courseImage {
+.courseImage {
     width: 100%;
+}
+
+.filterSection {
+    border-radius: 8px;
+    background-color: #f1d100;
+    margin: 0 0 25px auto;
+    display: inline-block;
+}
+
+.filterButtonDiv { 
+    display: inline-block;
+}
+
+.pageButtons {
+    padding: 10px 15px;
+    margin: 4px 5px;
+    background-color: white;
+    color: #4861e7;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 /* -----------------------------learningJourney.js-------------------------------------- */
