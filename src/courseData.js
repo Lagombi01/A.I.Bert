@@ -1,5 +1,5 @@
 let skillsbuild = require("./Images/skillsbuild.png");
-let watson = require("./Images/watson.png");
+// let watson = require("./Images/watson.png");         Not currently being used
 let mindspark = require("./Images/mindspark.png");
 let developer = require("./Images/developer.png");
 
