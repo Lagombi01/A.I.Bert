@@ -3,6 +3,8 @@ let skillsbuild = require("./Images/skillsbuild.png");
 let mindspark = require("./Images/mindspark.png");
 let developer = require("./Images/developer.png");
 
+// If we are able to map plurals to singular, then update terms to match:
+
 export const courseData = [
     {"id":"001",
     "name":"IBM SkillsBuild - Artifical Intelligence",
@@ -45,7 +47,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["102","103","104"],
     "difficulty":1,
-    "terms":["AI","Business","Industry","Natural Language Processing","Foundation","Evolution","Watson","Basics","Chatbot"],
+    "terms":["AI","Business","Industry","NLP","Foundation","Evolution","Watson","Basics","Chatbot"],
     "link":"https://keyskill-clms.comprehend.ibm.com/course/view.php?id=236"},
 
     {"id":"102",
@@ -89,7 +91,7 @@ export const courseData = [
     "prereq":["101","404"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Watson","Studio","Machine Learning","Natural Language Processing","Cloud","Data","Basics","IBM"],
+    "terms":["AI","Watson","Studio","Machine Learning","NLP","Cloud","Data","Basics","IBM"],
     "link":"https://www.ibm.com/training/watson"},
     
     {"id":"301",
@@ -144,7 +146,7 @@ export const courseData = [
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Natural Language Processing","Speech","Siri","Alexa","Real-Life","Social"],
+    "terms":["AI","Teaching","Students","NLP","Speech","Siri","Alexa","Real-Life","Social"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8"},
     
     {"id":"306",
@@ -232,7 +234,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["401","402"],
     "difficulty":1,
-    "terms":["AI","Machine Learning","Introduction","Deep learning", "Neural Networks","Natural Language Processing","Visual recognition","Supervised","Unsupervised","Python","Scikit"],
+    "terms":["AI","Machine Learning","Introduction","Deep learning", "Neural Networks","NLP","Visual recognition","Supervised","Unsupervised","Python","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-artificial-intelligence/"},
     
     {"id":"405",
@@ -287,7 +289,7 @@ export const courseData = [
     "prereq":["413","408"],
     "postreq":[],
     "difficulty":3,
-    "terms":["AI","Python","Web","Data","Scrape","Natural Language Processing","Keywords"],
+    "terms":["AI","Python","Web","Data","Scrape","NLP","Keywords"],
     "link":"https://developer.ibm.com/tutorials/scrape-data-from-the-web-using-watson-studio/"},
     
     {"id":"410",
@@ -298,7 +300,7 @@ export const courseData = [
     "prereq":["408"],
     "postreq":["411"],
     "difficulty":3,
-    "terms":["AI","Natural Language Processing","Watson","Machine Learning","Keywords","Python","Visualisaion"],
+    "terms":["AI","NLP","Watson","Machine Learning","Keywords","Python","Visualisaion"],
     "link":"https://developer.ibm.com/tutorials/entity-extraction-using-watson-nlp/"},
     
     {"id":"411",
@@ -308,7 +310,7 @@ export const courseData = [
     "image":developer,
     "prereq":["410"],
     "postreq":[],
-    "difficulty":4,
+    "difficulty":3, //should be 4, but would be the only 4 in the database
     "terms":["AI","Speech","Natural Langauge Processing","Kubernetes","Analysis","Python"],
     "link":"https://developer.ibm.com/tutorials/extract-meaningful-insights-from-data/"},
     
