@@ -1,6 +1,7 @@
 import Navigation from './navigation';
 import AIBert from './chatbot.js'
 import { createElement, useEffect, useState } from 'react';
+import { courseData } from "../courseData.js";
 import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
 import fade from './globals/elementFader';
@@ -114,9 +115,17 @@ export default function Home(){
     function buttonsAppear() {
         var buttons = document.getElementsByClassName('responseButton');
         for (let button of buttons) {
-            button.addEventListener('click', (event) => {
-                if (button.style.opacity > 0) document.getElementById('input').value = button.innerHTML;
-            },false);
+            switch (button.id) {
+                case "bookmark":
+                    if (button.style.opacity > 0) ; //bookmark course
+                    break;
+                default:
+                    button.addEventListener('click', (event) => {
+                        console.log("here");
+                        if (button.style.opacity > 0 && !globalVariables.transitioning) inputHandling(button.innerHTML);
+                    },false);
+                    break;
+            }
         }
         setTimeout(function() { buttonAppear(document.getElementById('openCourse')); }, 0);
         setTimeout(function() { buttonAppear(document.getElementById('notRelevant')); }, 200);
@@ -170,38 +179,152 @@ export default function Home(){
         }, span)
     }
 
-    document.addEventListener('keydown', (event) => {
-        var name = event.key;
-        if (name == "Enter" && !globalVariables.transitioning) {
-            if (globalVariables.presenting) {
-                if (document.getElementById('input').value != "") {
-                    globalVariables.currentCourseID = document.getElementById('input').value; //Temporary line which skips watson/NLU, will be replaced
+    function search(input, difficulty = 2) {
+        globalVariables.input = input; //so it can be accessed later, when a response button is pressed
+        if (difficulty > 3) difficulty = 3; //due to there being no courses of difficulty 4
+        var keyTerms = input.split(",") //replace with Watson's NLP results
+        keyTerms = keyTerms.map(term => term.toLowerCase());
+
+        //Data cleanup:
+        if (keyTerms.includes("artificial intelligence")) {
+            keyTerms[keyTerms.indexOf("artificial intelligence")] = "ai";
+        }
+        if (keyTerms.includes("key words")) {
+            keyTerms[keyTerms.indexOf("key words")] = "keywords"; //update if mapping plurals to singular!
+        }
+        if (keyTerms.includes("raw data")) {
+            keyTerms[keyTerms.indexOf("raw data")] = "raw";
+            if (!keyTerms.includes("data")) keyTerms.push("data");
+        }
+        var nlpTerms = ["natural language processing","language processing","natual language understanding","nlu"]
+        for (var i = 0; i < nlpTerms.length; i++) {
+            if (keyTerms.includes(nlpTerms[i])) {
+                keyTerms[keyTerms.indexOf(nlpTerms[i])] = "nlp";
+                break;
+            }
+        }
+
+        var completed = [] //should be taken from database
+        var score = {};
+        courseData.forEach(function(course) {
+            //Check if course already completed, skip course if so
+            score[course["id"]] = grade(keyTerms, course["id"]);
+            if (score[course["id"]] < 0) {
+                delete score[course["id"]];
+            }
+        });
+        var sorted = Object.keys(score).map(
+            (key) => { return [key, score[key], courseData.find(item => item.id === key)["difficulty"]] }
+        );
+        var order;
+        switch (difficulty) {
+            case 2:
+                order = [2,1,3];
+                break;
+            case 3:
+                order = [3,2,1];
+                break;
+            default:
+                order = [1,2,3];
+                break;
+        }
+        sorted.sort(
+            (first, second) => { return order.indexOf(first[2]) - order.indexOf(second[2])}
+        );
+        sorted.sort(
+            (first, second) => { return second[1] - first[1]}
+        );
+        console.log(sorted);
+        var matches = sorted.map(
+            (e) => { return e[0] }
+        );
+        console.log(matches);
+        return matches;
+    }
+
+    function grade(keyTerms, id) {
+        var courseTerms = courseData.find(item => item.id === id)["terms"];
+        var score = 0;
+        for (var i = 0; i < courseTerms.length; i++) {
+            if (keyTerms.includes(courseTerms[i].toLowerCase())) {
+                score += 1; //weight based on term relevance
+            } else score -= 0.1;
+        }
+        //Award additional 0.5 points if term in course title?
+        return score;
+    }
+
+    function inputHandling(input) {
+        if (input != "") {
+            var matches;
+            switch (input.toLowerCase()) {
+                case "open course":
+                    //open course
+                    break;
+                case "not relevant":
+                    //Course Search using previous input
+                    matches = globalVariables.results;
+                    matches.shift();
+                    globalVariables.results = matches;
+                    break;
+                case "too easy":
+                    if (courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"].length > 0) {
+                        matches = courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"];
+                    } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] < 3) {
+                        console.log("here");
+                        matches = search(globalVariables.input, courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] + 1); //make search exclusive to difficulty level? new argument?
+                    } else matches = [];
+                    globalVariables.results = matches;
+                    break;
+                case "too hard":
+                    //Convert to Learning Journeys!!
+                    if (courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"].length > 0) {
+                        matches = courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"];
+                    } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] > 1) {
+                        matches = search(globalVariables.input, courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] - 1); //make search exclusive to difficulty level? new argument?
+                    } else matches = [];
+                    globalVariables.results = matches;
+                    break;
+                default:
+                    //Course Search from scratch
+                    matches = search(input); //Also pass user_difficulty from database
+                    globalVariables.results = matches;
+                    break;
+            }
+            console.log(matches);
+            if (matches.length > 0) {
+                    globalVariables.currentCourseID = matches[0];
                     globalVariables.transitioning = true;
+                if (globalVariables.presenting) {
                     buttonsVanish();
                     courseVanish();
                     setTimeout(courseAppear,500);
                 } else {
+                    chatbotVanish();
+                }
+            } else if (globalVariables.presenting) {
+                    console.log("here");
                     miniVanish();
                     moveInput(true);
                     courseVanish();
                     buttonsVanish();
-                }
-            } else if (document.getElementById('input').value != "") {
-                globalVariables.currentCourseID = document.getElementById('input').value; //Temporary line which skips watson/NLU, will be replaced
-                globalVariables.transitioning = true;
-                chatbotVanish();
             }
             document.getElementById('input').value = "";
             document.getElementById('input').blur();
         }
+    }
+
+    document.addEventListener('keydown', (event) => {
+        var name = event.key;
+        if (name == "Enter" && !globalVariables.transitioning) {
+            inputHandling(document.getElementById('input').value);
+        }
     },false);
 
-    
     if (globalVariables.mini) {
         setTimeout(miniVanish,10);
     }
     
-	
     return(
         <div>
             <Navigation />

@@ -3,6 +3,8 @@ const globalVariables = {
     "transitioning":false,
     "presenting":false,
     "mini":false,
-    "home":true};
+    "home":true,
+    "input":"",
+    "results":[]};
 
 export default globalVariables;
