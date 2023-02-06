@@ -36,7 +36,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["401","402","403","404","405","406","407","408","409","410","411","412","413"],
     "difficulty":3,
-    "terms":["AI","Development","Software","Machine Learning","Deep Learning","Programming","Languages","Application Modernization","Messaging","IBM"],
+    "terms":["Development","Software","Machine Learning","Deep Learning","Programming","Languages","Application Modernization","Messaging","IBM"],
     "link":"https://developer.ibm.com/technologies/artificial-intelligence/"},
     
     {"id":"101",
@@ -69,7 +69,7 @@ export const courseData = [
     "prereq":["101"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Watson","Data","Refinery","CSV","Raw"],
+    "terms":["Watson","Data","Refinery","CSV","Raw"],
     "link":"https://learn.ibm.com/course/view.php?id=4480"},
     
     {"id":"104",
@@ -80,7 +80,7 @@ export const courseData = [
     "prereq":["101"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Watson","Data","Catalogue","Analysis","Assets","Profiling","Classification"],
+    "terms":["Watson","Data","Catalogue","Analysis","Assets","Profiling","Classification"],
     "link":"https://learn.ibm.com/course/view.php?id=4481"},
     
     {"id":"105",
@@ -146,7 +146,7 @@ export const courseData = [
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","NLP","Speech","Siri","Alexa","Real-Life","Social"],
+    "terms":["Teaching","Students","NLP","Speech","Siri","Alexa","Real-Life","Social"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8"},
     
     {"id":"306",
@@ -168,7 +168,7 @@ export const courseData = [
     "prereq":[],
     "postreq":[],
     "difficulty":1,
-    "terms":["AI","Teaching","Students","Robot","Robotics","Real-Life","Activity","Programming"],
+    "terms":["Teaching","Students","Robot","Robotics","Real-Life","Activity","Programming"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7"},
     
     {"id":"308",
@@ -190,7 +190,7 @@ export const courseData = [
     "prereq":["304"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","STEM","Diversity","Inclusion","Gender","Race","Bias","Algorithm"],
+    "terms":["Teaching","Students","STEM","Diversity","Inclusion","Gender","Race","Bias","Algorithm"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7-36c99-88r6j"},
     
     {"id":"401",
@@ -278,7 +278,7 @@ export const courseData = [
     "prereq":["403"],
     "postreq":["405","409","410"],
     "difficulty":2,
-    "terms":["AI","Watson","Data Science","Machine Learning","Deep Learning","Model","Training","Scikit"],
+    "terms":["Watson","Data Science","Machine Learning","Deep Learning","Model","Training","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-watson-studio/"},
     
     {"id":"409",
@@ -289,7 +289,7 @@ export const courseData = [
     "prereq":["413","408"],
     "postreq":[],
     "difficulty":3,
-    "terms":["AI","Python","Web","Data","Scrape","NLP","Keywords"],
+    "terms":["AI","Python","Internet","Data","Scrape","NLP","Keywords"],
     "link":"https://developer.ibm.com/tutorials/scrape-data-from-the-web-using-watson-studio/"},
     
     {"id":"410",
@@ -300,18 +300,18 @@ export const courseData = [
     "prereq":["408"],
     "postreq":["411"],
     "difficulty":3,
-    "terms":["AI","NLP","Watson","Machine Learning","Keywords","Python","Visualisaion"],
+    "terms":["NLP","Watson","Machine Learning","Keywords","Python","Visualisaion"],
     "link":"https://developer.ibm.com/tutorials/entity-extraction-using-watson-nlp/"},
     
     {"id":"411",
     "name":"Convert speech to text, and extract meaningful insights from data",
-    "description":"Walk through the steps of preprocessing a speech data set, using the Watson Speech to Text Service to transcribe speech data, and extracting meaningful insights from data with the Watson Natural Language Processing library/",
+    "description":"Walk through the steps of preprocessing a speech data set, using the Watson Speech to Text Service to transcribe speech data, and extracting meaningful insights from data with the Watson Natural Language Processing library.",
     "duration":1,
     "image":developer,
     "prereq":["410"],
     "postreq":[],
     "difficulty":3, //should be 4, but would be the only 4 in the database
-    "terms":["AI","Speech","Natural Langauge Processing","Kubernetes","Analysis","Python"],
+    "terms":["Speech","Natural Language Processing","Kubernetes","Analysis","Python"],
     "link":"https://developer.ibm.com/tutorials/extract-meaningful-insights-from-data/"},
     
     {"id":"412",
