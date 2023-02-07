@@ -253,7 +253,7 @@
   outline: 0;
   font-weight: 700;
   font-size: 1.3rem;
-  color: #fff;
+  color: #283070;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -300,13 +300,19 @@
 }
 
 body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   font-size: 1.5rem;
-  background-color: #ffda6c;
+  background-color: #f1c232;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 /* chatbot styling */
@@ -386,7 +392,7 @@ body {
     margin-top: -240px;
 }
 
-/*Quick Response Button Styling*/
+/*Response Button Styling*/
 
 .responseButtons {
     position: absolute;
@@ -419,4 +425,29 @@ body {
 
 .responseButton img {
     width: 20px;
+}
+
+/*All Courses Page*/
+
+#cssGrid {
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+}
+
+.filterSection {
+    padding-top: 50px;
+    padding-left: 60px;
+    padding-right: 60px;
+    width: 100%;
+}
+
+.filterSection div {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.filterSection div strong {
+    font-size: 28px;
+    margin-right: 20px;
 }

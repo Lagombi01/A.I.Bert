@@ -44,7 +44,6 @@ function renderGrid (coursesToShow) {
                     <div key={key} className='cardStyle'>
                         <div><img src={data.image} className='courseImage' alt="Course pic" /></div>
                         <div><strong>{data.name}</strong></div>
-                        <div className='descriptionStyle'>{data.description}</div>
                         <div>{buttonRender("Learn More!", 0, data.link)}</div>
                     </div>
                 );
@@ -63,7 +62,6 @@ export default function Courses () {
     return(
         <div> 
             <Navigation /> 
-            <h1>All Courses</h1>
             <div className = 'filterSection'>
                 <div><strong>Filter:</strong></div>
                 {categories.map((data, key) => {return (<div key={key} className='filterButtonDiv'>{buttonRender(data.name, 1)}</div>)})}
