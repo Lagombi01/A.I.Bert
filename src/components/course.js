@@ -1,38 +1,10 @@
 import Navigation from './navigation';
+import './components.css';
 
-export default function course(){
+export default function Course(){
     return(
         <div>
-            <style>
-                body{
-                    background-color: pink;
-                }
-            
-                .acorn-icon, .acorn-icon-hover, .acorn-icon-bookmarked{
-                    width: 100px;
-                    height: 100px;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    position: relative;
-                }
-                .acorn-icon{
-                    background-image: url("Images/Acorn.svg");    
-                }
-                .acorn-icon-bookmarked{
-                    background-image: url("Images/BookmarkedAcorn.svg")
-                }
-                .acorn-icon-hover{
-                    z-index: -1;
-                }
-                .acorn-icon:hover .acorn-icon-hover{
-                    background-image: url("Images/AcornGlow.svg");
-                }
-                .acorn-icon-bookmarked:hover .acorn-icon-hover{
-                    background-image: url("Images/AcornGlow.svg");
-                }
-            </style>
-         
-            <body>
+            <body id = "courseBody">
             
                 <div id="Top Bar">
                     <div class="row">

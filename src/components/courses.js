@@ -1,47 +1,74 @@
+import ReactDOMServer from 'react-dom/server';
 import { courseData } from "./../courseData.js";
 import Navigation from './navigation';
+import './components.css';
 
-const wrapperStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
-    columnGap: "10px",
-    rowGap: "1em"
-};
+// Split courseData into categories and courseList arrays
+// Each element in the arrays are objects
+// categories have an id property starting with a 0
+// Init categories[] with a value s.t. all courses can show up once another filter has been applied
+var categories = [{"name" : "All"}], courseList = [];
+for (var i = 0; i < courseData.length; i++) {       //for element in courseData
+    let element = courseData[i];
+    ((element.id[0] === "0") ? (categories) : (courseList)).push(element)
+}
 
-const cardStyle = {
-    backgroundColor: "dodgerblue",
-    color: "white",
-    padding: "1rem",
-    height: "fit-content"
-};
+// Render buttons for filter choices and course links 
+// if filter button, isFilter = 1, else, isFilter = 0
+function buttonRender (buttonText, isFilter, link = null) {
+    // Executes when the user clicks on a filter button - Returns the category to filter 
+    function isFilterBttn () {for (var i = 0; i < categories.length; i++) {if (categories[i].name === buttonText) {updateGrid(categories[i]);}}}
+    // Executes when the user clicks on a course button - Opens the link to the course in a new window
+    function notFilterBttn () {window.open(link, '_blank').focus();}
+    return(<div className='pageButtons' onClick = {(isFilter) ? (isFilterBttn) : (notFilterBttn)}>{buttonText}</div>);
+}
 
-const descriptionStyle = {
-    display: "-webkit-box",
-    WebkitBoxOrient: "vertical",
-    WebkitLineClamp: 3,
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-  };
+// Given a specific category object, will go through courseList[] to see which courses belong to it
+// The argument is the category's object
+// Returns the corresponding array of objects
+function filterCategories (category) {
+    var filteredList = [];
+    for (var i = 0; i < courseList.length; i++) {
+        //all courses matching to the category should be returned
+        if (Number(category.id) === Number(courseList[i].id[0])) {filteredList.push(courseList[i]);}  
+    }
+    return filteredList;
+}
 
-const courseImage = {width: "100%"};
-
-export default function courses() {
+// coursesToShow <- Array of course objects to display in the grid
+function renderGrid (coursesToShow) {
     return (
-    <div>
-        <Navigation />
-        <h1>List of Courses</h1>
-        <div style={wrapperStyle}>
-            {courseData.map((data, key) => {
+        <>
+            {coursesToShow.map((data, key) => {
                 return (
-                    <div key={key} style = {cardStyle}>
-                        <div><img src={data.image} style={courseImage}/></div>
+                    <div key={key} className='cardStyle'>
+                        <div><img src={data.image} className='courseImage' alt="Course pic" /></div>
                         <div><strong>{data.name}</strong></div>
-                        <div style={descriptionStyle}>{data.description}</div>
-                        <div><a href ={data.link} target="_blank"><button type="button">Learn More</button></a> </div>
+                        <div className='descriptionStyle'>{data.description}</div>
+                        <div>{buttonRender("Learn More!", 0, data.link)}</div>
                     </div>
                 );
             })}
+        </>
+    );
+}
+
+function updateGrid (categoryToFilter) {
+    const gridDiv = document.getElementById("cssGrid");
+    const coursesToFilter = categoryToFilter.name === "All" ? (courseList) : (filterCategories(categoryToFilter));
+    gridDiv.innerHTML = `${ReactDOMServer.renderToStaticMarkup(renderGrid(coursesToFilter))}`
+}
+
+export default function Courses () {
+    return(
+        <div> 
+            <Navigation /> 
+            <h1>All Courses</h1>
+            <div className = 'filterSection'>
+                <div><strong>Filter:</strong></div>
+                {categories.map((data, key) => {return (<div key={key} className='filterButtonDiv'>{buttonRender(data.name, 1)}</div>)})}
+            </div>
+            <div className='wrapperStyle' id="cssGrid">{renderGrid(courseList)}</div>
         </div>
-    </div>
     )
 }

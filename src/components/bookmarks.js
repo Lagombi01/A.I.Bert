@@ -1,6 +1,7 @@
 import Navigation from './navigation';
+import './components.css';
 
-export default function bookmarks(){
+export default function Bookmarks(){
     return(
         <div>
             <Navigation />

@@ -1,0 +1,93 @@
+/* CSS file contains all necessary css for files in the components folder */
+/* If additonal css code is to be added, add it here or drop in relevant component file and it will be moved over. */
+
+
+/* chatbot.js */
+
+/* --------------------------------------course.js-------------------------------------- */
+#courseBody{
+    background-color: pink;
+}
+.acorn-icon, .acorn-icon-hover, .acorn-icon-bookmarked{
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.acorn-icon{
+    background-image: url("../Images/Acorn.svg");    
+}
+.acorn-icon-bookmarked{
+    background-image: url("../Images/BookmarkedAcorn.svg")
+}
+.acorn-icon-hover{
+    z-index: -1;
+}
+.acorn-icon:hover .acorn-icon-hover{
+    background-image: url("../Images/AcornGlow.svg");
+}
+.acorn-icon-bookmarked:hover .acorn-icon-hover{
+    background-image: url("../Images/AcornGlow.svg");
+}
+/* -----------------------------------details.js---------------------------------------- */
+
+/* -----------------------------------courses.js---------------------------------------- */
+.wrapperStyle {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    column-gap: 10px;
+    row-gap: 1em;
+}
+
+.descriptionStyle {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cardStyle {
+    background-color: dodgerblue; 
+    color: white;
+    padding: 1rem;
+    height: fit-content;
+}
+
+.courseImage {
+    width: 100%;
+}
+
+.filterSection {
+    border-radius: 8px;
+    background-color: #f1d100;
+    margin: 0 0 25px auto;
+    display: inline-block;
+}
+
+.filterButtonDiv { 
+    display: inline-block;
+}
+
+.pageButtons {
+    padding: 10px 15px;
+    margin: 4px 5px;
+    background-color: white;
+    color: #4861e7;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* -----------------------------learningJourney.js-------------------------------------- */
+
+/* navigation.js */
+
+/* bookmarks.js */
+
+/* ---------------------------------home.js--------------------------------------------- */
+
+/* login.js */
+
+/* profile.js */
