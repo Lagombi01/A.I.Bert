@@ -186,21 +186,11 @@ export default function Home(){
         keyTerms = keyTerms.map(term => term.toLowerCase());
 
         //Data cleanup:
-        if (keyTerms.includes("artificial intelligence")) {
-            keyTerms[keyTerms.indexOf("artificial intelligence")] = "ai";
-        }
-        if (keyTerms.includes("key words")) {
-            keyTerms[keyTerms.indexOf("key words")] = "keywords"; //update if mapping plurals to singular!
-        }
-        if (keyTerms.includes("raw data")) {
-            keyTerms[keyTerms.indexOf("raw data")] = "raw";
-            if (!keyTerms.includes("data")) keyTerms.push("data");
-        }
-        var nlpTerms = ["natural language processing","language processing","natual language understanding","nlu"]
-        for (var i = 0; i < nlpTerms.length; i++) {
-            if (keyTerms.includes(nlpTerms[i])) {
-                keyTerms[keyTerms.indexOf(nlpTerms[i])] = "nlp";
-                break;
+        for (var i = 0; i < globalVariables.synonyms.length; i++) {
+            for (var j = 0; j < globalVariables.synonyms[i].length - 1; j++) {
+                if (keyTerms.includes(globalVariables.synonyms[i][j])) {
+                    keyTerms[keyTerms.indexOf(globalVariables.synonyms[i][j])] = globalVariables.synonyms[i][globalVariables.synonyms[i].length-1]
+                }
             }
         }
 
@@ -238,7 +228,6 @@ export default function Home(){
         var matches = sorted.map(
             (e) => { return e[0] }
         );
-        console.log(matches);
         return matches;
     }
 
@@ -250,8 +239,29 @@ export default function Home(){
                 score += 1; //weight based on term relevance
             } else score -= 0.1;
         }
-        //Award additional 0.5 points if term in course title?
+        var courseTitle = courseData.find(item => item.id === id)["name"];
+        for (var i = 0; i < keyTerms.length; i++) {
+            if (isMatch(courseTitle,keyTerms[i])) {
+                score += 1;
+            } else {
+                for (var j = 0; j < globalVariables.synonyms.length; j++) {
+                    if (globalVariables.synonyms[j][globalVariables.synonyms[j].length-1] == keyTerms[i]) {
+                        for (var k = 0; k < globalVariables.synonyms[j].length - 1; k++) {
+                            if (isMatch(courseTitle,globalVariables.synonyms[j][k])) {
+                                score += 1;
+                            }
+                            break
+                        }
+                    }
+                }
+            }
+        }
         return score;
+    }
+
+    function isMatch(searchOnString, searchText) {
+        searchText = searchText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+        return searchOnString.match(new RegExp("\\b"+searchText+"\\b", "i")) != null;
     }
 
     function inputHandling(input) {
@@ -291,7 +301,6 @@ export default function Home(){
                     globalVariables.results = matches;
                     break;
             }
-            console.log(matches);
             if (matches.length > 0) {
                     globalVariables.currentCourseID = matches[0];
                     globalVariables.transitioning = true;
