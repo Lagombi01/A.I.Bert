@@ -30,11 +30,40 @@
 .acorn-icon-bookmarked:hover .acorn-icon-hover{
     background-image: url("../Images/AcornGlow.svg");
 }
+
 /* -----------------------------------details.js---------------------------------------- */
 
 /* -----------------------------------courses.js---------------------------------------- */
+
+#cssGrid {
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 60px;
+}
+
+.filterSection {
+    padding-top: 50px;
+    padding-left: 60px;
+    padding-right: 60px;
+    width: 100%;
+}
+
+.filterSection div {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.filterSection div strong {
+    font-size: 28px;
+    margin-right: 20px;
+}
+
+.filterSection div em {
+    margin-right: 100px;
+}
+
 .wrapperStyle {
-    display: grid;
+    text-align: center;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     column-gap: 10px;
     row-gap: 1em;
@@ -49,10 +78,22 @@
 }
 
 .cardStyle {
-    background-color: dodgerblue; 
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #4861e7; 
     color: white;
     padding: 1rem;
+    padding-bottom: 0;
+    width: 20%;
     height: fit-content;
+    min-width: 300px;
+    margin: 1%;
+    border-radius: 15px;
+}
+
+.cardStyle:hover {
+    cursor: pointer;
 }
 
 .cardStyle div:nth-of-type(2) {
@@ -60,13 +101,14 @@
     margin-bottom: 20px;
 }
 
-.courseImage {
+.courseThumb {
     width: 100%;
 }
 
 .filterSection {
+    text-align: center;
     border-radius: 8px;
-    margin: 0 0 25px auto;
+    margin-bottom: 25px;
     display: inline-block;
 }
 
@@ -78,10 +120,94 @@
     padding: 10px 15px;
     margin: 4px 5px;
     background-color: white;
-    color: #4861e7;
+    color: black;
     border-radius: 8px;
     display: inline-block;
     cursor: pointer;
+}
+
+/* Overlay Course Details */
+
+.overlayCourseSpan {
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    margin-top: 62px;
+    opacity: 0;
+}
+
+#blackOverlay {
+    position: fixed;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.4;
+}
+
+.overlayCourseDetails {
+    position: fixed;
+    width: 80%;
+    height: fit-content;
+    padding: 1%;
+    margin-left: 8%;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    background-color: #4861e7;
+    border-radius: 25px;
+}
+
+#detailExit {
+    position: fixed;
+    margin-top: -3px;
+}
+
+#detailExit img {
+    width: 20px;
+}
+
+#detailExit:hover {
+    cursor: pointer;
+}
+
+.overlayCourseDetails .detailBlock {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    height: 100%;
+}
+
+.overlayCourseDetails .courseImage img {
+    width: 80%;
+    border-radius: 20px;
+    margin-top: 5%;
+    margin-left: 5%;
+    border: 4px solid black;
+}
+
+.overlayCourseDetails .courseTitle {
+    float:left;
+    font-weight: bold;
+    font-size: 40px;
+    width: 80%;
+    margin-top: 3%;
+    margin-left: 6%;
+    margin-bottom: 3%;
+    text-align: left;
+    color: white;
+}
+
+.overlayCourseDetails .courseDescription {
+    float:right;
+    font-size: 30px;
+    width: 100%;
+    margin-right: 5%;
+    color: white;
 }
 
 /* -----------------------------learningJourney.js-------------------------------------- */
@@ -91,6 +217,118 @@
 /* bookmarks.js */
 
 /* ---------------------------------home.js--------------------------------------------- */
+
+.courseSpan {
+    position: absolute;
+    width: 1166px; /*Want this to span the width of the app, not sure how else to do it!*/
+    height: 360px;
+    margin-top: 62px;
+}
+
+.courseDetails {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    opacity: 0;
+}
+
+.courseDetails .courseImage img {
+    display: inline-block;
+    width: 360px;
+    margin-left: 165px;
+    border-radius: 20px;
+    border: 4px solid black;
+}
+
+.courseDetails .courseTitle {
+    float:left;
+    font-weight: bold;
+    font-size: 28px;
+    width: 350px;
+    margin-top: 8px;
+    margin-left: 169px;
+    text-align: left;
+}
+
+.courseDetails .courseDescription {
+    float: right;
+    font-size: 26px;
+    width: 440px;
+    margin-right: 140px;
+    margin-top: -240px;
+}
+
+/*Response Button Styling*/
+
+.chatbot .responseButtons {
+    position: absolute;
+    width: 1166px;/*Again, want this to span the width of the app*/
+    height: 50px;
+    margin-top: 440px;
+    text-align: center;
+}
+
+.overlayCourseDetails .responseButtons {
+    display: inline-block;
+    height: 50px;
+    width: 100%;
+    margin-left: -50px;
+    padding-top: 25px;
+    padding-bottom: 45px;
+    text-align: center;
+}
+
+.chatbot .responseButton {
+    position: relative;
+    border-style: solid;
+    border-color:black;
+    border-width: 3px;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #eecb60;
+    width:fit-content;
+    display: inline-block;
+    font-size: 26px;
+    margin-left: 10px;
+    margin-right: 10px;
+    top: 0px;
+    cursor:default;
+    opacity: 0;
+}
+
+.overlayCourseDetails .responseButton {
+    position: relative;
+    border-style: solid;
+    border-color:black;
+    border-width: 4px;
+    border-radius: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    background-color: #eecb60;
+    width:fit-content;
+    display: inline-block;
+    margin-left: 3%;
+    margin-right: 3%;
+    top: 0px;
+    cursor: pointer;
+}
+
+.chatbot .responseButton img {
+    width: 20px;
+}
+
+.overlayCourseDetails .responseButton img {
+    width: 50px;
+}
 
 /* login.js */
 
