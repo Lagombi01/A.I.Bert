@@ -55,13 +55,17 @@
     height: fit-content;
 }
 
+.cardStyle div:nth-of-type(2) {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
 .courseImage {
     width: 100%;
 }
 
 .filterSection {
     border-radius: 8px;
-    background-color: #f1d100;
     margin: 0 0 25px auto;
     display: inline-block;
 }

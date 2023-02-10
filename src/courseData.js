@@ -7,7 +7,7 @@ let developer = require("./Images/developer.png");
 
 export const courseData = [
     {"id":"001",
-    "name":"IBM SkillsBuild - Artifical Intelligence",
+    "name":"IBM SkillsBuild",
     "description":"The IBM SkillsBuild page for Artificial Intelligence, containing the courses, software, and resources needed for your learning journey.",
     "duration":-1,
     "image":skillsbuild,
