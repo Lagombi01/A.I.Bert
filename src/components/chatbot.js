@@ -16,6 +16,25 @@ export default function Chatbot() {
   const [message, setMessage] = useState("");
   const [session, setSession] = useState("");
 
+
+  //GET KEYWORDS FUNCTION
+  const getKeywords = async(message) =>{
+    fetch('http://localhost:5000/api/watson/analyze', {
+        method: 'POST',
+        headers:{ "Content-Type": "application/json"},
+        body: JSON.stringify({
+          text: `${message}`,
+        }) 
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        console.log("The Keywords from this input are...")
+        console.log(data.keywords)
+      }).catch(err => {
+       console.log(err);
+      });
+  }
+
   //Function handles user submission 
   const handleClick = async (e) => {
     const code = e.keyCode || e.which;
@@ -34,10 +53,16 @@ export default function Chatbot() {
       }).then(data => {
         console.log(data.output.generic[0].text);
         setAIBertresponse(data.output.generic[0].text)
+        console.log("The Intent identified is...")
+        console.log(data.output.intents[0].intent)
       }).catch(err => {
        console.log(err);
       });
+      getKeywords(message)
+
+
     }
+
 
    
   };
