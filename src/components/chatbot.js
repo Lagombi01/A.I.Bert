@@ -12,40 +12,55 @@ import './components.css';
 export default function Chatbot() {
 
   //handles user message
+  const [AIBertresponse, setAIBertresponse] = useState("Hi! I'm AI-Bert, I am here to assist you with your learning in AI!");
   const [message, setMessage] = useState("");
   const [session, setSession] = useState("");
 
-  //Function handles user submission and sends to watson API for response back
+  //Function handles user submission 
   const handleClick = async (e) => {
     const code = e.keyCode || e.which;
 
     if (code === 13) {
       console.log(message);
       setMessage("");
+      fetch('http://localhost:5000/api/watson/message', {
+        method: 'POST',
+        headers:{ "Content-Type": "application/json", "session_id": `${session}`,"Access-Control-Allow-Origin": "http://localhost:3000",'Access-Control-Allow-Methods':'GET, POST, PUT, DELETE, OPTIO'},
+        body: JSON.stringify({
+          input: `${message}`,
+        }) 
+      }).then(res => {
+        return res.json();
+      }).then(data => {
+        console.log(data.output.generic[0].text);
+        setAIBertresponse(data.output.generic[0].text)
+      }).catch(err => {
+       console.log(err);
+      });
     }
 
-    fetch('http://localhost:5000/api/watson/message', {
-      method: 'POST',
-      headers:{ "Content-Type": "application/json", "session_id": `${session}`,},
-      body: JSON.stringify({
-        input: `${message}`,
-      })
-    }).then(() =>{
-      console.log('sucess');
-    }).catch(err => {
-    });
+   
   };
+
+   
 
   //set up watson assistant session with external API
   useEffect(() => {
-    fetch("http://localhost:5000/api/watson/session")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setSession(data.session_id);
-        console.log(session)
-      });
+    try {
+      fetch("http://localhost:5000/api/watson/session")
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(res.statusText);
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setSession(data.session_id);
+          console.log(session);
+        });
+    } catch (error) {
+      console.error("Failed to fetch session: ", error);
+    }
   }, []);
 
   return (
@@ -65,7 +80,7 @@ export default function Chatbot() {
       
         <div className="AI-Bert-speech">
           <div className="box sb3" style={{opacity: globalVariables.mini?0:1}}>
-            Hi! I'm AI-Bert, I am here to assist you with your learning in AI!
+            {AIBertresponse}
           </div>
           <div className="topbox sb4">
             <div>Here's a course I found:</div>
@@ -89,7 +104,6 @@ export default function Chatbot() {
             <label for="name" class="form__label">
               What would you like to learn?
             </label>
-            <p>Session ID: <br></br>{session}</p>
           </div>
         </div>
       </div>

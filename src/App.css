@@ -19,24 +19,6 @@
 }
 
 
-/* Watson chatbot styling */
-#WACContainer.WACContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  width: 100%;
-  font-weight: 700 !important;
-  font-size: 40px !important;
-}
-
-#WACContainer.WACContainer p {
-  font-size: 18px !important;
-  font-weight: 700 !important;
-  line-height: 1.5;
-  letter-spacing: 0;
-}
-
 /* NavBar styling */
 .bubbles {
   position: relative;
@@ -176,7 +158,7 @@
 }
 
 .box {
-  width: 300px;
+  width: 500px;
   margin: 50px auto;
   margin-right: 200px;
   margin-top: 100px;
@@ -237,13 +219,17 @@
 
 /* input text styling  */
 
+
+
 .form__group {
   position: relative;
   padding: 20px 0 0;
-  margin-top: 50px; /*270px*/
-  margin-left: 0px; /*-200px*/
-  width: 70%;
+  position: fixed;
+  bottom: 15%;
+  right: 25%;
+  width: 25%;
   font-weight: 600;
+  
 }
 
 .form__field {
