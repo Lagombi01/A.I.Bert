@@ -1,7 +1,10 @@
 import ReactDOMServer from 'react-dom/server';
 import { courseData } from "./../courseData.js";
 import Navigation from './navigation';
+import Details from "./overlayDetails.js";
 import './components.css';
+import fillDetails from './globals/detailsFiller';
+import globalVariables from './globals/globalVariables.js';
 
 // Split courseData into categories and courseList arrays
 // Each element in the arrays are objects
@@ -35,16 +38,24 @@ function filterCategories (category) {
     return filteredList;
 }
 
+function showDetails (id) {
+    globalVariables.currentCourseID = id;
+    fillDetails(id);
+    document.getElementsByClassName("overlayCourseSpan")[0].style.opacity = 1;
+    document.getElementsByClassName("overlayCourseSpan")[0].style["pointer-events"] = "auto";
+    document.body.style["overflow"] = "hidden";
+}
+
 // coursesToShow <- Array of course objects to display in the grid
 function renderGrid (coursesToShow) {
+
     return (
         <>
             {coursesToShow.map((data, key) => {
                 return (
-                    <div key={key} className='cardStyle'>
-                        <div><img src={data.image} className='courseImage' alt="Course pic" /></div>
+                    <div key={key} id={data.id} className='cardStyle' onClick={() => {showDetails(data.id)}}>
+                        <div><img src={data.image} className='courseThumb' alt="Course pic" /></div>
                         <div><strong>{data.name}</strong></div>
-                        <div>{buttonRender("Learn More!", 0, data.link)}</div>
                     </div>
                 );
             })}
@@ -53,9 +64,16 @@ function renderGrid (coursesToShow) {
 }
 
 function updateGrid (categoryToFilter) {
+
     const gridDiv = document.getElementById("cssGrid");
     const coursesToFilter = categoryToFilter.name === "All" ? (courseList) : (filterCategories(categoryToFilter));
     gridDiv.innerHTML = `${ReactDOMServer.renderToStaticMarkup(renderGrid(coursesToFilter))}`
+    var cards = document.getElementsByClassName("cardStyle");
+    for (var i = 0; i < cards.length; i++) applyEvent(cards[i],cards[i].id)
+}
+
+function applyEvent(target, id) {
+    target.addEventListener('click', () => {showDetails(id)});
 }
 
 export default function Courses () {
@@ -65,8 +83,10 @@ export default function Courses () {
             <div className = 'filterSection'>
                 <div><strong>Filter:</strong></div>
                 {categories.map((data, key) => {return (<div key={key} className='filterButtonDiv'>{buttonRender(data.name, 1)}</div>)})}
+                <div><em></em></div>
             </div>
             <div className='wrapperStyle' id="cssGrid">{renderGrid(courseList)}</div>
+            <Details />
         </div>
     )
 }
