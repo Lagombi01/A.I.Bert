@@ -6,68 +6,104 @@ import developer from "../Images/developer.png";
 import Details from "./details";
 import bookmark from "../Images/bookmark.png";
 import globalVariables from "./globals/globalVariables";
-import './components.css';
-
+import "./components.css";
 
 export default function Chatbot() {
-
   //handles user message
-  const [AIBertresponse, setAIBertresponse] = useState("Hi! I'm AI-Bert, I am here to assist you with your learning in AI!");
+  const [AIBertresponse, setAIBertresponse] = useState(
+    "Hi! I'm AI-Bert, I am here to assist you with your learning in AI!"
+  );
   const [message, setMessage] = useState("");
   const [session, setSession] = useState("");
 
-
   //GET KEYWORDS FUNCTION
-  const getKeywords = async(message) =>{
-    fetch('http://localhost:5000/api/watson/analyze', {
-        method: 'POST',
-        headers:{ "Content-Type": "application/json"},
-        body: JSON.stringify({
-          text: `${message}`,
-        }) 
-      }).then(res => {
+  const getKeywords = async (message) => {
+    fetch("http://localhost:5000/api/watson/analyze", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        text: `${message}`,
+      }),
+    })
+      .then((res) => {
         return res.json();
-      }).then(data => {
-        console.log("The Keywords from this input are...")
-        console.log(data.keywords)
-      }).catch(err => {
-       console.log(err);
+      })
+      .then((data) => {
+        console.log("The Keywords from this input are...");
+        console.log(data.keywords);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }
+  };
 
-  //Function handles user submission 
+  //Function handles user submission
   const handleClick = async (e) => {
     const code = e.keyCode || e.which;
 
     if (code === 13) {
       console.log(message);
       setMessage("");
-      fetch('http://localhost:5000/api/watson/message', {
-        method: 'POST',
-        headers:{ "Content-Type": "application/json", "session_id": `${session}`,"Access-Control-Allow-Origin": "http://localhost:3000",'Access-Control-Allow-Methods':'GET, POST, PUT, DELETE, OPTIO'},
+      fetch("http://localhost:5000/api/watson/message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          session_id: `${session}`,
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIO",
+        },
         body: JSON.stringify({
           input: `${message}`,
-        }) 
-      }).then(res => {
-        return res.json();
-      }).then(data => {
-        console.log(data.output.generic[0].text);
-        setAIBertresponse(data.output.generic[0].text)
-        console.log("The Intent identified is...")
-        console.log(data.output.intents[0].intent)
-      }).catch(err => {
-       console.log(err);
-      });
-      getKeywords(message)
+        }),
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.output.generic[0].response_type == "suggestion") {
+            console.log(data.output.generic[0].suggestions[0].label);
 
+            fetch("http://localhost:5000/api/watson/message", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                session_id: `${session}`,
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIO",
+              },
+              body: JSON.stringify({
+                input: `${data.output.generic[0].suggestions[0].label}`,
+              }),
+            })
+              .then((res) => {
+                return res.json();
+              })
+              .then((data) => {
+                if (data.output.generic[0].response_type == "suggestion") {
+                  console.log(data.output.generic[0].suggestions[0].label);
+                } else {
+                  setAIBertresponse(data.output.generic[0].text);
+                }
 
+                // console.log("The Intent identified is...")
+                // console.log(data.output.intents[0].intent)
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            setAIBertresponse(data.output.generic[0].text);
+          }
+
+          // console.log("The Intent identified is...")
+          // console.log(data.output.intents[0].intent)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      getKeywords(message);
     }
-
-
-   
   };
-
-   
 
   //set up watson assistant session with external API
   useEffect(() => {
@@ -91,20 +127,36 @@ export default function Chatbot() {
   return (
     <div className="chatbot flex-container">
       <div className="mascot">
-        <img src={squirrel} alt="" style={{opacity: globalVariables.mini?0:1}}></img>
+        <img
+          src={squirrel}
+          alt=""
+          style={{ opacity: globalVariables.mini ? 0 : 1 }}
+        ></img>
       </div>
-      <Details/>
-        <div className="responseButtons">
-            <div className="responseButton" id="openCourse">Open</div>
-            <div className="responseButton" id="notRelevant">Not Relevant</div>
-            <div className="responseButton" id="tooEasy">Too Easy</div>
-            <div className="responseButton" id="tooHard">Too Hard</div>
-            <div className="responseButton" id="bookmark"><img src={bookmark} alt="Bookmark"/></div>
+      <Details />
+      <div className="responseButtons">
+        <div className="responseButton" id="openCourse">
+          Open
         </div>
+        <div className="responseButton" id="notRelevant">
+          Not Relevant
+        </div>
+        <div className="responseButton" id="tooEasy">
+          Too Easy
+        </div>
+        <div className="responseButton" id="tooHard">
+          Too Hard
+        </div>
+        <div className="responseButton" id="bookmark">
+          <img src={bookmark} alt="Bookmark" />
+        </div>
+      </div>
       <div className="input-output-fields">
-      
         <div className="AI-Bert-speech">
-          <div className="box sb3" style={{opacity: globalVariables.mini?0:1}}>
+          <div
+            className="box sb3"
+            style={{ opacity: globalVariables.mini ? 0 : 1 }}
+          >
             {AIBertresponse}
           </div>
           <div className="topbox sb4">
