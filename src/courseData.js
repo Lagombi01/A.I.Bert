@@ -97,12 +97,12 @@ export const courseData = [
     {"id":"301",
     "name":"Creating a Spark for Artificial Intelligence",
     "description":"An online introductory webinar designed primarily for teachers. Provides the knowledge and confidence needed to introduce younger students to the basics of AI.",
-    "duration":0,
+    "duration":1,
     "image":mindspark,
     "prereq":[],
     "postreq":["302"],
     "difficulty":1,
-    "terms":["AI","Teaching","Introduction","Students","Neural Network","Data","Algorithm","Machine Learning","Play","Activities","Inspire"],
+    "terms":["AI","Teaching","Basics","Students","Neural Network","Data","Algorithm","Machine Learning","Play","Activities","Inspire"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence"},
     
     {"id":"302",
@@ -234,7 +234,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["401","402"],
     "difficulty":1,
-    "terms":["AI","Machine Learning","Introduction","Deep learning", "Neural Networks","NLP","Visual recognition","Supervised","Unsupervised","Python","Scikit"],
+    "terms":["AI","Basics","Machine Learning","Deep learning", "Neural Networks","NLP","Python","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-artificial-intelligence/"},
     
     {"id":"405",
@@ -289,7 +289,7 @@ export const courseData = [
     "prereq":["413","408"],
     "postreq":[],
     "difficulty":3,
-    "terms":["AI","Python","Internet","Data","Scrape","NLP","Keywords"],
+    "terms":["AI","Python","Internet","Data","Scrape","NLP","Keywords","Refinery"],
     "link":"https://developer.ibm.com/tutorials/scrape-data-from-the-web-using-watson-studio/"},
     
     {"id":"410",
@@ -333,7 +333,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["406","409"],
     "difficulty":1,
-    "terms":["Python","Introduction","Coding","Variables","Analytics","Tutorial"],
+    "terms":["Python","Basics","Coding","Variables","Analytics","Tutorial"],
     "link":"https://developer.ibm.com/articles/os-beginners-guide-python/"}
 ]
 ;

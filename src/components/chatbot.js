@@ -11,43 +11,6 @@ import './components.css';
 
 export default function Chatbot() {
 
-  //handles user message
-  const [message, setMessage] = useState("");
-  const [session, setSession] = useState("");
-
-  //Function handles user submission and sends to watson API for response back
-  const handleClick = async (e) => {
-    const code = e.keyCode || e.which;
-
-    if (code === 13) {
-      console.log(message);
-      setMessage("");
-    }
-
-    fetch('http://localhost:5000/api/watson/message', {
-      method: 'POST',
-      headers:{ "Content-Type": "application/json", "session_id": `${session}`,},
-      body: JSON.stringify({
-        input: `${message}`,
-      })
-    }).then(() =>{
-      console.log('sucess');
-    }).catch(err => {
-    });
-  };
-
-  //set up watson assistant session with external API
-  useEffect(() => {
-    fetch("http://localhost:5000/api/watson/session")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setSession(data.session_id);
-        console.log(session)
-      });
-  }, []);
-
   return (
     <div className="chatbot flex-container">
       <div className="mascot">
@@ -72,7 +35,6 @@ export default function Chatbot() {
           </div>
         </div>
 
-        {/* Input goes here */}
         <div className="userInput">
           <div class="form__group field">
             <input
@@ -81,15 +43,10 @@ export default function Chatbot() {
               placeholder="What would you like to learn?"
               name="input"
               id="input"
-              required
-              onChange={(e) => setMessage(e.target.value)}
-              onKeyPress={handleClick}
-              value={message}
             />
             <label for="name" class="form__label">
               What would you like to learn?
             </label>
-            <p>Session ID: <br></br>{session}</p>
           </div>
         </div>
       </div>
