@@ -4,6 +4,10 @@
 
 /* chatbot.js */
 
+label {
+    pointer-events: none;
+}
+
 /* --------------------------------------course.js-------------------------------------- */
 #courseBody{
     background-color: pink;
@@ -43,8 +47,6 @@
 
 .filterSection {
     padding-top: 50px;
-    padding-left: 60px;
-    padding-right: 60px;
     width: 100%;
 }
 
@@ -59,7 +61,7 @@
 }
 
 .filterSection div em {
-    margin-right: 100px;
+    margin-right: 30px;
 }
 
 .wrapperStyle {
