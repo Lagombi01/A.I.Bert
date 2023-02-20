@@ -10,6 +10,8 @@ import Courses from './/components/courses.js'
 import Profile from './components/profile';
 import LearningJourney from './components/learningJourney.js';
 import Bookmarks from './components/bookmarks.js'
+import Login from './components/login'
+import Signup from './components/signup'
 
 
 
@@ -22,6 +24,8 @@ function App() {
         <Route path="Home" element={<Home />} index />
         <Route path="Courses" element={<Courses />} index />
         <Route path="Profile" element={<Profile />} index />
+        <Route path="Login" element={<Login />} index />
+        <Route path="Signup" element={<Signup />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />
         <Route path="Bookmarks" element={<Bookmarks />} index />

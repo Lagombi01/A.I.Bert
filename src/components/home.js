@@ -121,7 +121,6 @@ export default function Home(){
                     break;
                 default:
                     button.addEventListener('click', (event) => {
-                        console.log("here");
                         if (button.style.opacity > 0 && !globalVariables.transitioning) inputHandling(button.innerHTML);
                     },false);
                     break;
@@ -268,8 +267,8 @@ export default function Home(){
         if (input != "") {
             var matches;
             switch (input.toLowerCase()) {
-                case "open course":
-                    //open course
+                case "open":
+                    window.open(courseData.find(item => item.id === globalVariables.currentCourseID)["link"], '_blank');
                     break;
                 case "not relevant":
                     //Course Search using previous input

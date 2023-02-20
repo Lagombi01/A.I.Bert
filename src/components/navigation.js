@@ -69,7 +69,7 @@ export default function Navigation() {
           <p className="title">AI-Bert</p>
         </div>
 
-        <div class="bubble flex-container" onClick={() => navigate("/profile")}>
+        <div class="bubble flex-container" onClick={() => navigate("/login")}>
           <i class="fa  colored-text">
             <img src={house} alt=""></img>
           </i>

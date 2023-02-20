@@ -8,13 +8,13 @@
   align-items: center;
   font-size: calc(14px + 1vmin);
   color: black;
-  font-family: 'Advent Pro', sans-serif;
+  font-family: consolas, sans-serif;
   z-index:-100;
 }
 
 .title{
-  font-family: 'Advent Pro', sans-serif;
-  font-size: 30px;
+  font-family: consolas, sans-serif;
+  font-size: 25px;
   font-weight: 800;
 }
 
@@ -344,114 +344,216 @@ body::-webkit-scrollbar {
 .dropdownOptions a:hover {
   background-color: #fce883;
 }
+/* SIGN UP PAGE CSS */
 
-/*Course Return styling*/
 
-.courseSpan {
-    position: absolute;
-    width: 1166px; /*Want this to span the width of the app, not sure how else to do it!*/
-    height: fit-content;
-    height: 360px;
-    margin-top: 62px;
+
+.signuppage{
+  display: flex;
+  flex-direction: row;
+}
+.mascotAcorn{
+  padding: 50px;
 }
 
-.courseDetails {
-    position: absolute;
-    width: 100%;
-    height: fit-content;
-    margin: 0;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    opacity: 0;
+.mascotAcorn img{
+  opacity: 1;
+  width: 250px;
+  height: auto;
+  position:absolute;
+  top:53%;
+  left:55%;
+  -webkit-animation: float infinite;
+  -moz-animation: float 3s infinite;
+  animation: float 3s infinite;
 }
 
-.courseImage img {
-    display: inline-block;
-    width: 360px;
-    margin-left: 165px;
-    border-radius: 20px;
-    border: 4px solid black;
+.signupspeech{
+  position:absolute;
+  top:30%;
+  left:68%;
+  -webkit-animation: float infinite;
+  -moz-animation: float 3s infinite;
+  animation: float 3s infinite;
+
 }
 
-.courseTitle {
-    float:left;
-    font-weight: bold;
-    font-size: 28px;
-    width: 350px;
-    margin-top: 8px;
-    margin-left: 169px;
-    text-align: left;
+.signup_container{
+  width: 70%;
+  margin: 20px;
+  background-color: #eecb60;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 18px 34px 0 rgba(14, 15, 17, 0.06);
+  
 }
 
-.courseDescription {
-    float: right;
-    font-size: 26px;
-    width: 440px;
-    margin-right: 140px;
-    margin-top: -240px;
+.signupTitle{
+  margin: 10px;
 }
 
-/*Response Button Styling*/
-
-.responseButtons {
-    position: absolute;
-    width: 1166px;/*Again, want this to span the width of the app*/
-    height: 50px;
-    margin-top: 440px;
-    text-align: center;
+label{
+  font-size: 1rem;
+  text-align: left;
 }
 
-.responseButton {
-    position: relative;
-    border-style: solid;
-    border-color:black;
-    border-width: 3px;
-    border-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: #eecb60;
-    width:fit-content;
-    display: inline-block;
-    cursor:default;
-    font-size: 26px;
-    margin-left: 10px;
-    margin-right: 10px;
-    top: 0px;
-    opacity: 0;
+.signup_container p{
+  font-size: 1rem;
 }
 
-.responseButton img {
-    width: 20px;
+
+.row{
+  display: flex;
+  flex-direction: row;
 }
 
-/*All Courses Page*/
-
-#cssGrid {
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 60px;
+.usernamecontainer{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.filterSection {
-    padding-top: 50px;
-    padding-left: 60px;
-    padding-right: 60px;
-    width: 100%;
+.logincontainer{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 60%
 }
 
-.filterSection div {
-    display: inline-block;
-    margin-right: 5px;
+.form-control{
+  padding: 10px ;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
 }
 
-.filterSection div strong {
-    font-size: 28px;
-    margin-right: 20px;
+.radioDiv{
+  display: flex;
+  flex-direction: column;
 }
 
+.radioExperience{
+  display: flex;
+  width: 50%;
+  flex-direction: row
+ 
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.l-radio {
+  font-size: 15px;
+  padding: 8px;
+  border-radius: 50px;
+  display: inline-flex;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin: 5px 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.l-radio:hover, .l-radio:focus-within {
+  background:  #2398f852 ;
+}
+.l-radio input {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: none;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #fffdfd;
+  box-shadow: inset 0 0 0 1.5px #ffffff;
+  appearance: none;
+  padding: 0;
+  margin: 0;
+  transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
+  pointer-events: none;
+}
+.l-radio input:focus {
+  outline: none;
+}
+.l-radio input:checked {
+  box-shadow: inset 0 0 0 6px #1e76e9ee;
+}
+.l-radio span {
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 20px;
+  padding: 0 8px;
+}
+
+
+.form__button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--border-radius);
+  outline: none;
+  cursor: pointer;
+  background: #1e76e9ee;
+  border-radius: 30px;
+}
+
+.form__button:hover {
+  background: #1554a7ee;
+}
+
+.form__button:active {
+  transform: scale(0.98);
+}
+
+
+.auth-inner {
+  width: 450px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  color: #7f7d7d;
+  margin: 10px;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
 
 /* LEARNING JOURNEY TREE CSS */
 
@@ -629,3 +731,4 @@ body::-webkit-scrollbar {
   
   animation-delay: 0.5s;
 }
+
