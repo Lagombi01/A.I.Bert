@@ -16,6 +16,7 @@ import Signup from './components/signup'
 
 
 function App() {
+  const isLoggedIn = window/localStorage.getItem("loggedIn");
   return (
     <div className="App">
     <BrowserRouter>
@@ -24,7 +25,7 @@ function App() {
         <Route path="Home" element={<Home />} index />
         <Route path="Courses" element={<Courses />} index />
         <Route path="Profile" element={<Profile />} index />
-        <Route path="Login" element={<Login />} index />
+        <Route path="Login" element={isLoggedIn== true ? <Profile />: <Login/>} index />
         <Route path="Signup" element={<Signup />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />

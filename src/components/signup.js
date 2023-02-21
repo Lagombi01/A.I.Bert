@@ -1,15 +1,47 @@
 import Navigation from "./navigation";
+import React from "react";
 import "./components.css";
 import Acorn from "../Images/acorn.png";
 import globalVariables from "./globals/globalVariables";
+import { useForm } from "react-hook-form";
 
 export default function Signup() {
+  const { register, handleSubmit } = useForm();
+  const onError = (errors, e) => console.log(errors, e);
+
+  const onSubmit = (data, e) => {
+
+  fetch("http://localhost:5000/register", {
+    method: "POST",
+    crossDomain: true,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      username: data.username,
+      password: data.password,
+      email: data.email,
+      experiencelvl: data.xp,
+    }),
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => console.error(error));
+};
+
   return (
     <div>
       <Navigation />
 
       <div className="signuppage">
-        <form className="signup_container">
+        <form
+          className="signup_container"
+          onSubmit={handleSubmit(onSubmit, onError)}
+        >
           <h2 className="signupTitle">Sign Up</h2>
 
           <p className="forgot-password">
@@ -23,6 +55,7 @@ export default function Signup() {
                 type="text"
                 className="form-control"
                 placeholder="username"
+                {...register("username")}
               />
             </div>
 
@@ -32,6 +65,7 @@ export default function Signup() {
                 type="email"
                 className="form-control"
                 placeholder="Enter email"
+                {...register("email")}
               />
             </div>
           </div>
@@ -39,15 +73,36 @@ export default function Signup() {
           <div className="radioDiv ">
             <p>Your AI Experience level:</p>
             <label for="f-option" class="l-radio">
-              <input type="radio" id="f-option" name="selector" tabindex="1" />
+              <input
+                type="radio"
+                id="f-option"
+                value="1"
+                name="selector"
+                tabindex="1"
+                {...register("xp")}
+              />
               <span>Beginner</span>
             </label>
             <label for="s-option" class="l-radio">
-              <input type="radio" id="s-option" name="selector" tabindex="2" />
+              <input
+                type="radio"
+                id="s-option"
+                value="2"
+                name="selector"
+                tabindex="2"
+                {...register("xp")}
+              />
               <span>Intermediate</span>
             </label>
             <label for="t-option" class="l-radio">
-              <input type="radio" id="t-option" name="selector" tabindex="3" />
+              <input
+                type="radio"
+                id="t-option"
+                value="3"
+                name="selector"
+                tabindex="3"
+                {...register("xp")}
+              />
               <span>Expert</span>
             </label>
           </div>
@@ -59,6 +114,7 @@ export default function Signup() {
                 type="password"
                 className="form-control"
                 placeholder="Enter password"
+                {...register("password")}
               />
             </div>
 
