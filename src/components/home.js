@@ -9,6 +9,121 @@ import './components.css';
 
 
 export default function Home(){
+
+    //set up watson assistant session with external API
+    useEffect(() => {
+        try {
+        console.log(1);
+        fetch("http://localhost:5000/api/watson/session")
+            .then((res) => {
+                console.log(2);
+            if (!res.ok) {
+                throw new Error(res.statusText);
+            }
+                console.log(3);
+            return res.json();
+            })
+            .then((data) => {
+                console.log(4);
+            globalVariables.session = data.session_id;
+            });
+        } catch (error) {
+        console.error("Failed to fetch session: ", error);
+        }
+    }, []);
+
+    //GENERAL WATSON FUNCTION
+    async function postMessage(message) {
+        var response;
+        return fetch("http://localhost:5000/api/watson/message", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                session_id: `${globalVariables.session}`,
+            },
+            body: JSON.stringify({
+                input: `${message}`,
+            }),
+        })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.output.generic[0].response_type == "suggestion") {
+            console.log(data.output.generic[0].suggestions[0].label);
+
+            return fetch("http://localhost:5000/api/watson/message", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                session_id: `${globalVariables.session}`,
+              },
+              body: JSON.stringify({
+                input: `${data.output.generic[0].suggestions[0].label}`,
+              }),
+            })
+              .then((res) => {
+                return res.json();
+              })
+              .then((data) => {
+                response = data.output.generic[0].text;
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            response = data.output.generic[0].text;
+          }
+        })
+        .then(() => {
+            if (response) {
+                return response
+            } else {
+                console.log("Error contacting Watson Assistant");
+            }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    //GET KEYWORDS FUNCTION
+    async function getKeywords(message) {
+        message = message.trim()
+
+        //Bulk up message
+        if (message.split(" ").length == 1) {
+            message = "Teach me about basics and " + message;
+        } else if (message.length < 15) {
+            message = "Tell me about: " + message;
+        }
+
+        //Map ai --> artificial intelligence
+        var removeStr = `\\b${'ai'}\\b`;
+        var regex =  new RegExp(removeStr,'g');
+        message = message.replace(regex,'artificial intelligence');
+
+        return await fetch("http://localhost:5000/api/watson/analyze", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                text: `${message}`,
+            }),
+            })
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log("The Keywords from this input are...");
+                console.log(data.keywords);
+                return data.keywords;
+            })
+            .catch((err) => {
+                console.log(err);
+                return;
+        });
+    };
+
     globalVariables.presenting = false;
     globalVariables.transitioning = false;
     globalVariables.home = true;
@@ -155,7 +270,7 @@ export default function Home(){
 
     function progToPosition(prog) {
         var start = [50,0];
-        var topMove = 220;
+        var topMove = 240;
         var leftMove = -200;
         return [prog*topMove + start[0],prog*leftMove + start[1]];
     }
@@ -178,20 +293,34 @@ export default function Home(){
         }, span)
     }
 
-    function search(input, difficulty = 2) {
+    async function search(input, difficulty = 1, disallow = []) {
         globalVariables.input = input; //so it can be accessed later, when a response button is pressed
         if (difficulty > 3) difficulty = 3; //due to there being no courses of difficulty 4
-        var keyTerms = input.split(",") //replace with Watson's NLP results
-        keyTerms = keyTerms.map(term => term.toLowerCase());
+        if (difficulty < 1) difficulty = 1;
+        var rawData = await getKeywords(input).then(result => result);
+        if (rawData == undefined) {
+            console.log("Undefined keyword return!");
+            return [];
+        } else if (rawData.length == 0) {
+            console.log("Empty keyword list!");
+            return [];
+        }
+        var keyTerms = {}
+        for (var i = 0; i < rawData.length; i++) {
+            keyTerms[rawData[i]["text"].toLowerCase()] = rawData[i]["relevance"]
+        }
 
         //Data cleanup:
         for (var i = 0; i < globalVariables.synonyms.length; i++) {
             for (var j = 0; j < globalVariables.synonyms[i].length - 1; j++) {
-                if (keyTerms.includes(globalVariables.synonyms[i][j])) {
-                    keyTerms[keyTerms.indexOf(globalVariables.synonyms[i][j])] = globalVariables.synonyms[i][globalVariables.synonyms[i].length-1]
+                if (Object.keys(keyTerms).includes(globalVariables.synonyms[i][j])) {
+                    keyTerms[globalVariables.synonyms[i][globalVariables.synonyms[i].length-1]] = keyTerms[globalVariables.synonyms[i][j]];
+                    delete keyTerms[globalVariables.synonyms[i][j]];
                 }
             }
         }
+
+        console.log(keyTerms);
 
         var completed = [] //should be taken from database
         var score = {};
@@ -218,15 +347,21 @@ export default function Home(){
                 break;
         }
         sorted.sort(
-            (first, second) => { return order.indexOf(first[2]) - order.indexOf(second[2])}
+            (first, second) => { return order.indexOf(first[2]) - order.indexOf(second[2]) }
         );
         sorted.sort(
-            (first, second) => { return second[1] - first[1]}
+            (first, second) => { return second[1] - first[1] }
         );
+        sorted = sorted.filter(i => !disallow.includes(i[2]))
         console.log(sorted);
         var matches = sorted.map(
             (e) => { return e[0] }
         );
+        for (var i = 0; i < matches.length; i++) {
+            if (globalVariables.offered.includes(matches[i])) {
+                matches.splice(matches.indexOf(matches[i]),1);
+            }
+        }
         return matches;
     }
 
@@ -234,20 +369,20 @@ export default function Home(){
         var courseTerms = courseData.find(item => item.id === id)["terms"];
         var score = 0;
         for (var i = 0; i < courseTerms.length; i++) {
-            if (keyTerms.includes(courseTerms[i].toLowerCase())) {
-                score += 1; //weight based on term relevance
+            if (Object.keys(keyTerms).includes(courseTerms[i].toLowerCase())) {
+                score += 2*keyTerms[courseTerms[i].toLowerCase()];
             } else score -= 0.1;
         }
         var courseTitle = courseData.find(item => item.id === id)["name"];
-        for (var i = 0; i < keyTerms.length; i++) {
-            if (isMatch(courseTitle,keyTerms[i])) {
-                score += 1;
+        for (var i = 0; i < Object.keys(keyTerms).length; i++) {
+            if (isMatch(courseTitle,Object.keys(keyTerms)[i])) {
+                score += 3*keyTerms[Object.keys(keyTerms)[i]];
             } else {
                 for (var j = 0; j < globalVariables.synonyms.length; j++) {
-                    if (globalVariables.synonyms[j][globalVariables.synonyms[j].length-1] == keyTerms[i]) {
+                    if (globalVariables.synonyms[j][globalVariables.synonyms[j].length-1] == Object.keys(keyTerms)[i]) {
                         for (var k = 0; k < globalVariables.synonyms[j].length - 1; k++) {
                             if (isMatch(courseTitle,globalVariables.synonyms[j][k])) {
-                                score += 1;
+                                score += 3*keyTerms[Object.keys(keyTerms)[i]];
                             }
                             break
                         }
@@ -255,6 +390,7 @@ export default function Home(){
                 }
             }
         }
+        score = Math.trunc(score*1000)/1000;
         return score;
     }
 
@@ -263,7 +399,11 @@ export default function Home(){
         return searchOnString.match(new RegExp("\\b"+searchText+"\\b", "i")) != null;
     }
 
-    function inputHandling(input) {
+    const inputHandling = async(input) => {
+        if (globalVariables.inputProcessing) return;
+        globalVariables.inputProcessing = true;
+        document.getElementById('input').value = "";
+        document.getElementById('input').blur();
         if (input != "") {
             var matches;
             switch (input.toLowerCase()) {
@@ -280,8 +420,9 @@ export default function Home(){
                     if (courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"].length > 0) {
                         matches = courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"];
                     } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] < 3) {
-                        console.log("here");
-                        matches = search(globalVariables.input, courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] + 1); //make search exclusive to difficulty level? new argument?
+                        var currentDiff = courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"];
+                        var disallow = [1,2,3].filter(i => i <= currentDiff);
+                        matches = await search(globalVariables.input, currentDiff + 1, disallow).then(result => result);
                     } else matches = [];
                     globalVariables.results = matches;
                     break;
@@ -290,19 +431,37 @@ export default function Home(){
                     if (courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"].length > 0) {
                         matches = courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"];
                     } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] > 1) {
-                        matches = search(globalVariables.input, courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] - 1); //make search exclusive to difficulty level? new argument?
+                        var currentDiff = courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"];
+                        var disallow = [1,2,3].filter(i => i >= currentDiff);
+                        matches = await search(globalVariables.input, currentDiff - 1, disallow).then(result => result);
                     } else matches = [];
                     globalVariables.results = matches;
                     break;
                 default:
                     //Course Search from scratch
-                    matches = search(input); //Also pass user_difficulty from database
+                    var watsonReply = await postMessage(input).then(result => result);
+                    console.log(watsonReply);
+                    if (watsonReply != "[[COURSE ALGORITHM BEGINS]]" && watsonReply != "I'm afraid I don't understand. Please rephrase your question.") {
+                        document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = watsonReply;
+                        break;
+                    }
+                    globalVariables.offered = [];
+                    matches = await search(input).then(result => result); //Also pass user_difficulty from database
                     globalVariables.results = matches;
                     break;
             }
-            if (matches.length > 0) {
-                    globalVariables.currentCourseID = matches[0];
-                    globalVariables.transitioning = true;
+            if (matches == undefined) {
+                if (globalVariables.presenting) {
+                    miniVanish();
+                    moveInput(true);
+                    courseVanish();
+                    buttonsVanish();
+                }
+            } else if (matches.length > 0) {
+                document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = "..";
+                globalVariables.currentCourseID = matches[0];
+                globalVariables.offered.push(matches[0]);
+                globalVariables.transitioning = true;
                 if (globalVariables.presenting) {
                     buttonsVanish();
                     courseVanish();
@@ -311,15 +470,13 @@ export default function Home(){
                     chatbotVanish();
                 }
             } else if (globalVariables.presenting) {
-                    console.log("here");
                     miniVanish();
                     moveInput(true);
                     courseVanish();
                     buttonsVanish();
             }
-            document.getElementById('input').value = "";
-            document.getElementById('input').blur();
         }
+        globalVariables.inputProcessing = false;
     }
 
     document.addEventListener('keydown', (event) => {
