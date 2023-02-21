@@ -10,12 +10,26 @@ import tree from "../Images/tree.png";
 import acorn from "../Images/acorn.png";
 import squirrel from "../Images/squirrel.png";
 import leaves from "../Images/falling-leaves.png";
+import gear from "../Images/gears.png"
+import login from "../Images/sprout.png"
+
 
 import globalVariables from "./globals/globalVariables";
 import fade from "./globals/elementFader";
 
 export default function Navigation() {
   const navigate = useNavigate();
+  const isLoggedIn = window.localStorage.getItem("loggedIn");
+ 
+
+  const handleClick = () => {
+    console.log(isLoggedIn)
+    if (isLoggedIn) {
+      navigate("/profile");
+    } else {
+      navigate("/login");
+    }
+  };
 
   function genericMiniAppear() {
     if (!globalVariables.mini && !globalVariables.home) {
@@ -46,9 +60,9 @@ export default function Navigation() {
             onClick={() => navigate("/bookmarks")}
           >
             <i class="fa colored-text">
-              <img src={acorn} alt=""></img>
+              <img src={gear} alt=""></img>
             </i>
-            <p>Bookmarks</p>
+            <p>Settings</p>
           </div>
           <div
             class="bubble flex-container"
@@ -69,11 +83,11 @@ export default function Navigation() {
           <p className="title">AI-Bert</p>
         </div>
 
-        <div class="bubble flex-container" onClick={() => navigate("/profile")}>
+        <div class="bubble flex-container" onClick={handleClick}>
           <i class="fa  colored-text">
-            <img src={house} alt=""></img>
+          <img src={isLoggedIn ? house : login} alt=""></img>
           </i>
-          <p>Profile</p>
+          <p>{isLoggedIn ? "Profile" : "Login"}</p>
         </div>
 
         <div
