@@ -13,18 +13,14 @@ export default function Home(){
     //set up watson assistant session with external API
     useEffect(() => {
         try {
-        console.log(1);
         fetch("http://localhost:5000/api/watson/session")
             .then((res) => {
-                console.log(2);
             if (!res.ok) {
                 throw new Error(res.statusText);
             }
-                console.log(3);
             return res.json();
             })
             .then((data) => {
-                console.log(4);
             globalVariables.session = data.session_id;
             });
         } catch (error) {
@@ -92,9 +88,7 @@ export default function Home(){
         message = message.trim()
 
         //Bulk up message
-        if (message.split(" ").length == 1) {
-            message = "Teach me about basics and " + message;
-        } else if (message.length < 15) {
+        if (message.length < 15) {
             message = "Tell me about: " + message;
         }
 
@@ -306,11 +300,39 @@ export default function Home(){
             return [];
         }
         var keyTerms = {}
+        var cleaned = {}
+        var remove = []
         for (var i = 0; i < rawData.length; i++) {
             keyTerms[rawData[i]["text"].toLowerCase()] = rawData[i]["relevance"]
         }
 
+        console.log(0);
         //Data cleanup:
+        for (var i = 0; i < Object.keys(keyTerms).length; i++) {
+            for (var j = 0; j < globalVariables.baseTerms.length; j++) {
+                if (isMatch(Object.keys(keyTerms)[i],globalVariables.baseTerms[j])) {
+                    console.log(globalVariables.baseTerms[j] + " IN " + Object.keys(keyTerms)[i]);
+                    cleaned[globalVariables.baseTerms[j]] = keyTerms[Object.keys(keyTerms)[i]];
+                    remove.push(Object.keys(keyTerms)[i]);
+                    break;
+                } else console.log(globalVariables.baseTerms[j] + " not in " + Object.keys(keyTerms)[i]);
+            }
+            for (var k = 0; k < globalVariables.synonyms.length; k++) {
+                for (var l = 0; l < globalVariables.synonyms[k].length - 1; l++) {
+                    if (isMatch(Object.keys(keyTerms)[i],globalVariables.synonyms[k][l])) {
+                        cleaned[globalVariables.synonyms[k][globalVariables.synonyms[k].length - 1]] = keyTerms[Object.keys(keyTerms)[i]];
+                        remove.push(Object.keys(keyTerms)[i]);
+                        break;
+                    }
+                }
+            }
+        }
+
+        for (var i = 0; i < remove.length; i++) {
+            delete keyTerms[remove[i]]
+        }
+
+        //Synonym homogenising:
         for (var i = 0; i < globalVariables.synonyms.length; i++) {
             for (var j = 0; j < globalVariables.synonyms[i].length - 1; j++) {
                 if (Object.keys(keyTerms).includes(globalVariables.synonyms[i][j])) {
@@ -320,6 +342,7 @@ export default function Home(){
             }
         }
 
+        Object.assign(keyTerms,cleaned)
         console.log(keyTerms);
 
         var completed = [] //should be taken from database
@@ -327,7 +350,7 @@ export default function Home(){
         courseData.forEach(function(course) {
             //Check if course already completed, skip course if so
             score[course["id"]] = grade(keyTerms, course["id"]);
-            if (score[course["id"]] < 0) {
+            if (score[course["id"]] < 1) {
                 delete score[course["id"]];
             }
         });
@@ -368,14 +391,15 @@ export default function Home(){
     function grade(keyTerms, id) {
         var courseTerms = courseData.find(item => item.id === id)["terms"];
         var score = 0;
-        for (var i = 0; i < courseTerms.length; i++) {
+        var termNum = courseTerms.length
+        for (var i = 0; i < termNum; i++) {
             if (Object.keys(keyTerms).includes(courseTerms[i].toLowerCase())) {
-                score += 2*keyTerms[courseTerms[i].toLowerCase()];
-            } else score -= 0.1;
+                score += (1.5-(i/(termNum-1)))*2*keyTerms[courseTerms[i].toLowerCase()];
+            }
         }
         var courseTitle = courseData.find(item => item.id === id)["name"];
         for (var i = 0; i < Object.keys(keyTerms).length; i++) {
-            if (isMatch(courseTitle,Object.keys(keyTerms)[i])) {
+            if (isMatch(courseTitle.toLowerCase(),Object.keys(keyTerms)[i].toLowerCase())) {
                 score += 3*keyTerms[Object.keys(keyTerms)[i]];
             } else {
                 for (var j = 0; j < globalVariables.synonyms.length; j++) {
@@ -419,6 +443,7 @@ export default function Home(){
                 case "too easy":
                     if (courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"].length > 0) {
                         matches = courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"];
+                        //order by relevance? <----------------
                     } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] < 3) {
                         var currentDiff = courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"];
                         var disallow = [1,2,3].filter(i => i <= currentDiff);
@@ -427,7 +452,6 @@ export default function Home(){
                     globalVariables.results = matches;
                     break;
                 case "too hard":
-                    //Convert to Learning Journeys!!
                     if (courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"].length > 0) {
                         matches = courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"];
                     } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] > 1) {
@@ -440,16 +464,25 @@ export default function Home(){
                 default:
                     //Course Search from scratch
                     var watsonReply = await postMessage(input).then(result => result);
-                    console.log(watsonReply);
-                    if (watsonReply != "[[COURSE ALGORITHM BEGINS]]" && watsonReply != "I'm afraid I don't understand. Please rephrase your question.") {
+                    if (isMatch(input.toLowerCase(),"course") || isMatch(input.toLowerCase(),"courses")) {
+                        matches = await search(input).then(result => result);
+                        if (matches.length == 0) {
+                            matches = undefined;
+                        } else break;
+                    }
+                    if (watsonReply != "[[COURSE ALGORITHM BEGINS]]" && watsonReply != document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML) {
                         document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = watsonReply;
                         break;
                     }
+                    //I'm afraid I don't understand. Please rephrase your question.
                     globalVariables.offered = [];
                     matches = await search(input).then(result => result); //Also pass user_difficulty from database
                     globalVariables.results = matches;
                     break;
             }
+
+            globalVariables.inputProcessing = false;
+
             if (matches == undefined) {
                 if (globalVariables.presenting) {
                     miniVanish();
@@ -457,7 +490,10 @@ export default function Home(){
                     courseVanish();
                     buttonsVanish();
                 }
-            } else if (matches.length > 0) {
+                return;
+            }
+
+            if (matches.length > 0) {
                 document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = "..";
                 globalVariables.currentCourseID = matches[0];
                 globalVariables.offered.push(matches[0]);
@@ -469,14 +505,18 @@ export default function Home(){
                 } else {
                     chatbotVanish();
                 }
-            } else if (globalVariables.presenting) {
+                return;
+            }
+            
+            if (globalVariables.presenting) {
                     miniVanish();
                     moveInput(true);
                     courseVanish();
                     buttonsVanish();
             }
+
+            document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = "I'm sorry, I couldn't find anything for that query!";
         }
-        globalVariables.inputProcessing = false;
     }
 
     document.addEventListener('keydown', (event) => {

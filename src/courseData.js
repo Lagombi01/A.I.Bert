@@ -14,7 +14,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["101","102","103","104","105"],
     "difficulty":1,
-    "terms":["AI","Software","Resources","Basics","Skills","IBM"],
+    "terms":["IBM","Resources","Software","AI","Basics","Skills"],
     "link":"https://www.ibm.com/academic/topic/artificial-intelligence"},
     
     {"id":"003",
@@ -25,7 +25,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["301","302","303","304","305","306","307","308","309"],
     "difficulty":1,
-    "terms":["AI","Teaching","Education","Students","School","Basics","Ethics","Humans","Inclusivity"],
+    "terms":["Teaching","Education","Students","School","AI","Ethics","Humans","Basics","Inclusivity"],
     "link":"https://www.mindspark.org/ibm-ai"},
     
     {"id":"004",
@@ -36,7 +36,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["401","402","403","404","405","406","407","408","409","410","411","412","413"],
     "difficulty":3,
-    "terms":["Development","Software","Machine Learning","Deep Learning","Programming","Languages","Application Modernization","Messaging","IBM"],
+    "terms":["Programming","Development","Software","Languages","IBM","Machine Learning","Deep Learning","Application Modernization","Messaging"],
     "link":"https://developer.ibm.com/technologies/artificial-intelligence/"},
     
     {"id":"101",
@@ -47,7 +47,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["102","103","104"],
     "difficulty":1,
-    "terms":["AI","Business","Industry","NLP","Foundation","Evolution","Watson","Basics","Chatbot"],
+    "terms":["Industry","AI","Basics","NLP","Evolution","Watson","Chatbot"],
     "link":"https://keyskill-clms.comprehend.ibm.com/course/view.php?id=236"},
 
     {"id":"102",
@@ -58,7 +58,7 @@ export const courseData = [
     "prereq":["101"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Watson","Cloud","Neural Networks","Videos","Machine Learning","Data"],
+    "terms":["Watson","Cloud","Videos","AI","Neural Networks","Machine Learning","Data"],
     "link":"https://learn.ibm.com/course/view.php?id=4482"},
     
     {"id":"103",
@@ -69,7 +69,7 @@ export const courseData = [
     "prereq":["101"],
     "postreq":[],
     "difficulty":2,
-    "terms":["Watson","Data","Refinery","CSV","Raw"],
+    "terms":["Refinery","Data","Raw","CSV","Watson"],
     "link":"https://learn.ibm.com/course/view.php?id=4480"},
     
     {"id":"104",
@@ -80,7 +80,7 @@ export const courseData = [
     "prereq":["101"],
     "postreq":[],
     "difficulty":2,
-    "terms":["Watson","Data","Catalogue","Analysis","Assets","Profiling","Classification"],
+    "terms":["Watson","Data","Analysis","Assets","Classification","Catalogue","Profiling"],
     "link":"https://learn.ibm.com/course/view.php?id=4481"},
     
     {"id":"105",
@@ -91,7 +91,7 @@ export const courseData = [
     "prereq":["101","404"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Watson","Studio","Machine Learning","NLP","Cloud","Data","Basics","IBM"],
+    "terms":["Watson","IBM","Cloud","AI","Basics","Data","Studio","Machine Learning","NLP"],
     "link":"https://www.ibm.com/training/watson"},
     
     {"id":"301",
@@ -102,7 +102,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["302"],
     "difficulty":1,
-    "terms":["AI","Teaching","Basics","Students","Neural Network","Data","Algorithm","Machine Learning","Play","Activities","Inspire"],
+    "terms":["Teaching","AI","Basics","Students","Activities","Play","Inspire","Machine Learning","Neural Network"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence"},
     
     {"id":"302",
@@ -113,7 +113,7 @@ export const courseData = [
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Application","Real-Life","Game","Videos","Activity","Data"],
+    "terms":["Teaching","Life","Students","AI","Game","Videos","Activity","Data"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m"},
     
     {"id":"303",
@@ -124,7 +124,7 @@ export const courseData = [
     "prereq":["301"],
     "postreq":["304"],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Ethics","Morality","Discussion","Activity","Expert"],
+    "terms":["Ethics","Teaching","Discussion","Students","Activity","AI","Expert"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj"},
     
     {"id":"304",
@@ -135,7 +135,7 @@ export const courseData = [
     "prereq":["303"],
     "postreq":["309"],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Inclusivity","Equality","Equity","Bias","Activity"],
+    "terms":["Inclusivity","Equality","Bias","Teaching","AI","Students","Activity"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6"},
     
     {"id":"305",
@@ -146,7 +146,7 @@ export const courseData = [
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["Teaching","Students","NLP","Speech","Siri","Alexa","Real-Life","Social"],
+    "terms":["Siri","Alexa","Speech","NLP","Teaching","Students","Life","Social"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8"},
     
     {"id":"306",
@@ -157,7 +157,7 @@ export const courseData = [
     "prereq":[],
     "postreq":[],
     "difficulty":1,
-    "terms":["AI","Teaching","Students","Machine Learning","Intelligence","Activity","Thought Experiment"],
+    "terms":["Teaching","Students","AI","Machine Learning","Intelligence","Activity","Thought Experiment"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-lw8fp"},
     
     {"id":"307",
@@ -168,7 +168,7 @@ export const courseData = [
     "prereq":[],
     "postreq":[],
     "difficulty":1,
-    "terms":["Teaching","Students","Robot","Robotics","Real-Life","Activity","Programming"],
+    "terms":["Robotics","Teaching","Programming","Students","Activity","Life"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7"},
     
     {"id":"308",
@@ -179,7 +179,7 @@ export const courseData = [
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Classroom","Employability","Skills","Work","Scratch","Machine Learning"],
+    "terms":["Teaching","Classroom","Students","Industry","Scratch","AI","Employability","Skills","Machine Learning"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7-36c99"},
     
     {"id":"309",
@@ -190,7 +190,7 @@ export const courseData = [
     "prereq":["304"],
     "postreq":[],
     "difficulty":2,
-    "terms":["Teaching","Students","STEM","Diversity","Inclusion","Gender","Race","Bias","Algorithm"],
+    "terms":["Inclusivity","Diversity","Bias","Gender","Race","Teaching","Students","STEM","Algorithm"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7-36c99-88r6j"},
     
     {"id":"401",
@@ -201,7 +201,7 @@ export const courseData = [
     "prereq":["404","103"],
     "postreq":["405"],
     "difficulty":2,
-    "terms":["AI","Data","AWS","Amazon","SageMaker","Pandemic","Analytics","Analysis","Virtualisation","Bias","Machine Learning"],
+    "terms":["Data","AWS","AI","Amazon","SageMaker","Analysis","Virtualisation","Pandemic","Machine Learning","Bias"],
     "link":"https://developer.ibm.com/learningpaths/pandemic-management-system-aws-ibm-cloud-pak-for-data/"},
     
     {"id":"402",
@@ -212,7 +212,7 @@ export const courseData = [
     "prereq":["403","101"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Data","Machine Learning","Deep learning","Prediction","Architecture","Python","TensorFlow"],
+    "terms":["Deep learning","Basics","AI","Data","Python","Machine Learning","TensorFlow","Prediction","Architecture"],
     "link":"https://developer.ibm.com/learningpaths/get-started-with-deep-learning/"},
     
     {"id":"403",
@@ -223,7 +223,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["401","402","407","408","412"],
     "difficulty":1,
-    "terms":["AI","Machine Learning","Scikit","Classification","Regression","Python","Supervised","Unsupervised","Data"],
+    "terms":["Machine Learning","Basics","AI","Python","Scikit","Classification","Regression","Supervised","Unsupervised","Data"],
     "link":"https://developer.ibm.com/learningpaths/learning-path-machine-learning-for-developers/"},
     
     {"id":"404",
@@ -245,7 +245,7 @@ export const courseData = [
     "prereq":["401"],
     "postreq":[],
     "difficulty":3,
-    "terms":["Data","Watson","Policy","Govern","Categories","CSV","Analytics"],
+    "terms":["Data","Watson","Categories","Analysis","Policy","Govern","CSV"],
     "link":"https://developer.ibm.com/tutorials/find-prepare-and-understand-data-with-watson-knowledge-catalog/"},
     
     {"id":"406",
@@ -256,7 +256,7 @@ export const courseData = [
     "prereq":["413","403","404"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Data Science","Deep learning","Machine Learning","Python","Scikit-learn","Preprocessing","Classification","Pipeline"],
+    "terms":["Machine Learning","Python","Scikit-learn","AI","Data","Classification","Deep learning","Preprocessing","Pipeline"],
     "link":"https://developer.ibm.com/tutorials/build-and-test-your-first-machine-learning-model-using-python-and-scikit-learn/"},
     
     {"id":"407",
@@ -267,7 +267,7 @@ export const courseData = [
     "prereq":["403"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Automatic","Watson","Machine Learning","Hyperparameter","Pipeline","Python","Data"],
+    "terms":["Automatic","Watson","Hyperparameter","Machine Learning","Python","AI","Watson","Data","Pipeline"],
     "link":"https://developer.ibm.com/learningpaths/explore-autoai/"},
     
     {"id":"408",
@@ -278,7 +278,7 @@ export const courseData = [
     "prereq":["403"],
     "postreq":["405","409","410"],
     "difficulty":2,
-    "terms":["Watson","Data Science","Machine Learning","Deep Learning","Model","Training","Scikit"],
+    "terms":["Watson","IBM","Tutorial","Data","Visualisation","Machine Learning","Deep Learning","Model","Training","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-watson-studio/"},
     
     {"id":"409",
@@ -289,7 +289,7 @@ export const courseData = [
     "prereq":["413","408"],
     "postreq":[],
     "difficulty":3,
-    "terms":["AI","Python","Internet","Data","Scrape","NLP","Keywords","Refinery"],
+    "terms":["Scrape","Internet","AI","NLP","Python","Data","Keywords","Refinery"],
     "link":"https://developer.ibm.com/tutorials/scrape-data-from-the-web-using-watson-studio/"},
     
     {"id":"410",
@@ -300,7 +300,7 @@ export const courseData = [
     "prereq":["408"],
     "postreq":["411"],
     "difficulty":3,
-    "terms":["NLP","Watson","Machine Learning","Keywords","Python","Visualisaion"],
+    "terms":["NLP","Watson","Keywords","Machine Learning","Python","Visualisation"],
     "link":"https://developer.ibm.com/tutorials/entity-extraction-using-watson-nlp/"},
     
     {"id":"411",
@@ -311,7 +311,7 @@ export const courseData = [
     "prereq":["410"],
     "postreq":[],
     "difficulty":3, //should be 4, but would be the only 4 in the database
-    "terms":["Speech","Natural Language Processing","Kubernetes","Analysis","Python"],
+    "terms":["Speech","NLP","Analysis","Kubernetes","Python"],
     "link":"https://developer.ibm.com/tutorials/extract-meaningful-insights-from-data/"},
     
     {"id":"412",
@@ -322,7 +322,7 @@ export const courseData = [
     "prereq":["304","403"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Machine Learning","Watson","Bias","Prejudice","Discrimination","Data"],
+    "terms":["Bias","Prejudice","Discrimination","Watson","AI","Machine Learning","Data"],
     "link":"https://developer.ibm.com/tutorials/build-fair-robust-machine-learning-models/"},
     
     {"id":"413",
@@ -333,7 +333,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["406","409"],
     "difficulty":1,
-    "terms":["Python","Basics","Coding","Variables","Analytics","Tutorial"],
+    "terms":["Python","Basics","Coding","Tutorial","Variables","Analytics"],
     "link":"https://developer.ibm.com/articles/os-beginners-guide-python/"}
 ]
 ;
