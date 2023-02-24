@@ -5,6 +5,7 @@ import { courseData } from "../courseData.js";
 import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
 import fade from './globals/elementFader';
+import spit from './globals/speechEditor';
 import './components.css';
 
 
@@ -94,6 +95,11 @@ export default function Home(){
 
         //Map ai --> artificial intelligence
         var removeStr = `\\b${'ai'}\\b`;
+        var regex =  new RegExp(removeStr,'g');
+        message = message.replace(regex,'artificial intelligence');
+
+        //Map a.i --> artificial intelligence
+        var removeStr = `\\b${'a.i'}\\b`;
         var regex =  new RegExp(removeStr,'g');
         message = message.replace(regex,'artificial intelligence');
 
@@ -288,7 +294,6 @@ export default function Home(){
     }
 
     async function search(input, difficulty = 1, disallow = []) {
-        globalVariables.input = input; //so it can be accessed later, when a response button is pressed
         if (difficulty > 3) difficulty = 3; //due to there being no courses of difficulty 4
         if (difficulty < 1) difficulty = 1;
         var rawData = await getKeywords(input).then(result => result);
@@ -311,11 +316,10 @@ export default function Home(){
         for (var i = 0; i < Object.keys(keyTerms).length; i++) {
             for (var j = 0; j < globalVariables.baseTerms.length; j++) {
                 if (isMatch(Object.keys(keyTerms)[i],globalVariables.baseTerms[j])) {
-                    console.log(globalVariables.baseTerms[j] + " IN " + Object.keys(keyTerms)[i]);
                     cleaned[globalVariables.baseTerms[j]] = keyTerms[Object.keys(keyTerms)[i]];
                     remove.push(Object.keys(keyTerms)[i]);
                     break;
-                } else console.log(globalVariables.baseTerms[j] + " not in " + Object.keys(keyTerms)[i]);
+                }
             }
             for (var k = 0; k < globalVariables.synonyms.length; k++) {
                 for (var l = 0; l < globalVariables.synonyms[k].length - 1; l++) {
@@ -424,103 +428,119 @@ export default function Home(){
     }
 
     const inputHandling = async(input) => {
+        if (input == "") return;
+        globalVariables.lastInput = globalVariables.input;
+        globalVariables.input = input; //so it can be accessed later, when a response button is pressed
         if (globalVariables.inputProcessing) return;
         globalVariables.inputProcessing = true;
         document.getElementById('input').value = "";
         document.getElementById('input').blur();
-        if (input != "") {
-            var matches;
-            switch (input.toLowerCase()) {
-                case "open":
-                    window.open(courseData.find(item => item.id === globalVariables.currentCourseID)["link"], '_blank');
-                    break;
-                case "not relevant":
-                    //Course Search using previous input
-                    matches = globalVariables.results;
-                    matches.shift();
-                    globalVariables.results = matches;
-                    break;
-                case "too easy":
-                    if (courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"].length > 0) {
-                        matches = courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"];
-                        //order by relevance? <----------------
-                    } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] < 3) {
-                        var currentDiff = courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"];
-                        var disallow = [1,2,3].filter(i => i <= currentDiff);
-                        matches = await search(globalVariables.input, currentDiff + 1, disallow).then(result => result);
-                    } else matches = [];
-                    globalVariables.results = matches;
-                    break;
-                case "too hard":
-                    if (courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"].length > 0) {
-                        matches = courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"];
-                    } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] > 1) {
-                        var currentDiff = courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"];
-                        var disallow = [1,2,3].filter(i => i >= currentDiff);
-                        matches = await search(globalVariables.input, currentDiff - 1, disallow).then(result => result);
-                    } else matches = [];
-                    globalVariables.results = matches;
-                    break;
-                default:
-                    //Course Search from scratch
-                    var watsonReply = await postMessage(input).then(result => result);
-                    if (isMatch(input.toLowerCase(),"course") || isMatch(input.toLowerCase(),"courses")) {
-                        matches = await search(input).then(result => result);
+        var textRemoveFunc = setInterval(function() {spit(document.getElementsByClassName("AI-Bert-speech")[0].firstChild,textRemoveFunc)},5);
+        var matches;
+        switch (input.toLowerCase()) {
+            case "open":
+                window.open(courseData.find(item => item.id === globalVariables.currentCourseID)["link"], '_blank');
+                globalVariables.inputProcessing = false;
+                return;
+            case "not relevant":
+                //Course Search using previous input
+                matches = globalVariables.results;
+                matches.shift();
+                globalVariables.results = matches;
+                break;
+            case "too easy":
+                if (courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"].length > 0) {
+                    matches = courseData.find(item => item.id === globalVariables.currentCourseID)["postreq"];
+                    //order by relevance? <----------------
+                } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] < 3) {
+                    var currentDiff = courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"];
+                    var disallow = [1,2,3].filter(i => i <= currentDiff);
+                    matches = await search(globalVariables.input, currentDiff + 1, disallow).then(result => result);
+                } else matches = [];
+                globalVariables.results = matches;
+                break;
+            case "too hard":
+                if (courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"].length > 0) {
+                    matches = courseData.find(item => item.id === globalVariables.currentCourseID)["prereq"];
+                } else if (courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"] > 1) {
+                    var currentDiff = courseData.find(item => item.id === globalVariables.currentCourseID)["difficulty"];
+                    var disallow = [1,2,3].filter(i => i >= currentDiff);
+                    matches = await search(globalVariables.input, currentDiff - 1, disallow).then(result => result);
+                } else matches = [];
+                globalVariables.results = matches;
+                break;
+            default:
+                //Course Search from scratch
+                var watsonReply = await postMessage(input).then(result => result);
+                if (isMatch(input.toLowerCase(),"course") || isMatch(input.toLowerCase(),"courses") || watsonReply == "I'm afraid I don't understand. Please rephrase your question.") {
+                    matches = await search(input).then(result => result);
+                    if (matches.length == 0 && (isMatch(input.toLowerCase(),"more") || isMatch(input.toLowerCase(),"this") || isMatch(input.toLowerCase(),"it"))) {
+                        matches = await search(globalVariables.lastInput).then(result => result);
                         if (matches.length == 0) {
-                            matches = undefined;
+                            matches = undefined
                         } else break;
-                    }
-                    if (watsonReply != "[[COURSE ALGORITHM BEGINS]]" && watsonReply != document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML) {
-                        document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = watsonReply;
-                        break;
-                    }
-                    //I'm afraid I don't understand. Please rephrase your question.
-                    globalVariables.offered = [];
-                    matches = await search(input).then(result => result); //Also pass user_difficulty from database
-                    globalVariables.results = matches;
+                    } else break;
+                }
+                if (watsonReply != "[[COURSE ALGORITHM BEGINS]]" && watsonReply != globalVariables.currentReply) {
                     break;
-            }
-
-            globalVariables.inputProcessing = false;
-
-            if (matches == undefined) {
-                if (globalVariables.presenting) {
-                    miniVanish();
-                    moveInput(true);
-                    courseVanish();
-                    buttonsVanish();
                 }
-                return;
-            }
-
-            if (matches.length > 0) {
-                document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = "..";
-                globalVariables.currentCourseID = matches[0];
-                globalVariables.offered.push(matches[0]);
-                globalVariables.transitioning = true;
-                if (globalVariables.presenting) {
-                    buttonsVanish();
-                    courseVanish();
-                    setTimeout(courseAppear,500);
-                } else {
-                    chatbotVanish();
+                globalVariables.offered = [];
+                matches = await search(input).then(result => result); //Also pass user_difficulty from database
+                if (matches.length == 0 && (isMatch(input.toLowerCase(),"more") || isMatch(input.toLowerCase(),"this") || isMatch(input.toLowerCase(),"it"))) {
+                    matches = await search(globalVariables.lastInput).then(result => result);
                 }
-                return;
-            }
-            
-            if (globalVariables.presenting) {
-                    miniVanish();
-                    moveInput(true);
-                    courseVanish();
-                    buttonsVanish();
-            }
-
-            document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = "I'm sorry, I couldn't find anything for that query!";
+                globalVariables.results = matches;
+                break;
         }
+
+        globalVariables.inputProcessing = false;
+        clearInterval(textRemoveFunc);
+        globalVariables.dotting = false;
+        globalVariables.dotDelay = 0;
+        document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = "";
+        globalVariables.currentReply = "";
+
+        if (matches == undefined) {
+            if (globalVariables.presenting) {
+                miniVanish();
+                moveInput(true);
+                courseVanish();
+                buttonsVanish();
+                document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = watsonReply;
+            } else var textAddFunc = setInterval(function() {spit(document.getElementsByClassName("AI-Bert-speech")[0].firstChild,textAddFunc,watsonReply)},5);
+            globalVariables.currentReply = watsonReply;
+            return;
+        }
+
+        if (matches.length > 0) {
+            globalVariables.currentCourseID = matches[0];
+            globalVariables.offered.push(matches[0]);
+            globalVariables.transitioning = true;
+            if (globalVariables.presenting) {
+                buttonsVanish();
+                courseVanish();
+                setTimeout(courseAppear,500);
+            } else {
+                chatbotVanish();
+            }
+            return;
+        }
+        
+        if (globalVariables.presenting) {
+                miniVanish();
+                moveInput(true);
+                courseVanish();
+                buttonsVanish();
+                document.getElementsByClassName("AI-Bert-speech")[0].firstChild.innerHTML = "I'm sorry, I couldn't find anything for that query!";
+        } else {
+            var textAddFunc = setInterval(function() {spit(document.getElementsByClassName("AI-Bert-speech")[0].firstChild,textAddFunc,"I'm sorry, I couldn't find anything for that query!")},5);
+        }
+        globalVariables.currentReply = "";
     }
 
     document.addEventListener('keydown', (event) => {
         var name = event.key;
+        document.getElementById('input').focus();
         if (name == "Enter" && !globalVariables.transitioning) {
             inputHandling(document.getElementById('input').value);
         }
