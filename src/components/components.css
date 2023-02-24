@@ -220,6 +220,10 @@ label {
 
 /* ---------------------------------home.js--------------------------------------------- */
 
+.input-output-fields {
+    width: 550px;
+}
+
 .courseSpan {
     position: absolute;
     width: 1166px; /*Want this to span the width of the app, not sure how else to do it!*/
