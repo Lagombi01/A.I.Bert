@@ -14,29 +14,20 @@ export default function spit(elem,id,text = "") {
             elem.innerHTML = elem.innerHTML.substring(0,newLength);
             if (elem.innerHTML == "") globalVariables.dotting = true;
         } else {
-            if (globalVariables.dotDelay == 10) {
+            if (globalVariables.dotDelay == 40) {
                 globalVariables.dotDelay = 0;
                 switch (elem.innerHTML) {
                     case "":
                         elem.innerHTML = ".";
                         break;
                     case ".":
-                        elem.innerHTML = ". ";
-                        break;
-                    case ". ":
                         elem.innerHTML = ". .";
                         break;
                     case ". .":
-                        elem.innerHTML = ". . ";
-                        break;
-                    case ". . ":
                         elem.innerHTML = ". . .";
                         break;
                     case ". . .":
-                        elem.innerHTML = ". . . ";
-                        break;
-                    case ". . . ":
-                        elem.innerHTML = "";
+                        elem.innerHTML = ".";
                         break;
                 }
             } else globalVariables.dotDelay ++;

@@ -25,6 +25,16 @@ export default function Details() {
         }
     },false);
 
+    function clickBookmark() {
+        //Code for adding the bookmark goes here
+        console.log("Bookmark toggled!");
+    }
+
+    function clickComplete() {
+        //Code for adding completion functionality goes here
+        console.log("Completion toggled!");
+    }
+
     return (
         <div className="overlayCourseSpan">
             <div id="blackOverlay"></div>
@@ -47,8 +57,8 @@ export default function Details() {
                     </div>
                     <div className="responseButtons">
                         <a target="_blank"><div className="responseButton" id="openCourse"><img src={book} alt="Open Course"/></div></a>
-                        <div className="responseButton" id="bookmark"><img src={bookmark} alt="Bookmark"/></div>
-                        <div className="responseButton" id="markComplete"><img src={checkbox} alt="Mark Complete"/></div>
+                        <div className="responseButton" id="bookmark" onClick={clickBookmark}><img src={bookmark} alt="Bookmark"/></div>
+                        <div className="responseButton" id="markComplete" onClick={clickComplete}><img src={checkbox} alt="Mark Complete"/></div>
                     </div>
                 </div>
             </div>
