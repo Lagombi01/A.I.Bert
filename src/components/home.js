@@ -232,7 +232,8 @@ export default function Home(){
         for (let button of buttons) {
             switch (button.id) {
                 case "bookmark":
-                    if (button.style.opacity > 0) ; //bookmark course
+                    if (button.style.opacity > 0) ;
+                    //Code for toggling bookmark
                     break;
                 default:
                     button.addEventListener('click', (event) => {
@@ -270,8 +271,8 @@ export default function Home(){
 
     function progToPosition(prog) {
         var start = [50,0];
-        var topMove = 240;
         var leftMove = -200;
+        var topMove = 255;
         return [prog*topMove + start[0],prog*leftMove + start[1]];
     }
 
@@ -311,14 +312,12 @@ export default function Home(){
             keyTerms[rawData[i]["text"].toLowerCase()] = rawData[i]["relevance"]
         }
 
-        console.log(0);
         //Data cleanup:
         for (var i = 0; i < Object.keys(keyTerms).length; i++) {
             for (var j = 0; j < globalVariables.baseTerms.length; j++) {
                 if (isMatch(Object.keys(keyTerms)[i],globalVariables.baseTerms[j])) {
                     cleaned[globalVariables.baseTerms[j]] = keyTerms[Object.keys(keyTerms)[i]];
                     remove.push(Object.keys(keyTerms)[i]);
-                    break;
                 }
             }
             for (var k = 0; k < globalVariables.synonyms.length; k++) {
@@ -326,7 +325,6 @@ export default function Home(){
                     if (isMatch(Object.keys(keyTerms)[i],globalVariables.synonyms[k][l])) {
                         cleaned[globalVariables.synonyms[k][globalVariables.synonyms[k].length - 1]] = keyTerms[Object.keys(keyTerms)[i]];
                         remove.push(Object.keys(keyTerms)[i]);
-                        break;
                     }
                 }
             }
@@ -404,7 +402,7 @@ export default function Home(){
         var courseTitle = courseData.find(item => item.id === id)["name"];
         for (var i = 0; i < Object.keys(keyTerms).length; i++) {
             if (isMatch(courseTitle.toLowerCase(),Object.keys(keyTerms)[i].toLowerCase())) {
-                score += 3*keyTerms[Object.keys(keyTerms)[i]];
+                score += keyTerms[Object.keys(keyTerms)[i]];
             } else {
                 for (var j = 0; j < globalVariables.synonyms.length; j++) {
                     if (globalVariables.synonyms[j][globalVariables.synonyms[j].length-1] == Object.keys(keyTerms)[i]) {
@@ -476,10 +474,13 @@ export default function Home(){
                     matches = await search(input).then(result => result);
                     if (matches.length == 0 && (isMatch(input.toLowerCase(),"more") || isMatch(input.toLowerCase(),"this") || isMatch(input.toLowerCase(),"it"))) {
                         matches = await search(globalVariables.lastInput).then(result => result);
-                        if (matches.length == 0) {
-                            matches = undefined
-                        } else break;
-                    } else break;
+                    }
+                    if (matches.length == 0) {
+                        matches = undefined;
+                    } else {
+                        globalVariables.results = matches;
+                        break;
+                    }
                 }
                 if (watsonReply != "[[COURSE ALGORITHM BEGINS]]" && watsonReply != globalVariables.currentReply) {
                     break;
