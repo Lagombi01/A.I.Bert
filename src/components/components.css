@@ -195,7 +195,7 @@ label {
 .overlayCourseDetails .courseTitle {
     float:left;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 27px;
     width: 80%;
     margin-top: 3%;
     margin-left: 6%;
@@ -206,7 +206,7 @@ label {
 
 .overlayCourseDetails .courseDescription {
     float:right;
-    font-size: 30px;
+    font-size: 23px;
     width: 100%;
     margin-right: 5%;
     color: white;
@@ -222,6 +222,10 @@ label {
 
 .input-output-fields {
     width: 550px;
+}
+
+.userInput {
+    margin-bottom: 30px;
 }
 
 .courseSpan {
@@ -253,7 +257,7 @@ label {
 .courseDetails .courseTitle {
     float:left;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 27px;
     width: 350px;
     margin-top: 8px;
     margin-left: 169px;
@@ -262,7 +266,7 @@ label {
 
 .courseDetails .courseDescription {
     float: right;
-    font-size: 26px;
+    font-size: 23px;
     width: 440px;
     margin-right: 140px;
     margin-top: -240px;
@@ -274,7 +278,7 @@ label {
     position: absolute;
     width: 1166px;/*Again, want this to span the width of the app*/
     height: 50px;
-    margin-top: 440px;
+    margin-top: 430px;
     text-align: center;
 }
 
@@ -283,8 +287,8 @@ label {
     height: 50px;
     width: 100%;
     margin-left: -50px;
-    padding-top: 25px;
-    padding-bottom: 45px;
+    padding-top: 15px;
+    margin-bottom: 60px;
     text-align: center;
 }
 
@@ -299,12 +303,11 @@ label {
     padding-top: 5px;
     padding-bottom: 5px;
     background-color: #eecb60;
-    width:fit-content;
     display: inline-block;
-    font-size: 26px;
+    font-size: 22px;
     margin-left: 10px;
     margin-right: 10px;
-    top: 0px;
+    vertical-align: middle;
     cursor:default;
     opacity: 0;
 }
@@ -330,6 +333,9 @@ label {
 
 .chatbot .responseButton img {
     width: 20px;
+    display: block;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .overlayCourseDetails .responseButton img {
