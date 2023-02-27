@@ -3,10 +3,7 @@ import "./components.css";
 import User from "../Images/user.png";
 import { useState, useEffect } from "react";
 import { courseData } from "./../courseData.js";
-import { useHistory } from "react-router-dom";
-import globalVariables from "./globals/globalVariables";
-import fillDetails from "./globals/detailsFiller";
-import Book from "../Images/book.png";
+import { Link } from "react-scroll";
 
 export default function Profile() {
   const [userData, setUserData] = useState(null);
@@ -69,29 +66,33 @@ export default function Profile() {
               {userData && <h3>Welcome {userData.data.username} !</h3>}
 
               {userData && userData.data.email && (
-                <h4>{userData.data.email}</h4>
+                <h3>{userData.data.email}</h3>
               )}
               {userData && userData.data.experiencelvl && (
                 <h5>{userData.data.experiencelvl}</h5>
               )}
-
-            </div>
-            <div className="column3">
-              <button class="form__button" onClick={handleLogout}>
-                Log Out
-              </button>
-              <button class="form__button" onClick={handleLogout}>
-                Edit Profile
-              </button>
-              <button class="form__button" onClick={handleLogout}>
-                Delete Profile
-              </button>
             </div>
           </div>
 
           <div className="completion">
-            <h4> Progress </h4>
-            <h1>55%</h1>
+            <h4> Your Progress </h4>
+            <h2>55%</h2>
+          </div>
+          <div className="completion">
+            <Link
+              className="form__button completebutton"
+              to="completed"
+              smooth={true}
+              duration={500}
+            >
+             View Completed Courses
+            </Link>
+            <button class="form__button logoutbutton" onClick={handleLogout}>
+              Log Out
+            </button>
+            <button class="form__button deletebutton" onClick={handleLogout}>
+              Delete Profile
+            </button>
           </div>
         </div>
         <div className="course_display">
