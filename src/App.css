@@ -560,6 +560,8 @@ label{
 .profile_container{
   display: flex;
   flex-direction: row;
+  margin-top: 50px;
+  width: 100%;
 }
 
 .profile_container p{
@@ -568,11 +570,53 @@ label{
 
 .profile_details{
   display: flex;
+  flex-direction: row;
+  background-color: #eecb60;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.userimage{
+  width: 95%
+}
+
+.column1{
+  width: 25%;
+  padding-left: 20px;
+}
+.column2{
+  margin-left: 70px;
+}
+
+.completion{
+  display: flex;
   flex-direction: column;
   width: 30%;
   background-color: #eecb60;
-  padding: 30px;
+  padding: 20px;
+  margin: 20px;
   border-radius: 20px;
+}
+
+.completed_courses{
+  background-color: #eecb60;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
+
+}
+
+.bookmarked_courses{
+  background-color: #eecb60;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.course_list{
+  display: flex;
+  flex-direction: row;
 }
 
 /* LEARNING JOURNEY TREE CSS */
