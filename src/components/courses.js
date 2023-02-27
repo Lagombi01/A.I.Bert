@@ -73,7 +73,9 @@ function updateGrid (categoryToFilter) {
 }
 
 function applyEvent(target, id) {
-    target.addEventListener('click', () => {showDetails(id)});
+    target.addEventListener('click', () => {
+        console.log(`element with id ${id} was clicked`)
+        showDetails(id)});
 }
 
 export default function Courses () {

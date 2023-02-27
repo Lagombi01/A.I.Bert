@@ -3,42 +3,124 @@ import cross from "../Images/cross.png";
 import globalVariables from "./globals/globalVariables";
 import { useEffect } from "react";
 import "./components.css";
+
 import bookmark from "../Images/smallBookmark.png";
-import bookmarkFilled from "../Images/checkbox.png"
-import book from "../Images/book.png";
+import bookmarkFilled from "../Images/filledBookmark.png";
 import checkbox from "../Images/checkbox.png";
+// import checkboxfilled from "../Images/"
+import book from "../Images/book.png";
 
 export default function Details() {
-  
-	const [isBookmarked, setIsBookmarked] = useState(false); // state to track whether the course is bookmarked
-  const [isCompleted, setIsCompleted] = useState(false); // state to track whether the course is completed
+	const [startrefresh, setStartRefresh] = useState(false);
+  const [bookmarkList, setBookmarklist] = useState(null);
+  const [isBookmarked, setIsBookmarked] = useState(null); // state to track whether the course is bookmarked
+  const [isCompleted, setIsCompleted] = useState(null); // state to track whether the course is completed
 
-	function updateBookmark() {
-    const courseID = globalVariables.currentCourseID;
-    
-    fetch("http://localhost:5000/addbookmark", {
+	useEffect(() => {
+		fetch("http://localhost:5000/getbookmarks", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
-			body: JSON.stringify({
+      body: JSON.stringify({
         token: window.localStorage.getItem("token"),
-				courseID,
+      }),
+    }).then((response) => response.json())
+		.then((data) => {
+			setBookmarklist(data.data);
+			console.log(data.data) });
+	}, [startrefresh]);
+
+  function updateBookmark() {
+		const courseID = globalVariables.currentCourseID
+		// DELETE BOOKMARK IF ALREADY BOOKMARKED
+		if (isBookmarked){
+			console.log("IS DELETING")
+			console.log(courseID)
+			fetch("http://localhost:5000/deletebookmark", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem("token"),
+					courseID,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data.data.bookmarks);
+					setIsBookmarked(!isBookmarked);
+				})
+				.catch((error) => console.error(error));
+		}
+			else{
+				console.log("IS ADDING")
+				console.log(courseID)
+			fetch("http://localhost:5000/addbookmark", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem("token"),
+					courseID,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data.data.bookmarks);
+					setIsBookmarked(!isBookmarked);
+				})
+				.catch((error) => console.error(error));
+		}
+
+		}
+   
+
+
+  function checkBookmark() {
+    fetch("http://localhost:5000/getbookmarks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        token: window.localStorage.getItem("token"),
       }),
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      setIsBookmarked(!isBookmarked);
-    })
-    .catch(error => console.error(error));
+      .then((response) => response.json())
+      .then((data) => {
+        setBookmarklist(data.data);
+				console.log(data.data)
+        const currentCourseID = globalVariables.currentCourseID.toString();
+        const isBookmarked = data.data.some((bookmark) => {
+          console.log("Current course ID: ", currentCourseID);
+          console.log("Comparing with bookmark ID: ", bookmark);
+          if (currentCourseID === bookmark) {
+            setIsBookmarked(true);
+						console.log("isBookmarked: ", isBookmarked);
+            return true;
+          }
+					else{
+						console.log("isBookmarked: ", isBookmarked);
+						setIsBookmarked(false);
+						return false;
+					}
+        });
+       
+        
+      })
+      .catch((error) => console.error(error));
   }
- 
 
-	
   function updateCompletedCourses() {
     console.log(globalVariables.currentCourseID);
-		setIsCompleted(!isCompleted);
+    setIsCompleted(!isCompleted);
   }
 
   function returnToAll() {
@@ -58,7 +140,9 @@ export default function Details() {
         name == "Escape" &&
         document.getElementsByClassName("overlayCourseSpan")[0].style.opacity ==
           1
+			
       ) {
+			
         returnToAll();
       }
     },
@@ -92,10 +176,23 @@ export default function Details() {
               </div>
             </a>
             <div className="responseButton" id="bookmark">
-              <img src={isBookmarked ? bookmarkFilled : bookmark} onClick={updateBookmark} alt="Bookmark" />
+              <div>
+              
+                  <img
+										src = {isBookmarked ? bookmarkFilled : bookmark}
+                    // src={isBookmarked ? bookmarkFilled : bookmark}
+                    onClick={updateBookmark}
+                    alt="Bookmark"
+                  />
+           
+              </div>
             </div>
             <div className="responseButton" id="markComplete">
-              <img src={checkbox} onClick={updateCompletedCourses} alt="Mark Complete" />
+              <img
+                src={checkbox}
+                onClick={updateCompletedCourses}
+                alt="Mark Complete"
+              />
             </div>
           </div>
         </div>

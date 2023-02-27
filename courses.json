@@ -40,7 +40,7 @@
     "prereq":[],
     "postreq":["102","103","104"],
     "difficulty":1,
-    "terms":["AI","Business","Industry","Natural Language Processing","Foundation","Evolution","Watson","Basics","Chatbot"],
+    "terms":["AI","Industry","NLP","Evolution","Watson","Basics","Chatbot"],
     "link":"https://keyskill-clms.comprehend.ibm.com/course/view.php?id=236"},
 
     {"id":"102",
@@ -73,7 +73,7 @@
     "prereq":["101"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Watson","Data","Catalogue","Analysis","Assets","Profiling","Classification"],
+    "terms":["AI","Watson","Data","Catalog","Analysis","Assets","Profiling","Classification"],
     "link":"https://learn.ibm.com/course/view.php?id=4481"},
     
     {"id":"105",
@@ -95,7 +95,7 @@
     "prereq":[],
     "postreq":["302"],
     "difficulty":1,
-    "terms":["AI","Teaching","Introduction","Students","Neural Network","Data","Algorithm","Machine Learning","Play","Activities","Inspire"],
+    "terms":["AI","Teaching","Basics","Students","Neural Networks","Data","Algorithm","Machine Learning","Play","Activities","Inspire"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence"},
     
     {"id":"302",
@@ -106,7 +106,7 @@
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Application","Real-Life","Game","Videos","Activity","Data"],
+    "terms":["AI","Teaching","Students","Application","Real-Life","Game","Videos","Activities","Data"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m"},
     
     {"id":"303",
@@ -117,7 +117,7 @@
     "prereq":["301"],
     "postreq":["304"],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Ethics","Morality","Discussion","Activity","Expert"],
+    "terms":["AI","Teaching","Students","Ethics","Discussion","Activity","Experts"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj"},
     
     {"id":"304",
@@ -128,7 +128,7 @@
     "prereq":["303"],
     "postreq":["309"],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Inclusivity","Equality","Equity","Bias","Activity"],
+    "terms":["AI","Teaching","Students","Inclusivity","Equality","Bias","Gender","Race","Activities"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6"},
     
     {"id":"305",
@@ -139,7 +139,7 @@
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Natural Language Processing","Speech","Siri","Alexa","Real-Life","Social"],
+    "terms":["AI","Teaching","Students","Natural Language Processing","Speech","Siri","Alexa","Life","Social"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8"},
     
     {"id":"306",
@@ -150,7 +150,7 @@
     "prereq":[],
     "postreq":[],
     "difficulty":1,
-    "terms":["AI","Teaching","Students","Machine Learning","Intelligence","Activity","Thought Experiment"],
+    "terms":["AI","Teaching","Students","Machine Learning","Activities","Thought Experiment"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-lw8fp"},
     
     {"id":"307",
@@ -161,7 +161,7 @@
     "prereq":[],
     "postreq":[],
     "difficulty":1,
-    "terms":["AI","Teaching","Students","Robot","Robotics","Real-Life","Activity","Programming"],
+    "terms":["AI","Teaching","Students","Robotics","Life","Activities","Programming"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7"},
     
     {"id":"308",
@@ -172,7 +172,7 @@
     "prereq":["301"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Teaching","Students","Classroom","Employability","Skills","Work","Scratch","Machine Learning"],
+    "terms":["AI","Teaching","Students","Industry","Skills","Scratch","Machine Learning"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7-36c99"},
     
     {"id":"309",
@@ -194,7 +194,7 @@
     "prereq":["404","103"],
     "postreq":["405"],
     "difficulty":2,
-    "terms":["AI","Data","AWS","Amazon","SageMaker","Pandemic","Analytics","Analysis","Virtualisation","Bias","Machine Learning"],
+    "terms":["AI","Data","AWS","Amazon","SageMaker","Pandemic","Analysis","Virtualisation","Bias","Machine Learning"],
     "link":"https://developer.ibm.com/learningpaths/pandemic-management-system-aws-ibm-cloud-pak-for-data/"},
     
     {"id":"402",
@@ -216,7 +216,7 @@
     "prereq":[],
     "postreq":["401","402","407","408","412"],
     "difficulty":1,
-    "terms":["AI","Machine Learning","Scikit","Classification","Regression","Python","Supervised","Unsupervised","Data"],
+    "terms":["AI","Machine Learning","Scikit","Classification","Regression","Python","Supervised","Unsupervised","Data","Tutorial"],
     "link":"https://developer.ibm.com/learningpaths/learning-path-machine-learning-for-developers/"},
     
     {"id":"404",
@@ -227,7 +227,7 @@
     "prereq":[],
     "postreq":["401","402"],
     "difficulty":1,
-    "terms":["AI","Machine Learning","Introduction","Deep learning", "Neural Networks","Natural Language Processing","Visual recognition","Supervised","Unsupervised","Python","Scikit"],
+    "terms":["AI","Machine Learning","Basics","Deep learning", "Neural Networks","Natural Language Processing","Visual","Supervised","Unsupervised","Python","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-artificial-intelligence/"},
     
     {"id":"405",
@@ -238,18 +238,18 @@
     "prereq":["401"],
     "postreq":[],
     "difficulty":3,
-    "terms":["Data","Watson","Policy","Govern","Categories","CSV","Analytics"],
+    "terms":["Data","Watson","Policy","Govern","Categories","CSV","Analysis"],
     "link":"https://developer.ibm.com/tutorials/find-prepare-and-understand-data-with-watson-knowledge-catalog/"},
     
     {"id":"406",
     "name":"Build and test your first machine learning model using Python and scikit-learn",
-    "description":"In this data science and machine learning tutorial, get a hands-on example on how to create and run a classification model from start to finish. ",
+    "description":"In this data science and machine learning tutorial, get a hands-on example on how to create and run a classification model from start to finish.",
     "duration":0.5,
     "image":"developer.png",
     "prereq":["413","403","404"],
     "postreq":[],
     "difficulty":2,
-    "terms":["AI","Data Science","Deep learning","Machine Learning","Python","Scikit-learn","Preprocessing","Classification","Pipeline"],
+    "terms":["AI","Data","Deep learning","Machine Learning","Python","Scikit","Preprocessing","Classification","Pipeline","Tutorial"],
     "link":"https://developer.ibm.com/tutorials/build-and-test-your-first-machine-learning-model-using-python-and-scikit-learn/"},
     
     {"id":"407",
@@ -271,7 +271,7 @@
     "prereq":["403"],
     "postreq":["405","409","410"],
     "difficulty":2,
-    "terms":["AI","Watson","Data Science","Machine Learning","Deep Learning","Model","Training","Scikit"],
+    "terms":["AI","Watson","Data","Machine Learning","Deep Learning","Model","Training","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-watson-studio/"},
     
     {"id":"409",
@@ -282,7 +282,7 @@
     "prereq":["413","408"],
     "postreq":[],
     "difficulty":3,
-    "terms":["AI","Python","Web","Data","Scrape","Natural Language Processing","Keywords"],
+    "terms":["AI","Python","Internet","Data","Scrape","Natural Language Processing","Keywords"],
     "link":"https://developer.ibm.com/tutorials/scrape-data-from-the-web-using-watson-studio/"},
     
     {"id":"410",
@@ -293,7 +293,7 @@
     "prereq":["408"],
     "postreq":["411"],
     "difficulty":3,
-    "terms":["AI","Natural Language Processing","Watson","Machine Learning","Keywords","Python","Visualisaion"],
+    "terms":["AI","Natural Language Processing","Watson","Machine Learning","Keywords","Python","Visualisation"],
     "link":"https://developer.ibm.com/tutorials/entity-extraction-using-watson-nlp/"},
     
     {"id":"411",
@@ -326,6 +326,6 @@
     "prereq":[],
     "postreq":["406","409"],
     "difficulty":1,
-    "terms":["Python","Introduction","Coding","Variables","Analytics","Tutorial"],
+    "terms":["Python","Basics","Coding","Variables","Analytics","Tutorial"],
     "link":"https://developer.ibm.com/articles/os-beginners-guide-python/"}
 ]

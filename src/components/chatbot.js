@@ -28,7 +28,7 @@ export default function Chatbot() {
       
         <div className="AI-Bert-speech">
           <div className="box sb3" style={{opacity: globalVariables.mini?0:1}}>
-            Hi! I'm AI-Bert, I am here to assist you with your learning in AI!
+            Hi! I'm AI-Bert, I am here to help you learn about AI!
           </div>
           <div className="topbox sb4">
             <div>Here's a course I found:</div>
