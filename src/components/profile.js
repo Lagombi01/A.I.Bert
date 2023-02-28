@@ -4,10 +4,12 @@ import User from "../Images/user.png";
 import { useState, useEffect } from "react";
 import { courseData } from "./../courseData.js";
 import { Link } from "react-scroll";
+import { set } from "lodash";
 
 export default function Profile() {
   const [userData, setUserData] = useState(null);
-  const [bookmarklist, setBookmarklist] = useState(null);
+  const [progressPercent, setprogressPercent] = useState(0);
+  const [listlength, setListlength] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:5000/userdata", {
@@ -23,9 +25,7 @@ export default function Profile() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "userData");
         setUserData(data);
-        console.log(userData);
       })
       .catch((error) => console.error(error));
   }, []);
@@ -35,16 +35,61 @@ export default function Profile() {
     window.location.href = "/login";
   };
 
-  function renderitem(data) {
-    console.log(data);
-    console.log(courseData);
+  function renderPercentage() {
+    console.log(userData);
+
+    if (userData && userData.data.completedCourses) {
+      const percentage =  Math.round((userData.data.completedCourses.length / 27) * 100);
+      console.log(percentage);
+      return (
+        <div>
+          <div class="single-chart">
+            <svg viewBox="0 0 36 36" class="circular-chart orange">
+              <path
+                class="circle-bg"
+                d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+              <path
+                class="circle"
+                stroke-dasharray={`${percentage}, 100`}
+                d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+              />
+              <text x="18" y="20.35" class="percentage">
+              {percentage}%
+              </text>
+            </svg>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  function renderBookmarkitem(data) {
     for (let i = 0; i < courseData.length; i++) {
       if (courseData[i].id === data) {
-        console.log(courseData[i]);
         return (
           <a href={courseData[i].link}>
             <div className="bookmarkItem">
               <img classname="bookmarkImage" src={courseData[i].image}></img>
+              <p>{courseData[i].name}</p>
+            </div>
+          </a>
+        );
+      }
+    }
+  }
+
+  function renderCourseitem(data) {
+    for (let i = 0; i < courseData.length; i++) {
+      if (courseData[i].id === data) {
+        return (
+          <a href={courseData[i].link}>
+            <div className="completedItem">
+              <img classname="courseImage" src={courseData[i].image}></img>
               <p>{courseData[i].name}</p>
             </div>
           </a>
@@ -66,7 +111,7 @@ export default function Profile() {
               {userData && <h3>Welcome {userData.data.username} !</h3>}
 
               {userData && userData.data.email && (
-                <h3>{userData.data.email}</h3>
+                <h5>{userData.data.email}</h5>
               )}
               {userData && userData.data.experiencelvl && (
                 <h5>{userData.data.experiencelvl}</h5>
@@ -75,8 +120,8 @@ export default function Profile() {
           </div>
 
           <div className="completion">
-            <h4> Your Progress </h4>
-            <h2>55%</h2>
+            <p>Courses completed</p>
+            <div>{renderPercentage()}</div>
           </div>
           <div className="completion">
             <Link
@@ -85,7 +130,7 @@ export default function Profile() {
               smooth={true}
               duration={500}
             >
-             View Completed Courses
+              View Completed Courses
             </Link>
             <button class="form__button logoutbutton" onClick={handleLogout}>
               Log Out
@@ -105,12 +150,27 @@ export default function Profile() {
               {userData &&
                 userData.data.bookmarks &&
                 userData.data.bookmarks.map((data, index) => {
-                  return <div className="course-card">{renderitem(data)}</div>;
+                  return (
+                    <div className="course-card">
+                      {renderBookmarkitem(data)}
+                    </div>
+                  );
                 })}
             </div>
           </div>
           <div className="completed_courses" id="completed">
-            <h4>Completed Courses</h4>
+            <div>
+              <h3 className="bookmarktitle">Completed Courses</h3>
+            </div>
+            <div className="course_list">
+              {userData &&
+                userData.data.completedCourses &&
+                userData.data.completedCourses.map((data, index) => {
+                  return (
+                    <div className="course-card">{renderCourseitem(data)}</div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       </div>

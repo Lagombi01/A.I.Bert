@@ -564,14 +564,52 @@ label{
   margin-right: 200px;
 }
 
-.profile_container{
-  display: flex;
-  flex-direction: row;
-  
- 
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
 }
 
+.circle-bg {
+  fill: none;
+  stroke: rgb(255, 192, 74);
+  stroke-width: 3.8;
+}
 
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.circular-chart.orange .circle {
+  stroke: #ff9900;
+}
+
+.percentage {
+  fill: rgb(37, 37, 37);
+  font-family: sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+.profile_container{
+  display: flex;
+  flex-direction: row; 
+}
 
 .profile_container p{
   font-size: 1rem;
@@ -597,8 +635,6 @@ label{
 .column2{
   margin-left: 70px;
 }
-
-
 
 .completion{
   display: flex;
@@ -649,6 +685,16 @@ label{
   border-radius: 20px;
 }
 
+.completed_courses{
+  background-color: #eecb60;
+  margin: 20px;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-radius: 20px;
+}
+
+
 .course_list {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
@@ -674,6 +720,30 @@ label{
 
 .bookmarked_courses img{
   width: 100%;
+}
+
+.completed_courses img{
+  width: 100%;
+}
+
+.completed_courses p{
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  align-items: center;
+}
+
+.completed_courses a{
+  text-decoration: none;
+}
+
+
+.completedItem{
+  height: 250px;
+  background-color: #ffa216;
+  padding: 20px;
+  border-radius: 20px;
+
 }
 
 .bookmarked_courses p{
