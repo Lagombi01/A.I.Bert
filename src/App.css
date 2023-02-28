@@ -558,10 +558,20 @@ label{
 }
 /* PROFILE.JS CSS */
 
+.Profile{
+  margin-top: 50px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
 .profile_container{
   display: flex;
   flex-direction: row;
+  
+ 
 }
+
+
 
 .profile_container p{
   font-size: 1rem;
@@ -569,12 +579,120 @@ label{
 
 .profile_details{
   display: flex;
+  flex-direction: row;
+  background-color: #eecb60;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.userimage{
+  width: 95%
+}
+
+.column1{
+  width: 35%;
+  padding-left: 20px;
+}
+.column2{
+  margin-left: 70px;
+}
+
+
+
+.completion{
+  display: flex;
   flex-direction: column;
   width: 30%;
   background-color: #eecb60;
-  padding: 30px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: #283070;
+}
+
+.completed_courses{
+  background-color: #eecb60;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 20px;
+
+}
+
+.completion p{
+  font-weight: 900;
+}
+
+.completebutton{
+  font-size: 15px;
+  padding: 7px !important;
+  text-align: center;
+}
+
+.logoutbutton{
+  font-size: 15px;
+  padding: 10px !important;
+}
+.deletebutton{
+  font-size: 15px;
+  padding: 10px !important;
+  background-color: #f54b20;
+}
+
+
+.bookmarked_courses{
+  background-color: #eecb60;
+  margin: 20px;
+  padding: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   border-radius: 20px;
 }
+
+.course_list {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  grid-gap: 20px;
+}
+
+.course-card {
+  
+  width: 100%;
+}
+
+.bookmarketitle{
+  margin-left: 100px;
+}
+
+.bookmarkItem{
+  height: 250px;
+  background-color: #167bff;
+  padding: 20px;
+  border-radius: 20px;
+
+}
+
+.bookmarked_courses img{
+  width: 100%;
+}
+
+.bookmarked_courses p{
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  align-items: center;
+}
+
+.bookmarked_courses a{
+  text-decoration: none;
+}
+
+.course_list{
+  display: flex;
+  flex-direction: row;
+}
+
+
 
 /* LEARNING JOURNEY TREE CSS */
 

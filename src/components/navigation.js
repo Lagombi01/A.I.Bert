@@ -62,7 +62,7 @@ export default function Navigation() {
             <i class="fa colored-text">
               <img src={gear} alt=""></img>
             </i>
-            <p>Settings</p>
+            <p>Help</p>
           </div>
           <div
             class="bubble flex-container"
