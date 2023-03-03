@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import "./components.css";
 
 import bookmark from "../Images/smallBookmark.png";
-import bookmarkFilled from "../Images/filledBookmark.png";
+import bookmarkFilled from "../Images/filledSmallBookmark.png";
 import checkbox from "../Images/checkbox.png";
-// import checkboxfilled from "../Images/"
+import emptyCheckbox from "../Images/EmptyCheckbox.png"
 import book from "../Images/book.png";
 
 export default function Details() {
@@ -33,10 +33,11 @@ export default function Details() {
 			console.log(data.data) });
 	}, [startrefresh]);
 
-  function updateBookmark() {
+  async function updateBookmark() {
 		const courseID = globalVariables.currentCourseID
+		let isBookmarked2 = await checkBookmark();
 		// DELETE BOOKMARK IF ALREADY BOOKMARKED
-		if (isBookmarked){
+		if (isBookmarked2){
 			console.log("IS DELETING")
 			console.log(courseID)
 			fetch("http://localhost:5000/deletebookmark", {
@@ -52,7 +53,7 @@ export default function Details() {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data.data.bookmarks);
-					setIsBookmarked(!isBookmarked);
+					setIsBookmarked(false);
 				})
 				.catch((error) => console.error(error));
 		}
@@ -72,7 +73,7 @@ export default function Details() {
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data.data.bookmarks);
-					setIsBookmarked(!isBookmarked);
+					setIsBookmarked(true);
 				})
 				.catch((error) => console.error(error));
 		}
@@ -81,44 +82,94 @@ export default function Details() {
    
 
 
-  function checkBookmark() {
-    fetch("http://localhost:5000/getbookmarks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setBookmarklist(data.data);
-				console.log(data.data)
-        const currentCourseID = globalVariables.currentCourseID.toString();
-        const isBookmarked = data.data.some((bookmark) => {
-          console.log("Current course ID: ", currentCourseID);
-          console.log("Comparing with bookmark ID: ", bookmark);
-          if (currentCourseID === bookmark) {
-            setIsBookmarked(true);
-						console.log("isBookmarked: ", isBookmarked);
-            return true;
-          }
-					else{
-						console.log("isBookmarked: ", isBookmarked);
-						setIsBookmarked(false);
-						return false;
-					}
-        });
-       
-        
-      })
-      .catch((error) => console.error(error));
-  }
+		async function checkBookmark() {
+			const response = await fetch("http://localhost:5000/getbookmarks", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					"Access-Control-Allow-Origin": "*",
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem("token"),
+				}),
+			});
+			const data = await response.json();
+			setBookmarklist(data.data);
+			console.log(data.data);
+			const currentCourseID = globalVariables.currentCourseID.toString();
+			const isBookmarked = data.data.includes(currentCourseID);
+			console.log(`isBookmarked: ${isBookmarked}`);
+			return isBookmarked;
+		}
 
-  function updateCompletedCourses() {
+		async function checkComplete() {
+		
+			const response = await fetch("http://localhost:5000/getCompletedCourses", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					Accept: "application/json",
+					"Access-Control-Allow-Origin": "*",
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem("token"),
+				}),
+			});
+			const data = await response.json();
+			console.log(data.data);
+			const currentCourseID = globalVariables.currentCourseID.toString();
+			const isComplete = data.data.includes(currentCourseID);
+			console.log(`isComplete: ${isComplete}`);
+			return isComplete;
+		}
+
+  async function updateCompletedCourses() {
+		const courseID = globalVariables.currentCourseID
+		let isComplete2 = await checkComplete();
+		console.log("the course is marked as complete:")
+		console.log(isComplete2)
+		if (isComplete2){
+			console.log("IS DELETING")
+			console.log(courseID)
+			fetch("http://localhost:5000/deleteCompletedCourse", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem("token"),
+					courseID,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data.data.bookmarks);
+					setIsCompleted(false);
+				})
+				.catch((error) => console.error(error));
+		}
+			else{
+				console.log("IS ADDING")
+				console.log(courseID)
+			fetch("http://localhost:5000/addCompletedCourse", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					token: window.localStorage.getItem("token"),
+					courseID,
+				}),
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					console.log(data.data.bookmarks);
+					setIsCompleted(true);
+				})
+				.catch((error) => console.error(error));
+		}
+
     console.log(globalVariables.currentCourseID);
     setIsCompleted(!isCompleted);
   }
@@ -179,8 +230,8 @@ export default function Details() {
               <div>
               
                   <img
+										className="bookmarkImage"
 										src = {isBookmarked ? bookmarkFilled : bookmark}
-                    // src={isBookmarked ? bookmarkFilled : bookmark}
                     onClick={updateBookmark}
                     alt="Bookmark"
                   />
@@ -189,7 +240,8 @@ export default function Details() {
             </div>
             <div className="responseButton" id="markComplete">
               <img
-                src={checkbox}
+								className="checkmarkImage"
+                src={isCompleted ? checkbox : emptyCheckbox}
                 onClick={updateCompletedCourses}
                 alt="Mark Complete"
               />

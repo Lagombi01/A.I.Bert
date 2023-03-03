@@ -5,6 +5,14 @@ import Details from "./overlayDetails.js";
 import './components.css';
 import fillDetails from './globals/detailsFiller';
 import globalVariables from './globals/globalVariables.js';
+import CheckBookmark from './globals/checkBookmark.js';
+import CheckComplete from './globals/checkComplete';
+
+import filledBookmark from '../Images/filledSmallBookmark.png'
+import Bookmark from '../Images/smallBookmark.png'
+import Checkbox from '../Images/checkbox.png';
+import emptyCheckbox from '../Images/EmptyCheckbox.png';
+
 
 // Split courseData into categories and courseList arrays
 // Each element in the arrays are objects
@@ -38,11 +46,27 @@ function filterCategories (category) {
     return filteredList;
 }
 
-function showDetails (id) {
+async function showDetails (id) {
     globalVariables.currentCourseID = id;
     fillDetails(id);
     document.getElementsByClassName("overlayCourseSpan")[0].style.opacity = 1;
     document.getElementsByClassName("overlayCourseSpan")[0].style["pointer-events"] = "auto";
+
+    let isBookmarked = await CheckBookmark()
+    let bookmarkImage = document.getElementsByClassName("bookmarkImage")[0];
+    if (isBookmarked == true){
+        bookmarkImage.setAttribute("src", filledBookmark);
+    }else{
+        bookmarkImage.setAttribute("src", Bookmark);
+    }
+    let isComplete = await CheckComplete()
+    let CheckmarkImage = document.getElementsByClassName("checkmarkImage")[0];
+    if (isComplete == true){
+        CheckmarkImage.setAttribute("src",  Checkbox);
+    }else{
+        CheckmarkImage.setAttribute("src", emptyCheckbox);
+    }
+    
     document.body.style["overflow"] = "hidden";
 }
 

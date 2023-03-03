@@ -86,15 +86,17 @@ label {
     background-color: #4861e7; 
     color: white;
     padding: 1rem;
+    font-size: 16px;
     padding-bottom: 0;
     width: 20%;
-    height: fit-content;
+    height: 250px;
     min-width: 300px;
     margin: 1%;
     border-radius: 15px;
 }
 
 .cardStyle:hover {
+    background-color: #6377ec;
     cursor: pointer;
 }
 
