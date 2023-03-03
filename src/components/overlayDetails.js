@@ -33,7 +33,7 @@ export default function Details() {
 			console.log(data.data) });
 	}, [startrefresh]);
 
-  async function updateBookmark() {
+    async function updateBookmark() {
 		const courseID = globalVariables.currentCourseID
 		let isBookmarked2 = await checkBookmark();
 		// DELETE BOOKMARK IF ALREADY BOOKMARKED
@@ -78,53 +78,53 @@ export default function Details() {
 				.catch((error) => console.error(error));
 		}
 
-		}
+    }
    
 
 
-		async function checkBookmark() {
-			const response = await fetch("http://localhost:5000/getbookmarks", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-					"Access-Control-Allow-Origin": "*",
-				},
-				body: JSON.stringify({
-					token: window.localStorage.getItem("token"),
-				}),
-			});
-			const data = await response.json();
-			setBookmarklist(data.data);
-			console.log(data.data);
-			const currentCourseID = globalVariables.currentCourseID.toString();
-			const isBookmarked = data.data.includes(currentCourseID);
-			console.log(`isBookmarked: ${isBookmarked}`);
-			return isBookmarked;
-		}
+    async function checkBookmark() {
+        const response = await fetch("http://localhost:5000/getbookmarks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+                token: window.localStorage.getItem("token"),
+            }),
+        });
+        const data = await response.json();
+        setBookmarklist(data.data);
+        console.log(data.data);
+        const currentCourseID = globalVariables.currentCourseID.toString();
+        const isBookmarked = data.data.includes(currentCourseID);
+        console.log(`isBookmarked: ${isBookmarked}`);
+        return isBookmarked;
+    }
 
-		async function checkComplete() {
-		
-			const response = await fetch("http://localhost:5000/getCompletedCourses", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-					Accept: "application/json",
-					"Access-Control-Allow-Origin": "*",
-				},
-				body: JSON.stringify({
-					token: window.localStorage.getItem("token"),
-				}),
-			});
-			const data = await response.json();
-			console.log(data.data);
-			const currentCourseID = globalVariables.currentCourseID.toString();
-			const isComplete = data.data.includes(currentCourseID);
-			console.log(`isComplete: ${isComplete}`);
-			return isComplete;
-		}
+    async function checkComplete() {
+    
+        const response = await fetch("http://localhost:5000/getCompletedCourses", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+                token: window.localStorage.getItem("token"),
+            }),
+        });
+        const data = await response.json();
+        console.log(data.data);
+        const currentCourseID = globalVariables.currentCourseID.toString();
+        const isComplete = data.data.includes(currentCourseID);
+        console.log(`isComplete: ${isComplete}`);
+        return isComplete;
+    }
 
-  async function updateCompletedCourses() {
+    async function updateCompletedCourses() {
 		const courseID = globalVariables.currentCourseID
 		let isComplete2 = await checkComplete();
 		console.log("the course is marked as complete:")
@@ -187,14 +187,8 @@ export default function Details() {
     "keydown",
     (event) => {
       var name = event.key;
-      if (
-        name == "Escape" &&
-        document.getElementsByClassName("overlayCourseSpan")[0].style.opacity ==
-          1
-			
-      ) {
-			
-        returnToAll();
+      if (name == "Escape" && document.getElementsByClassName("overlayCourseSpan")[0].style.opacity ==1) {
+			returnToAll();
       }
     },
     false
@@ -228,19 +222,17 @@ export default function Details() {
             </a>
             <div className="responseButton" id="bookmark">
               <div>
-              
                   <img
-										className="bookmarkImage"
-										src = {isBookmarked ? bookmarkFilled : bookmark}
+					className="bookmarkImage"
+					src = {isBookmarked ? bookmarkFilled : bookmark}
                     onClick={updateBookmark}
                     alt="Bookmark"
                   />
-           
               </div>
             </div>
             <div className="responseButton" id="markComplete">
               <img
-								className="checkmarkImage"
+				className="checkmarkImage"
                 src={isCompleted ? checkbox : emptyCheckbox}
                 onClick={updateCompletedCourses}
                 alt="Mark Complete"
