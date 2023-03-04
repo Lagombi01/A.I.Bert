@@ -1,5 +1,4 @@
 let skillsbuild = require("./Images/skillsbuild.png");
-// let watson = require("./Images/watson.png");         Not currently being used
 let mindspark = require("./Images/mindspark.png");
 let developer = require("./Images/developer.png");
 
@@ -45,7 +44,7 @@ export const courseData = [
     "duration":5,
     "image":skillsbuild,
     "prereq":[],
-    "postreq":["102","103","104"],
+    "postreq":["102","103","104","105"],
     "difficulty":1,
     "terms":["Industry","AI","Basics","NLP","Evolution","Watson","Chatbot"],
     "link":"https://keyskill-clms.comprehend.ibm.com/course/view.php?id=236"},
@@ -102,7 +101,7 @@ export const courseData = [
     "prereq":[],
     "postreq":["302"],
     "difficulty":1,
-    "terms":["Teaching","AI","Basics","Students","Activities","Play","Inspire","Machine Learning","Neural Network"],
+    "terms":["Teaching","AI","Basics","Students","Activities","Play","Inspire","Machine Learning","Neural Networks"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence"},
     
     {"id":"302",
@@ -177,7 +176,7 @@ export const courseData = [
     "duration":1,
     "image":mindspark,
     "prereq":["301"],
-    "postreq":[],
+    "postreq":["101"],
     "difficulty":2,
     "terms":["Teaching","Classroom","Students","Industry","Scratch","AI","Employability","Skills","Machine Learning"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7-36c99"},
@@ -188,7 +187,7 @@ export const courseData = [
     "duration":1,
     "image":mindspark,
     "prereq":["304"],
-    "postreq":[],
+    "postreq":["412"],
     "difficulty":2,
     "terms":["Inclusivity","Diversity","Bias","Gender","Race","Teaching","Students","STEM","Algorithm"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6-t3cj8-l9hs7-36c99-88r6j"},
@@ -210,7 +209,7 @@ export const courseData = [
     "duration":2,
     "image":developer,
     "prereq":["403","101"],
-    "postreq":[],
+    "postreq":["004"],
     "difficulty":2,
     "terms":["Deep learning","Basics","AI","Data","Python","Machine Learning","TensorFlow","Prediction","Architecture"],
     "link":"https://developer.ibm.com/learningpaths/get-started-with-deep-learning/"},
@@ -232,7 +231,7 @@ export const courseData = [
     "duration":2,
     "image":developer,
     "prereq":[],
-    "postreq":["401","402"],
+    "postreq":["401","402","414"],
     "difficulty":1,
     "terms":["AI","Basics","Machine Learning","Deep learning", "Neural Networks","NLP","Python","Scikit"],
     "link":"https://developer.ibm.com/learningpaths/get-started-artificial-intelligence/"},
@@ -267,7 +266,7 @@ export const courseData = [
     "prereq":["403"],
     "postreq":[],
     "difficulty":2,
-    "terms":["Automatic","Watson","Hyperparameter","Machine Learning","Python","AI","Watson","Data","Pipeline"],
+    "terms":["Automatic","Hyperparameter","Watson","Machine Learning","Python","AI","Watson","Data","Pipeline"],
     "link":"https://developer.ibm.com/learningpaths/explore-autoai/"},
     
     {"id":"408",
@@ -310,7 +309,7 @@ export const courseData = [
     "image":developer,
     "prereq":["410"],
     "postreq":[],
-    "difficulty":3, //should be 4, but would be the only 4 in the database
+    "difficulty":3,
     "terms":["Speech","NLP","Analysis","Kubernetes","Python"],
     "link":"https://developer.ibm.com/tutorials/extract-meaningful-insights-from-data/"},
     
@@ -320,7 +319,7 @@ export const courseData = [
     "duration":0.5,
     "image":developer,
     "prereq":["304","403"],
-    "postreq":[],
+    "postreq":["405"],
     "difficulty":2,
     "terms":["Bias","Prejudice","Discrimination","Watson","AI","Machine Learning","Data"],
     "link":"https://developer.ibm.com/tutorials/build-fair-robust-machine-learning-models/"},
@@ -334,6 +333,28 @@ export const courseData = [
     "postreq":["406","409"],
     "difficulty":1,
     "terms":["Python","Basics","Coding","Tutorial","Variables","Analytics"],
-    "link":"https://developer.ibm.com/articles/os-beginners-guide-python/"}
+    "link":"https://developer.ibm.com/articles/os-beginners-guide-python/"},
+    
+    {"id":"414",
+    "name":"Build and train a neural network with nothing but JavaScript",
+    "description":"In this tutorial, we will show how it’s possible to build, train, and use a deep neural network (DNN) with nothing but JavaScript. You will learn the base concepts of DNNs, how they work, and how people create and improve them.",
+    "duration":0.75,
+    "image":developer,
+    "prereq":["415"],
+    "postreq":["004"],
+    "difficulty":3,
+    "terms":["Neural Networks","Basics","AI","UI","Javascript","Machine Learning"],
+    "link":"https://developer.ibm.com/tutorials/build-a-neural-network-with-nothing-but-javascript-using-brainjs/?mhsrc=ibmsearch_a&mhq=neural%20networks"},
+    
+    {"id":"415",
+    "name":"Get started with Node.js",
+    "description":"Node.js is an open source, cross-platform JavaScript runtime environment for developing server-side and networking applications. If you have experience with any programming language, you should be able to follow this course.",
+    "duration":2,
+    "image":developer,
+    "prereq":["413"],
+    "postreq":["414"],
+    "difficulty":2,
+    "terms":["Javascript","Programming","Software"],
+    "link":"https://developer.ibm.com/learningpaths/get-started-nodejs/"}
 ]
 ;

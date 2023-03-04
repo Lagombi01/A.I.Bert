@@ -86,7 +86,7 @@ export default function Home(){
 
     //GET KEYWORDS FUNCTION
     async function getKeywords(message) {
-        message = message.trim()
+        message = message.trim().toLowerCase();
 
         //Bulk up message
         if (message.length < 15) {
