@@ -8,7 +8,8 @@ import Home from './/components/home.js'
 import Courses from './/components/courses.js'
 import Profile from './components/profile';
 import LearningJourney from './components/learningJourney.js';
-import Help from './components/help'
+import CreateLearningJourney from './components/createLearningJourney';
+import Bookmarks from './components/bookmarks.js'
 import Login from './components/login'
 import Signup from './components/signup'
 
@@ -27,8 +28,8 @@ function App() {
         <Route path="Login" element={globalVariables.isLoggedIn== true ? <Profile />: <Login/>} index />
         <Route path="Signup" element={<Signup />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />
-        <Route path="LearningJourney" element={<LearningJourney />} index />
-        <Route path="Help" element={<Help />} index />
+        <Route path="CreateLearningJourney" element={<CreateLearningJourney />} index />
+        <Route path="Bookmarks" element={<Bookmarks />} index />
       </Routes>
     </BrowserRouter> 
     

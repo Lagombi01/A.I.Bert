@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import Acorn from "../Images/acorn.png";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
-  const [errorMessage, setErrorMessage] = useState(""); // add state variable for error message
+  const navigate = useNavigate();
   const onError = (errors, e) => console.log(errors, e);
 
   const onSubmit = (data, e) => {
@@ -32,13 +31,7 @@ export default function Login() {
         if (data.status == "ok") {
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
-
-
-          window.location.href="/profile"
-          alert("login successful");
-        } else {
-          // if login is unsuccessful, set error message in state
-          setErrorMessage("Invalid Username or Password");
+          navigate("/Profile")
         }
       })
       .catch((error) => console.error(error));
@@ -76,16 +69,12 @@ export default function Login() {
               {...register("password")}
             />
           </div>
-          {errorMessage && (
-            <p className="error-message">{errorMessage}</p>
-          )} {/* conditionally render error message */}
 
           <div className="d-grid">
             <button type="submit" className="form__button">
               Log in
             </button>
           </div>
-          
         </form>
       </div>
       <div className="mascotAcorn">
