@@ -121,6 +121,7 @@
   position: relative;
   background: -webkit-linear-gradient(45deg, black 50%, black 100%);
   color: black;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-size: 20px;
@@ -558,13 +559,13 @@ label {
 .forgot-password,
 .forgot-password a {
   text-align: right;
-  font-size: 13px;
   color: #7f7d7d;
   margin: 10px;
 }
 
 .forgot-password a {
   color: #167bff;
+  cursor: pointer;
 }
 /* PROFILE.JS CSS */
 
@@ -786,11 +787,28 @@ label {
 }
 
 .canvas {
-  display: flex;
+  display: inline-block;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  transform: rotate(90deg);
+  width: 50%;
+  height: 350px;
+  padding-left: 200px;
+}
+
+.notCanvas {
+    position: absolute;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    margin-left: 130px;
+    height: 350px;
+}
+
+.tree {
+    transform: rotate(90deg);
+    padding-right: 300px;
+    pointer-events: none;
 }
 
 .trunk,
@@ -817,6 +835,7 @@ label {
 
 .branch:nth-child(even) {
   transform: rotate(60deg);
+  left: 10px;
 }
 
 .branch:nth-child(odd) {
@@ -830,9 +849,9 @@ label {
 }
 
 .branch:nth-child(2) {
-  top: 160px;
+  top: 350px;
 
-  height: 150px;
+  height: 120px;
 }
 
 .branch:nth-child(3) {
@@ -886,7 +905,7 @@ label {
 
   transform-origin: 0% 100%;
   animation-name: leaf-odd-grow;
-  animation-duration: 4s;
+  animation-duration: 2s;
   animation-fill-mode: both;
 }
 
@@ -895,12 +914,13 @@ label {
 
   transform-origin: 50% 100%;
   animation-name: leaf-even-grow;
-  animation-duration: 4s;
+  animation-duration: 2s;
   animation-fill-mode: both;
 }
 
 .leaf:nth-child(1) {
   top: 5px;
+
 
   animation-delay: 3.5s;
 }
@@ -908,11 +928,13 @@ label {
 .leaf:nth-child(2) {
   top: 20px;
 
+
   animation-delay: 3s;
 }
 
 .leaf:nth-child(3) {
   top: 50px;
+
 
   animation-delay: 2.5s;
 }
@@ -920,23 +942,28 @@ label {
 .leaf:nth-child(4) {
   top: 65px;
 
+
   animation-delay: 2s;
 }
 
 .leaf:nth-child(5) {
   top: 95px;
 
+
   animation-delay: 1.5s;
 }
 
 .leaf:nth-child(6) {
   top: 110px;
-
+  
+  
   animation-delay: 1s;
 }
 
 .leaf:nth-child(7) {
   top: 140px;
-
+  
+  
   animation-delay: 0.5s;
+
 }

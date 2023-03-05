@@ -1,5 +1,6 @@
 import "./components.css";
 import Navigation from "./navigation";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import Acorn from "../Images/acorn.png";
 import { useForm } from "react-hook-form";
@@ -53,7 +54,7 @@ export default function Login() {
           <h2 className="signupTitle">Log in</h2>
 
           <p className="forgot-password">
-            Don't have an account?<a href="/signup"> Sign up </a>
+            Don't have an account?<a onClick={() => {navigate("/Signup")}}> Sign up </a>
           </p>
 
           <div className="logincontainer">

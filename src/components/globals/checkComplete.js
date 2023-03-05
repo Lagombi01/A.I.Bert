@@ -13,7 +13,6 @@ export default async function CheckComplete() {
         }),
     });
     const data = await response.json();
-    console.log(data.data);
     const currentCourseID = globalVariables.currentCourseID.toString();
     const isCompleted = data.data.includes(currentCourseID);
     console.log(`isCompleted: ${isCompleted}`);

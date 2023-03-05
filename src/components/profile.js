@@ -1,4 +1,5 @@
 import Navigation from "./navigation";
+import { useNavigate } from "react-router-dom";
 import "./components.css";
 import User from "../Images/user.png";
 import { useState, useEffect } from "react";
@@ -8,6 +9,7 @@ import { set } from "lodash";
 
 export default function Profile() {
   const [userData, setUserData] = useState(null);
+  const navigate = useNavigate();
   const [progressPercent, setprogressPercent] = useState(0);
   const [listlength, setListlength] = useState(0);
 
@@ -32,7 +34,7 @@ export default function Profile() {
 
   const handleLogout = () => {
     window.localStorage.clear();
-    window.location.href = "/login";
+    navigate("/Login");
   };
 
   function renderPercentage() {
@@ -108,7 +110,7 @@ export default function Profile() {
               <img src={User} className="userimage" alt=""></img>
             </div>
             <div className="column2">
-              {userData && <h3>Welcome {userData.data.username} !</h3>}
+              {userData && <h3>Welcome {userData.data.username}!</h3>}
 
               {userData && userData.data.email && (
                 <h5>{userData.data.email}</h5>

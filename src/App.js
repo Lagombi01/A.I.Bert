@@ -2,8 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-
+import globalVariables from './components/globals/globalVariables';
 
 import Home from './/components/home.js'
 import Courses from './/components/courses.js'
@@ -16,7 +15,7 @@ import Signup from './components/signup'
 
 
 function App() {
-  const isLoggedIn = window/localStorage.getItem("loggedIn");
+  globalVariables.isLoggedIn = window/localStorage.getItem("loggedIn");
   return (
     <div className="App">
     <BrowserRouter>
@@ -25,7 +24,7 @@ function App() {
         <Route path="Home" element={<Home />} index />
         <Route path="Courses" element={<Courses />} index />
         <Route path="Profile" element={<Profile />} index />
-        <Route path="Login" element={isLoggedIn== true ? <Profile />: <Login/>} index />
+        <Route path="Login" element={globalVariables.isLoggedIn== true ? <Profile />: <Login/>} index />
         <Route path="Signup" element={<Signup />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />

@@ -1,4 +1,5 @@
 import Navigation from "./navigation";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import "./components.css";
 import Acorn from "../Images/acorn.png";
@@ -80,7 +81,7 @@ export default function Signup() {
         >
           <h2 className="signupTitle">Sign Up</h2>
           <p className="forgot-password">
-            Already registered <a href="/login"> Log in?</a>
+            Already registered <a onClick={() => {navigate("/Login")}}> Log in?</a>
           </p>
           {errorMessage && <p className="error-message">{errorMessage}</p>}{" "}
           {/* conditionally render error message */}

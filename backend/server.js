@@ -286,6 +286,74 @@ app.post("/deleteCompletedCourse", async (req, res) => {
   }
 });
 
+//LEARNING JOURNEY APIs//
+
+app.post("/getLearningJourneys", async (req, res) => {
+    const { token } = req.body;
+    try {
+      const foundUser = jwt.verify(token, JWT_SECRET);
+      console.log(foundUser);
+      const username = foundUser.username;
+      const userData = await user.findOne({ username: username });
+      const learningJourneys = userData.learningJourneys;
+      res.send({ status: "ok", data: learningJourneys });
+    } catch (error) {
+      console.log(error);
+      res.send({ error: "error", data: "error" });
+    }
+  });
+  
+  app.post("/addLearningJourney", async (req, res) => {
+    const { courseIDs } = req.body;
+    console.log(courseIDs); // <--- ouputs 'undefined'
+    const { token } = req.body;
+    try {
+      const foundUser = jwt.verify(token, JWT_SECRET);
+      console.log(foundUser);
+      const username = foundUser.username;
+      user.findOneAndUpdate(
+        { username: username },
+        { $addToSet: { learningJourneys: courseIDs } },
+        { new: true }
+      )
+        .then((data) => {
+          res.send({ status: "ok", data: data });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.send({ error: "error", data: "error" });
+        });
+    } catch (error) {
+      console.log(error);
+      res.send({ error: "error", data: "error" });
+    }
+  });
+  
+  app.post("/deleteLearningJourney", async (req, res) => {
+    const { courseIDs } = req.body;
+    const { token } = req.body;
+    try {
+      const foundUser = jwt.verify(token, JWT_SECRET);
+      console.log(foundUser);
+      const username = foundUser.username;
+      user.findOneAndUpdate(
+        { username: username },
+        { $pull: { learningJourneys: courseIDs } }, // Use $pull instead of $addToSet
+        { new: true }
+      )
+        .then((data) => {
+          res.send({ status: "ok", data: data });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.send({ error: "error", data: "error" });
+        });
+    } catch (error) {
+      console.log(error);
+      res.send({ error: "error", data: "error" });
+    }
+  });
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 // 1. Allow parsing on request bodies
