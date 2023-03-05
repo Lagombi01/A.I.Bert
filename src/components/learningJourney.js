@@ -132,7 +132,7 @@ export default function LearningJourney() {
 
     var h3 = document.createElement("h3");
     h3.innerHTML = finished?"Completed":"Incomplete";
-    if (finished) h3.style["background-color"] = "#53ad71";
+    h3.style["background-color"] = finished?"#53ad71":"#f1c232";
     notCanvasDiv.appendChild(h3);
 
     var h4 = document.createElement("h4");

@@ -156,6 +156,7 @@ export default function Details() {
         if (document.getElementsByClassName("learningJourneyPage").length != 0) {
             for (var i = 0; i < document.getElementsByClassName("courseThumb").length; i++) {
                 if (document.getElementsByClassName("courseThumb")[i].parentElement.parentElement.id == courseID) {
+                    var isComplete3 = false;
                     if (complete) {
                         switch (courseID[0]) {
                             case "1":
@@ -168,9 +169,24 @@ export default function Details() {
                                 document.getElementsByClassName("courseThumb")[i].setAttribute("src",CompletedDeveloper);
                                 break;
                         }
+                        var threeCourses = document.getElementsByClassName("courseThumb")[i].parentElement.parentElement.parentElement;
+                        var allComplete = true;
+                        for (var j = 0; j < 3; j++) {
+                            console.log("here");
+                            globalVariables.currentCourseID = threeCourses.childNodes[j].id;
+                            isComplete3 = await checkComplete();
+                            if (!isComplete3) {
+                                allComplete = false;
+                                break;
+                            }
+                        }
+                        globalVariables.currentCourseID = courseID;
                     } else {
                         document.getElementsByClassName("courseThumb")[i].setAttribute("src",courseData.find(item => item.id === courseID).image);
                     }
+                    var h3 = document.getElementsByClassName("notCanvas")[0].childNodes[1];
+                    h3.innerHTML = allComplete?"Completed":"Incomplete";
+                    h3.style["background-color"] = allComplete?"#53ad71":"#f1c232";
                 }
             }
         }
