@@ -194,7 +194,6 @@ export default function Details() {
     }
 
   function returnToAll() {
-    globalVariables.currentCourseID = null;
     document.getElementsByClassName("overlayCourseSpan")[0].style.opacity = 0;
     document.getElementsByClassName("overlayCourseSpan")[0].style[
       "pointer-events"
