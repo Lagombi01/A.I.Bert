@@ -1,5 +1,6 @@
 const globalVariables = {
     "session":"",
+    "isLoggedIn":false,
     "currentCourseID":"",
     "transitioning":false,
     "presenting":false,
@@ -18,7 +19,7 @@ const globalVariables = {
                 ["supervised","unsupervised","learning","ml","machine learning"],
                 ["keyword","key word","key term","key words","key terms","keyterms","keywords"],
                 ["raw data","raw"],
-                ["natural language processing","natural language understanding","nlu","nlp"],
+                ["entity extraction","natural language processing","natural language understanding","nlu","nlp"],
                 ["auto","automated","automatic"],
                 ["web","internet"],
                 ["voices","voice","speech"],

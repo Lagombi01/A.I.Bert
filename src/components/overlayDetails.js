@@ -10,8 +10,14 @@ import checkbox from "../Images/checkbox.png";
 import emptyCheckbox from "../Images/EmptyCheckbox.png"
 import book from "../Images/book.png";
 
+import checkComplete from "./globals/checkComplete";
+import { courseData } from "../courseData";
+import CompletedSkillsbuild from '../Images/completedSkillsbuild.png';
+import CompletedMindspark from '../Images/completedMindspark.png';
+import CompletedDeveloper from '../Images/completedDeveloper.png';
+
 export default function Details() {
-	const [startrefresh, setStartRefresh] = useState(false);
+  const [startrefresh, setStartRefresh] = useState(false);
   const [bookmarkList, setBookmarklist] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(null); // state to track whether the course is bookmarked
   const [isCompleted, setIsCompleted] = useState(null); // state to track whether the course is completed
@@ -30,7 +36,7 @@ export default function Details() {
     }).then((response) => response.json())
 		.then((data) => {
 			setBookmarklist(data.data);
-			console.log(data.data) });
+        });
 	}, [startrefresh]);
 
     async function updateBookmark() {
@@ -103,36 +109,14 @@ export default function Details() {
         return isBookmarked;
     }
 
-    async function checkComplete() {
-    
-        const response = await fetch("http://localhost:5000/getCompletedCourses", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                "Access-Control-Allow-Origin": "*",
-            },
-            body: JSON.stringify({
-                token: window.localStorage.getItem("token"),
-            }),
-        });
-        const data = await response.json();
-        console.log(data.data);
-        const currentCourseID = globalVariables.currentCourseID.toString();
-        const isComplete = data.data.includes(currentCourseID);
-        console.log(`isComplete: ${isComplete}`);
-        return isComplete;
-    }
-
     async function updateCompletedCourses() {
-		const courseID = globalVariables.currentCourseID
+		const courseID = globalVariables.currentCourseID;
+        var complete = false;
 		let isComplete2 = await checkComplete();
-		console.log("the course is marked as complete:")
-		console.log(isComplete2)
 		if (isComplete2){
 			console.log("IS DELETING")
 			console.log(courseID)
-			fetch("http://localhost:5000/deleteCompletedCourse", {
+			await fetch("http://localhost:5000/deleteCompletedCourse", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -144,7 +128,6 @@ export default function Details() {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data.data.bookmarks);
 					setIsCompleted(false);
 				})
 				.catch((error) => console.error(error));
@@ -152,7 +135,7 @@ export default function Details() {
 			else{
 				console.log("IS ADDING")
 				console.log(courseID)
-			fetch("http://localhost:5000/addCompletedCourse", {
+			await fetch("http://localhost:5000/addCompletedCourse", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -164,15 +147,35 @@ export default function Details() {
 			})
 				.then((response) => response.json())
 				.then((data) => {
-					console.log(data.data.bookmarks);
 					setIsCompleted(true);
+                    complete = true;
 				})
 				.catch((error) => console.error(error));
 		}
 
-    console.log(globalVariables.currentCourseID);
-    setIsCompleted(!isCompleted);
-  }
+        if (document.getElementsByClassName("learningJourneyPage").length != 0) {
+            for (var i = 0; i < document.getElementsByClassName("courseThumb").length; i++) {
+                if (document.getElementsByClassName("courseThumb")[i].parentElement.parentElement.id == courseID) {
+                    if (complete) {
+                        switch (courseID[0]) {
+                            case "1":
+                                document.getElementsByClassName("courseThumb")[i].setAttribute("src",CompletedSkillsbuild);
+                                break;
+                            case "3":
+                                document.getElementsByClassName("courseThumb")[i].setAttribute("src",CompletedMindspark);
+                                break;
+                            case "4":
+                                document.getElementsByClassName("courseThumb")[i].setAttribute("src",CompletedDeveloper);
+                                break;
+                        }
+                    } else {
+                        document.getElementsByClassName("courseThumb")[i].setAttribute("src",courseData.find(item => item.id === courseID).image);
+                    }
+                }
+            }
+        }
+        //setIsCompleted(!isCompleted);
+    }
 
   function returnToAll() {
     globalVariables.currentCourseID = null;

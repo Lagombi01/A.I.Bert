@@ -548,13 +548,13 @@ label{
 .forgot-password,
 .forgot-password a {
   text-align: right;
-  font-size: 13px;
   color: #7f7d7d;
   margin: 10px;
 }
 
 .forgot-password a {
   color: #167bff;
+  cursor: pointer;
 }
 /* PROFILE.JS CSS */
 
@@ -764,7 +764,7 @@ label{
 
 
 
-/* LEARNING JOURNEY TREE CSS */
+/* LEARNING JOURNEY CSS */
 
 @keyframes leaf-odd-grow {
   0% {
@@ -784,13 +784,73 @@ label{
   }
 }
 
+.learningJourney {
+    margin-top: 35px;
+    width: 1162px;
+    background-color: #eecb60;
+    border-radius: 35px;
+    height: 300px;
+}
+
+.learningJourney h2 {
+    width: 100%;
+    height: 110.4px;
+    display: inline-block;
+    margin-top: 35px;
+    text-align: center;
+    padding: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.learningJourney h3 {
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    display: inline-block;
+    margin-top: -50px;
+    text-align: center;
+    padding: 20px;
+    background-color: #f1c232;
+    border-radius: 20px;
+}
+
+.learningJourney h4 {
+    width: 100%;
+    display: inline-block;
+    color: rgb(168, 5, 5);
+    text-align: center;
+    padding: 2px;
+    margin-top: -20px;
+}
+
+.learningJourney h4:hover {
+    cursor: pointer;
+}
 
 .canvas {
-  display: flex;
+  display: inline-block;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  transform: rotate(90deg);
+  width: 50%;
+  height: 350px;
+  padding-left: 200px;
+}
+
+.notCanvas {
+    position: absolute;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    margin-left: 130px;
+    height: 350px;
+}
+
+.tree {
+    transform: rotate(90deg);
+    padding-right: 300px;
+    pointer-events: none;
 }
 
 .trunk,
@@ -802,21 +862,22 @@ label{
 .trunk {
   position: relative;
   
-  width: 10px;
-  height: 500px;
+  width: 15px;
+  height: 600px;
   margin: 0 auto;
 }
 
 .branch {
   position: absolute;
   
-  width: 5px;
+  width: 6px;
   
   transform-origin: bottom center;
 }
 
 .branch:nth-child(even) {
   transform: rotate(60deg);
+  left: 10px;
 }
 
 .branch:nth-child(odd) {
@@ -824,45 +885,45 @@ label{
 }
 
 .branch:nth-child(1) {
-  top: 180px;
+  top: 400px;
   
-  height: 180px;
+  height: 140px;
 }
 
 .branch:nth-child(2) {
-  top: 160px;
+  top: 350px;
 
-  height: 150px;
+  height: 120px;
 }
 
 .branch:nth-child(3) {
-  top: 120px;
+  top: 220px;
   
   height: 150px;
 }
 
 .branch:nth-child(4) {
-  top: 100px;
+  top: 180px;
   
   height: 120px;
 }
 
 .branch:nth-child(5) {
-  top: 60px;
+  top: 120px;
   
-  height: 120px;
+  height: 100px;
 }
 
 .branch:nth-child(6) {
-  top: 55px;
+  top: 110px;
   
   height: 80px;
 }
 
 .branch:nth-child(7) {
-  top: 10px;
+  top: 395px;
   
-  height: 80px;
+  height: 50px;
 }
 
 .branch:nth-child(8) {
@@ -886,7 +947,7 @@ label{
   
   transform-origin: 0% 100%;
   animation-name: leaf-odd-grow;
-  animation-duration: 4s;
+  animation-duration: 2s;
   animation-fill-mode: both;
 }
 
@@ -895,49 +956,49 @@ label{
   
   transform-origin: 50% 100%;
   animation-name: leaf-even-grow;
-  animation-duration: 4s;
+  animation-duration: 2s;
   animation-fill-mode: both;
 }
 
 .leaf:nth-child(1) {
   top: 5px;
   
-  animation-delay: 3.5s;
+  animation-delay: 1.25s;
 }
 
 .leaf:nth-child(2) {
   top: 20px;
   
-  animation-delay: 3s;
+  animation-delay: 1s;
 }
 
 .leaf:nth-child(3) {
   top: 50px;
   
-  animation-delay: 2.5s;
+  animation-delay: 0.75s;
 }
 
 .leaf:nth-child(4) {
   top: 65px;
   
-  animation-delay: 2s;
+  animation-delay: 0.5s;
 }
 
 .leaf:nth-child(5) {
   top: 95px;
   
-  animation-delay: 1.5s;
+  animation-delay: 0s;
 }
 
 .leaf:nth-child(6) {
   top: 110px;
   
-  animation-delay: 1s;
+  animation-delay: 0s;
 }
 
 .leaf:nth-child(7) {
   top: 140px;
   
-  animation-delay: 0.5s;
+  animation-delay: 0s;
 }
 
