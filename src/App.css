@@ -1,7 +1,7 @@
-@import url('https://fonts.cdnfonts.com/css/advent-pro');
+@import url("https://fonts.cdnfonts.com/css/advent-pro");
 
 .App {
-  background-color:  #f1c232 ;
+  background-color: #f1c232;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,15 +9,14 @@
   font-size: calc(12px + 1vmin);
   color: black;
   font-family: consolas, sans-serif;
-  z-index:-100;
+  z-index: -100;
 }
 
-.title{
+.title {
   font-family: consolas, sans-serif;
   font-size: 25px;
   font-weight: 800;
 }
-
 
 /* Watson chatbot styling */
 #WACContainer.WACContainer {
@@ -38,6 +37,10 @@
 }
 
 /* NavBar styling */
+
+.nav-title{
+  z-index: 2 !important;
+}
 .bubbles {
   position: relative;
   margin: 20px auto;
@@ -52,7 +55,7 @@
   margin: 10px;
   width: 150px;
   height: 150px;
-  background-color: #eecb60   ;
+  background-color: #eecb60;
   box-shadow: 0 18px 34px 0 rgba(14, 15, 17, 0.06);
   border-radius: 50%;
   -webkit-animation: float 6s infinite;
@@ -60,22 +63,21 @@
   animation: float 6s infinite;
 }
 
-.bubble p{
+.bubble p {
   margin-left: 40px;
+  position: relative;
+  z-index: 2;
 }
 
-.bubble:hover{
+.bubble:hover {
   flex: 0 0 left;
   -webkit-animation: float infinite;
   -moz-animation: float 4s infinite;
   animation: float 4s infinite;
-  background-color: #4861e7  ;
+  background-color: #4861e7;
   box-shadow: 0 18px 34px 0 #4861e7;
   color: white;
-
 }
-
-
 
 .bubble:first-child {
   -webkit-animation-delay: 0.5s;
@@ -126,10 +128,9 @@
   justify-content: center;
 }
 
-.bubble img{
-  width: 100px
+.bubble img {
+  width: 100px;
 }
-
 
 @media (max-width: 880px) {
   .bubble {
@@ -157,23 +158,23 @@
 
 /* chatbot interface styling */
 
-.mascot img{
+.mascot img {
   width: 65%;
   margin-top: 150px;
   margin-left: 100px;
   opacity: 1;
 }
 
-.chatbot{
-  display: flex
+.chatbot {
+  display: flex;
 }
 
 .miniMascot {
-    position: absolute;
-    opacity: 0;
-    scale: 92%;
-    top: -85px;
-    left: -3px;
+  position: absolute;
+  opacity: 0;
+  scale: 92%;
+  top: -85px;
+  left: -3px;
 }
 
 .box {
@@ -182,47 +183,47 @@
   min-height: 95px;
   margin-right: 200px;
   margin-top: 100px;
-  background: #4861e7 ;
+  background: #4861e7;
   padding: 24px;
   text-align: center;
   font-weight: 900;
   color: #fff;
-  position:relative;
+  position: relative;
   border-radius: 20px;
 }
 
 .topbox {
   width: fit-content;
-  background: #4861e7 ;
+  background: #4861e7;
   opacity: 0;
   padding: 15px;
   text-align: right;
   font-weight: 900;
   color: #fff;
-  position:absolute;
-  top:240px;
+  position: absolute;
+  top: 240px;
   left: 30%;
   top: 225px;
   border-radius: 20px;
 }
 
 .topbox div {
-    width: fit-content;
-    margin-left: auto;
-    font-size: 18px !important;
+  width: fit-content;
+  margin-left: auto;
+  font-size: 18px !important;
 }
 
 .sb3:before {
-    content: "";
-    width: 0px;
-    height: 0px;
-    position: absolute;
-    border-left: 10px solid #4861e7;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #4861e7;
-    border-bottom: 10px solid transparent;
-    left: 19px;
-    bottom: -19px;
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 10px solid #4861e7;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #4861e7;
+  border-bottom: 10px solid transparent;
+  left: 19px;
+  bottom: -19px;
 }
 
 .sb4:before {
@@ -298,7 +299,8 @@
 
 /* reset input */
 
-.form__field:required, .form__field:invalid {
+.form__field:required,
+.form__field:invalid {
   box-shadow: none;
 }
 
@@ -315,16 +317,16 @@ body {
 }
 
 body::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 /* chatbot styling */
 .dropdown {
   position: relative;
-  display: inline-block
+  display: inline-block;
 }
 .dropdownButton {
-  background-color: #ad815a; 
+  background-color: #ad815a;
   padding: 1em;
   font-size: 12px;
   font-weight: bold;
@@ -349,39 +351,36 @@ body::-webkit-scrollbar {
 }
 /* SIGN UP PAGE CSS */
 
-
-
-.signuppage{
+.signuppage {
   display: flex;
   flex-direction: row;
 }
-.mascotAcorn{
+.mascotAcorn {
   padding: 50px;
 }
 
-.mascotAcorn img{
+.mascotAcorn img {
   opacity: 1;
   width: 250px;
   height: auto;
-  position:absolute;
-  top:53%;
-  left:55%;
+  position: absolute;
+  top: 53%;
+  left: 55%;
   -webkit-animation: float infinite;
   -moz-animation: float 3s infinite;
   animation: float 3s infinite;
 }
 
-.signupspeech{
-  position:absolute;
-  top:30%;
-  left:68%;
+.signupspeech {
+  position: absolute;
+  top: 30%;
+  left: 68%;
   -webkit-animation: float infinite;
   -moz-animation: float 3s infinite;
   animation: float 3s infinite;
-
 }
 
-.signup_container{
+.signup_container {
   width: 70%;
   margin: 20px;
   background-color: #eecb60;
@@ -395,59 +394,60 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   box-shadow: 0 18px 34px 0 rgba(14, 15, 17, 0.06);
-  
 }
 
-.signupTitle{
+.signupTitle {
   margin: 10px;
 }
 
-label{
+label {
   font-size: 1rem;
   text-align: left;
 }
 
-.signup_container p{
+.signup_container p {
   font-size: 1rem;
 }
 
-
-.row{
+.row {
   display: flex;
   flex-direction: row;
 }
 
-.usernamecontainer{
+.usernamecontainer {
   display: flex;
   flex-direction: column;
   padding: 20px;
 }
 
-.logincontainer{
+.logincontainer {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  width: 60%
+  width: 60%;
 }
 
-.form-control{
-  padding: 10px ;
+.error-message{
+  color: red;
+}
+
+.form-control {
+  padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
   border: none;
 }
 
-.radioDiv{
+.radioDiv {
   display: flex;
   flex-direction: column;
 }
 
-.radioExperience{
+.radioExperience {
   display: flex;
   width: 50%;
-  flex-direction: row
- 
+  flex-direction: row;
 }
 
 * {
@@ -464,9 +464,14 @@ label{
   margin: 5px 0;
   -webkit-tap-highlight-color: transparent;
 }
-.l-radio:hover, .l-radio:focus-within {
-  background:  #2398f852 ;
+.l-radio label{
+  margin-left: 5px;
 }
+.l-radio:hover,
+.l-radio:focus-within {
+  background: #2398f852;
+}
+
 .l-radio input {
   vertical-align: middle;
   width: 20px;
@@ -474,26 +479,32 @@ label{
   border-radius: 10px;
   background: none;
   border: 0;
-  box-shadow: inset 0 0 0 1px #fffdfd;
-  box-shadow: inset 0 0 0 1.5px #ffffff;
-  appearance: none;
   padding: 0;
   margin: 0;
   transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 .l-radio input:focus {
   outline: none;
 }
-.l-radio input:checked {
+
+/* .l-radio input:checked {
   box-shadow: inset 0 0 0 6px #1e76e9ee;
-}
-.l-radio span {
+} */
+
+.l-radio label {
   vertical-align: middle;
   display: inline-block;
   line-height: 20px;
   padding: 0 8px;
 }
+
+
+/* 
+
+.
+
+ */
 
 
 .form__button {
@@ -518,7 +529,6 @@ label{
 .form__button:active {
   transform: scale(0.98);
 }
-
 
 .auth-inner {
   width: 450px;
@@ -559,7 +569,7 @@ label{
 }
 /* PROFILE.JS CSS */
 
-.Profile{
+.Profile {
   margin-top: 50px;
   margin-left: 200px;
   margin-right: 200px;
@@ -607,16 +617,16 @@ label{
     stroke-dasharray: 0 100;
   }
 }
-.profile_container{
+.profile_container {
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
 }
 
-.profile_container p{
+.profile_container p {
   font-size: 1rem;
 }
 
-.profile_details{
+.profile_details {
   display: flex;
   flex-direction: row;
   background-color: #eecb60;
@@ -625,19 +635,19 @@ label{
   border-radius: 20px;
 }
 
-.userimage{
-  width: 95%
+.userimage {
+  width: 95%;
 }
 
-.column1{
+.column1 {
   width: 35%;
   padding-left: 20px;
 }
-.column2{
+.column2 {
   margin-left: 70px;
 }
 
-.completion{
+.completion {
   display: flex;
   flex-direction: column;
   width: 30%;
@@ -648,36 +658,34 @@ label{
   box-shadow: #283070;
 }
 
-.completed_courses{
+.completed_courses {
   background-color: #eecb60;
   margin: 20px;
   padding: 10px;
   border-radius: 20px;
-
 }
 
-.completion p{
+.completion p {
   font-weight: 900;
 }
 
-.completebutton{
+.completebutton {
   font-size: 15px;
   padding: 7px !important;
   text-align: center;
 }
 
-.logoutbutton{
+.logoutbutton {
   font-size: 15px;
   padding: 10px !important;
 }
-.deletebutton{
+.deletebutton {
   font-size: 15px;
   padding: 10px !important;
   background-color: #f54b20;
 }
 
-
-.bookmarked_courses{
+.bookmarked_courses {
   background-color: #eecb60;
   margin: 20px;
   padding: 20px;
@@ -686,7 +694,7 @@ label{
   border-radius: 20px;
 }
 
-.completed_courses{
+.completed_courses {
   background-color: #eecb60;
   margin: 20px;
   padding: 20px;
@@ -694,7 +702,6 @@ label{
   padding-right: 30px;
   border-radius: 20px;
 }
-
 
 .course_list {
   display: grid !important;
@@ -703,69 +710,63 @@ label{
 }
 
 .course-card {
-  
   width: 100%;
 }
 
-.bookmarketitle{
+.bookmarketitle {
   margin-left: 100px;
 }
 
-.bookmarkItem{
+.bookmarkItem {
   height: 250px;
   background-color: #167bff;
   padding: 20px;
   border-radius: 20px;
-
 }
 
-.bookmarked_courses img{
+.bookmarked_courses img {
   width: 100%;
 }
 
-.completed_courses img{
+.completed_courses img {
   width: 100%;
 }
 
-.completed_courses p{
+.completed_courses p {
   font-size: 16px;
   color: white;
   font-weight: 700;
   align-items: center;
 }
 
-.completed_courses a{
+.completed_courses a {
   text-decoration: none;
 }
 
-
-.completedItem{
+.completedItem {
   height: 250px;
   background-color: #ffa216;
   padding: 20px;
   border-radius: 20px;
-
 }
 
-.bookmarked_courses p{
+.bookmarked_courses p {
   font-size: 16px;
   color: white;
   font-weight: 700;
   align-items: center;
 }
 
-.bookmarked_courses a{
+.bookmarked_courses a {
   text-decoration: none;
 }
 
-.course_list{
+.course_list {
   display: flex;
   flex-direction: row;
 }
 
-
-
-/* LEARNING JOURNEY CSS */
+/* LEARNING JOURNEY TREE CSS */
 
 @keyframes leaf-odd-grow {
   0% {
@@ -783,50 +784,6 @@ label{
   100% {
     transform: rotate(-90deg) scale(1);
   }
-}
-
-.learningJourney {
-    margin-top: 35px;
-    width: 1162px;
-    background-color: #eecb60;
-    border-radius: 35px;
-    height: 300px;
-}
-
-.learningJourney h2 {
-    width: 100%;
-    height: 110.4px;
-    display: inline-block;
-    margin-top: 35px;
-    text-align: center;
-    padding: 20px;
-    padding-right: 30px;
-    padding-left: 30px;
-}
-
-.learningJourney h3 {
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
-    display: inline-block;
-    margin-top: -50px;
-    text-align: center;
-    padding: 20px;
-    background-color: #f1c232;
-    border-radius: 20px;
-}
-
-.learningJourney h4 {
-    width: 100%;
-    display: inline-block;
-    color: rgb(168, 5, 5);
-    text-align: center;
-    padding: 2px;
-    margin-top: -20px;
-}
-
-.learningJourney h4:hover {
-    cursor: pointer;
 }
 
 .canvas {
@@ -862,17 +819,17 @@ label{
 
 .trunk {
   position: relative;
-  
-  width: 15px;
-  height: 600px;
+
+  width: 10px;
+  height: 500px;
   margin: 0 auto;
 }
 
 .branch {
   position: absolute;
-  
-  width: 6px;
-  
+
+  width: 5px;
+
   transform-origin: bottom center;
 }
 
@@ -886,9 +843,9 @@ label{
 }
 
 .branch:nth-child(1) {
-  top: 400px;
-  
-  height: 140px;
+  top: 180px;
+
+  height: 180px;
 }
 
 .branch:nth-child(2) {
@@ -898,63 +855,63 @@ label{
 }
 
 .branch:nth-child(3) {
-  top: 220px;
-  
+  top: 120px;
+
   height: 150px;
 }
 
 .branch:nth-child(4) {
-  top: 180px;
-  
+  top: 100px;
+
   height: 120px;
 }
 
 .branch:nth-child(5) {
-  top: 120px;
-  
-  height: 100px;
+  top: 60px;
+
+  height: 120px;
 }
 
 .branch:nth-child(6) {
-  top: 110px;
-  
+  top: 55px;
+
   height: 80px;
 }
 
 .branch:nth-child(7) {
-  top: 395px;
-  
-  height: 50px;
+  top: 10px;
+
+  height: 80px;
 }
 
 .branch:nth-child(8) {
   top: 5px;
-  
+
   height: 40px;
 }
 
 .leaf {
   position: absolute;
-  
+
   width: 15px;
   height: 15px;
-  
+
   border-radius: 75% 0 75% 0;
   background: linear-gradient(to right, #77ed9e, #53ad71);
 }
 
 .leaf:nth-child(odd) {
   left: 100%;
-  
+
   transform-origin: 0% 100%;
   animation-name: leaf-odd-grow;
   animation-duration: 2s;
   animation-fill-mode: both;
 }
 
-.leaf:nth-child(even) {  
+.leaf:nth-child(even) {
   left: -150%;
-  
+
   transform-origin: 50% 100%;
   animation-name: leaf-even-grow;
   animation-duration: 2s;
@@ -963,43 +920,50 @@ label{
 
 .leaf:nth-child(1) {
   top: 5px;
-  
-  animation-delay: 1.25s;
+
+
+  animation-delay: 3.5s;
 }
 
 .leaf:nth-child(2) {
   top: 20px;
-  
-  animation-delay: 1s;
+
+
+  animation-delay: 3s;
 }
 
 .leaf:nth-child(3) {
   top: 50px;
-  
-  animation-delay: 0.75s;
+
+
+  animation-delay: 2.5s;
 }
 
 .leaf:nth-child(4) {
   top: 65px;
-  
-  animation-delay: 0.5s;
+
+
+  animation-delay: 2s;
 }
 
 .leaf:nth-child(5) {
   top: 95px;
-  
-  animation-delay: 0s;
+
+
+  animation-delay: 1.5s;
 }
 
 .leaf:nth-child(6) {
   top: 110px;
   
-  animation-delay: 0s;
+  
+  animation-delay: 1s;
 }
 
 .leaf:nth-child(7) {
   top: 140px;
   
-  animation-delay: 0s;
-}
+  
+  animation-delay: 0.5s;
 
+}

@@ -32,30 +32,83 @@ const user = mongoose.model("UserInfo");
 
 app.use(express.json());
 
-app.post("/register", async (req, res) => {
-  const { username, password, email, experiencelvl } = req.body;
+// app.post("/register", async (req, res) => {
+//   const { username, password, email, experiencelvl } = req.body;
 
-  // Hash the password
-  const hashedPassword = bcrypt.hashSync(password, 10);
+//   // Hash the password
+//   const hashedPassword = bcrypt.hashSync(password, 10);
+
+//   try {
+//     const oldUser = await user.findOne({ username });
+
+//     if (oldUser) {
+//       return res.send({
+//         error: "Username already exists, please choose a different username",
+//       });
+//     }
+//     await user.create({
+//       username,
+//       password: hashedPassword,
+//       email,
+//       experiencelvl,
+//     });
+//     res.send({ status: "ok" });
+//   } catch (error) {
+//     console.log(error);
+//     res.send(error);
+//   }
+// });
+
+// Route for handling user registration
+app.post("/register", async (req, res) => {
+  const { username, password: plainTextPassword, email, experiencelvl } = req.body;
 
   try {
-    const oldUser = await user.findOne({ username });
+    // Validate the username
+    if (!username || typeof username !== 'string'){
+      throw new Error('Invalid username. Please enter a valid username.')
+    }
+  
+    // Validate the email
+    if(!req.body.email || typeof req.body.email !== 'string'){
+      throw new Error('Invalid email. Please enter a valid email address.')
+    }
+    
+    // Validate the password
+    if (!plainTextPassword || typeof plainTextPassword !== 'string'){
+      throw new Error('Invalid password. Please enter a valid password.')
+    }
+    
+    // Ensure the password is at least 6 characters long
+    if (plainTextPassword.length < 5){
+      throw new Error('Password too small. Please enter a password that is at least 6 characters long.')
+    }
+
+    // Hash the password
+    const hashedPassword = bcrypt.hashSync(plainTextPassword, 10);
+
+    // Check if the username already exists
+    const oldUser = await user.findOne({ username });   
 
     if (oldUser) {
-      return res.send({
-        error: "Username already exists, please choose a different username",
-      });
+      throw new Error('Username already exists. Please choose a different username.')
     }
-    await user.create({
+
+    // Create a new user
+    const response = await user.create({
       username,
       password: hashedPassword,
       email,
       experiencelvl,
     });
-    res.send({ status: "ok" });
+
+    // Send a success response
+    res.send({ status: "ok" , response: response});
+
   } catch (error) {
+    // If an error occurred, log it and send a response with an error message
     console.log(error);
-    res.send(error);
+    res.status(400).json({ error: error.message });
   }
 });
 
