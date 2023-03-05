@@ -1,4 +1,5 @@
 import Navigation from "./navigation";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import "./components.css";
 import Acorn from "../Images/acorn.png";
@@ -7,6 +8,7 @@ import { useForm } from "react-hook-form";
 
 export default function Signup() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const onError = (errors, e) => console.log(errors, e);
 
   const onSubmit = (data, e) => {
@@ -45,7 +47,7 @@ export default function Signup() {
           <h2 className="signupTitle">Sign Up</h2>
 
           <p className="forgot-password">
-            Already registered <a href="/login"> Log in?</a>
+            Already registered <a onClick={() => {navigate("/Login")}}> Log in?</a>
           </p>
 
           <div className="row">

@@ -1,11 +1,13 @@
 import "./components.css";
 import Navigation from "./navigation";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 import Acorn from "../Images/acorn.png";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
   const onError = (errors, e) => console.log(errors, e);
 
   const onSubmit = (data, e) => {
@@ -29,10 +31,7 @@ export default function Login() {
         if (data.status == "ok") {
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
-
-
-          window.location.href="/profile"
-          alert("login successful");
+          navigate("/Profile")
         }
       })
       .catch((error) => console.error(error));
@@ -48,7 +47,7 @@ export default function Login() {
           <h2 className="signupTitle">Log in</h2>
 
           <p className="forgot-password">
-            Don't have an account?<a href="/signup"> Sign up </a>
+            Don't have an account?<a onClick={() => {navigate("/Signup")}}> Sign up </a>
           </p>
 
           <div className="logincontainer">

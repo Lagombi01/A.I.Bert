@@ -6,6 +6,7 @@ import globalVariables from './globals/globalVariables';
 import fillDetails from './globals/detailsFiller';
 import fade from './globals/elementFader';
 import spit from './globals/speechEditor';
+import updateBookmarkButton from './globals/updateBookmarkButton';
 import './components.css';
 
 
@@ -224,7 +225,7 @@ export default function Home(){
         buttonVanish(document.getElementById('notRelevant'));
         buttonVanish(document.getElementById('tooEasy'));
         buttonVanish(document.getElementById('tooHard'));
-        buttonVanish(document.getElementById('bookmark'));
+        if (document.getElementById('bookmark') != null) buttonVanish(document.getElementById('bookmark'));
     }
 
     function buttonsAppear() {
@@ -245,8 +246,12 @@ export default function Home(){
         setTimeout(function() { buttonAppear(document.getElementById('openCourse')); }, 0);
         setTimeout(function() { buttonAppear(document.getElementById('notRelevant')); }, 200);
         setTimeout(function() { buttonAppear(document.getElementById('tooEasy')); }, 400);
-        setTimeout(function() { buttonAppear(document.getElementById('tooHard')); }, 600);
-        setTimeout(function() { buttonAppear(document.getElementById('bookmark'),true); }, 800);
+        if (document.getElementById('bookmark') != null) {
+            setTimeout(function() { buttonAppear(document.getElementById('tooHard')); }, 600);
+            setTimeout(function() { buttonAppear(document.getElementById('bookmark'),true); }, 800);
+        } else {
+            setTimeout(function() { buttonAppear(document.getElementById('tooHard'),true); }, 600);
+        }
     }
 
     function buttonVanish(elem) {
@@ -427,6 +432,7 @@ export default function Home(){
 
     const inputHandling = async(input) => {
         if (input == "") return;
+        updateBookmarkButton();
         globalVariables.lastInput = globalVariables.input;
         globalVariables.input = input; //so it can be accessed later, when a response button is pressed
         if (globalVariables.inputProcessing) return;
@@ -541,6 +547,7 @@ export default function Home(){
 
     document.addEventListener('keydown', (event) => {
         var name = event.key;
+        if (document.getElementById('input') == null) return;
         document.getElementById('input').focus();
         if (name == "Enter" && !globalVariables.transitioning) {
             inputHandling(document.getElementById('input').value);

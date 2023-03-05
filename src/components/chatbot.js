@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import squirrel from "../Images/squirrel.png";
-import skillsbuild from "../Images/skillsbuild.png";
-import mindspark from "../Images/mindspark.png";
-import developer from "../Images/developer.png";
 import Details from "./details";
 import bookmark from "../Images/bookmark.png";
 import globalVariables from "./globals/globalVariables";
