@@ -14,6 +14,8 @@ const globalVariables = {
     "dotDelay":0,
     "results":[],
     "offered":[],
+    "journey":"",
+    "eventListened":false,
     "baseTerms":["ai","software","resources","basics","skills","IBM","teaching","education","students","school","ethics","humans","inclusivity","development","machine learning","deep learning","programming","languages","applicaton modernization","messaging","industry","nlp","evolution","watson","chatbot","cloud","neural networks","videos","data","refinery","csv","raw","catalog","analysis","assets","profiling","classification","studio","algorithm","play","activities","inspire","appliation","life","game","discussion","experts","equality","bias","speech","siri","alixa","social","thought experiment","robotics","scratch","skills","stem","diversity","gender","race","aws","amazon","sagemaker","pandemic","virtualisation","prediction","architecture","python","tensorflow","scikit","regression","supervised","unsupervised","visual","policy","govern","categories","preprocessing","pipeline","automatic","hyperparameter","model","training","web","scrape","keywords","visualisation","kubernetes","prejudice","discrimination","coding","variables","tutorial","ui","javascript"],
     "synonyms":[["a.i.","artificial intelligence","ai"],
                 ["supervised","unsupervised","learning","ml","machine learning"],

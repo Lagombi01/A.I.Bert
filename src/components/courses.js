@@ -102,6 +102,10 @@ function applyEvent(target, id) {
         showDetails(id)});
 }
 
+function updateOpacity() {
+    document.getElementById("cssGrid").style.opacity = 1;
+}
+
 export default function Courses () {
     return(
         <div> 
@@ -111,7 +115,7 @@ export default function Courses () {
                 {categories.map((data, key) => {return (<div key={key} className='filterButtonDiv'>{buttonRender(data.name, 1)}</div>)})}
                 <div><em></em></div>
             </div>
-            <div className='wrapperStyle' id="cssGrid">{renderGrid(courseList)}</div>
+            <div className='wrapperStyle' id="cssGrid" style={{opacity:1}}>{renderGrid(courseList)}</div>
             <Details />
         </div>
     )
