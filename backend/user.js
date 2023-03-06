@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema(
         experiencelvl: {type: String, required: false},
         bookmarks: [String],
         completedCourses: [String],
+        learningJourneys: [String],
     },
     {collection: 'UserInfo'}
 )

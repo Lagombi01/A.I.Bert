@@ -89,7 +89,7 @@ label {
     font-size: 16px;
     padding-bottom: 0;
     width: 20%;
-    height: 250px;
+    height: 260px;
     min-width: 300px;
     margin: 1%;
     border-radius: 15px;
@@ -107,6 +107,7 @@ label {
 
 .courseThumb {
     width: 100%;
+    border-radius: 10px;
 }
 
 .filterSection {
@@ -139,6 +140,8 @@ label {
     height: fit-content;
     margin-top: 62px;
     opacity: 0;
+    left:0;
+    z-index: 2;
 }
 
 #blackOverlay {
@@ -216,6 +219,62 @@ label {
 
 /* -----------------------------learningJourney.js-------------------------------------- */
 
+.learningJourneyButtons {
+    text-align: center;
+    height: fit-content;
+    margin: 25px;
+    opacity: 0;
+}
+
+.learningJourneyButton {
+    display: inline-block;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.learningJourneyButton p {
+    margin: 0px;
+}
+
+.learningJourneyButton:hover {
+    cursor: pointer;
+}
+
+.treeCourses {
+    width: fit-content;
+    margin-left: -162px;
+    margin-top: 41px;
+    position: absolute;
+    height: 218px;
+    z-index: 1;
+}
+
+.treeCardStyle {
+    display: inline-block;
+    background-color: #4861e7; 
+    color: white;
+    padding: 12px;
+    font-size: 14px;
+    padding-bottom: 0;
+    width: 200px;
+    height: fit-content;
+    border-radius: 15px;
+    text-align: center;
+    margin: 15px;
+    vertical-align: middle;
+}
+
+.treeCardStyle:hover {
+    background-color: #6377ec;
+    cursor: pointer;
+}
+
+.treeCardStyle div:nth-of-type(2) {
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
 /* navigation.js */
 
 /* -------------------------------bookmarks.js-------------------------------------------*/
@@ -226,7 +285,7 @@ label {
 
 .textbox{
     margin: 0 auto;
-    max-width: 60%;
+    max-width: 80%;
     padding: 12px;
     border-width: medium 5px;   
     background-color: #eecb60;       
@@ -243,11 +302,11 @@ label {
 }
 
 .fade_animation{
-    animation: Appear 3s;
-    -webkit-animation: Appear 3s;
-    -moz-animation: Appear 3s;
-    -o-animation: Appear 3s;
-    -ms-animation: Appear 3s;
+    animation: Appear 2s;
+    -webkit-animation: Appear 2s;
+    -moz-animation: Appear 2s;
+    -o-animation: Appear 2s;
+    -ms-animation: Appear 2s;
   }
   
   @keyframes Appear{
