@@ -3,7 +3,9 @@ import { courseData } from "../../courseData.js";
 export default function fillDetails(id) {
     var course = courseData.find(item => item.id === id);
     document.getElementsByClassName("courseTitle").item(0).innerHTML = course.name;
+    console.log(course.name);
     document.getElementsByClassName("courseDescription").item(0).firstChild.innerHTML = course.description;
+    console.log(course.description);
     if (course.duration == 1) {
         document.getElementsByClassName("courseDescription").item(0).childNodes[1].firstChild.innerHTML = "Length: 1 Hour";
     } else if (course.duration > 0) {
