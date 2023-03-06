@@ -9,7 +9,7 @@ import Courses from './/components/courses.js'
 import Profile from './components/profile';
 import LearningJourney from './components/learningJourney.js';
 import CreateLearningJourney from './components/createLearningJourney';
-import Bookmarks from './components/bookmarks.js'
+import Help from './components/help.js'
 import Login from './components/login'
 import Signup from './components/signup'
 
@@ -29,7 +29,7 @@ function App() {
         <Route path="Signup" element={<Signup />} index />
         <Route path="LearningJourney" element={<LearningJourney />} index />
         <Route path="CreateLearningJourney" element={<CreateLearningJourney />} index />
-        <Route path="Bookmarks" element={<Bookmarks />} index />
+        <Route path="help" element={<Help />} index />
       </Routes>
     </BrowserRouter> 
     

@@ -57,14 +57,29 @@ export default function Navigation() {
         
           <div
             class="bubble flex-container"
-            onClick={() => navigate("/bookmarks")}
+            onClick={() => navigate("/help")}
           >
             <i class="fa colored-text">
               <img src={gear} alt=""></img>
             </i>
             <p>Help</p>
           </div>
-          <div
+          <div class="bubble flex-container" onClick={handleClick}>
+          <i class="fa  colored-text">
+          <img src={isLoggedIn ? house : login} alt=""></img>
+          </i>
+          <p>{isLoggedIn ? "Profile" : "Login"}</p>
+        </div>
+
+        <div class="bubble flex-container" onClick={() => navigate("/home")}>
+          <i class="chatbotIcon">
+            <img src={leaves} alt=""></img>
+            <img src={squirrel} class="miniMascot" style={{opacity: globalVariables.mini?1:0}} onLoad={genericMiniAppear} alt=""></img>
+          </i>
+          <p className="title">AI-Bert</p>
+        </div>
+
+        <div
             class="bubble flex-container"
             onClick={() => navigate("/courses")}
           >
@@ -75,21 +90,8 @@ export default function Navigation() {
           </div>
        
 
-        <div class="bubble flex-container" onClick={() => navigate("/home")}>
-          <i class="chatbotIcon">
-            <img src={leaves} alt=""></img>
-            <img src={squirrel} class="miniMascot" style={{opacity: globalVariables.mini?1:0}} onLoad={genericMiniAppear} alt=""></img>
-          </i>
-          <p className="title">AI-Bert</p>
-        </div>
 
-        <div class="bubble flex-container" onClick={handleClick}>
-          <i class="fa  colored-text">
-          <img src={isLoggedIn ? house : login} alt=""></img>
-          </i>
-          <p>{isLoggedIn ? "Profile" : "Login"}</p>
-        </div>
-
+     
         <div
           class="bubble flex-container"
           onClick={() => navigate("/learningjourney")}
