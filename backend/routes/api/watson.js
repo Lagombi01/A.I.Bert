@@ -117,9 +117,6 @@ app.post("/message", async (req, res) => {
   }
 });
 
-
-
-
 // 5. Export routes
 module.exports = app;
 

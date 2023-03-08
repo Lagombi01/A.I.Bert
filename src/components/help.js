@@ -1,7 +1,7 @@
 import Navigation from './navigation';
 import './components.css';
 
-export default function Bookmarks(){
+export default function Help(){
     return(
         <div>
             <Navigation />
