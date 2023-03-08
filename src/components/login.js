@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import Acorn from "../Images/acorn.png";
 import { useForm } from "react-hook-form";
+import globalVariables from "./globals/globalVariables";
 
 export default function Login() {
   const { register, handleSubmit } = useForm();
@@ -31,6 +32,7 @@ export default function Login() {
         if (data.status == "ok") {
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
+          globalVariables.isLoggedIn = true;
           navigate("/Profile")
         }
       })

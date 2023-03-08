@@ -16,7 +16,7 @@ import Signup from './components/signup'
 
 
 function App() {
-  globalVariables.isLoggedIn = window/localStorage.getItem("loggedIn");
+  globalVariables.isLoggedIn = window.localStorage.getItem("loggedIn");
   return (
     <div className="App">
     <BrowserRouter>

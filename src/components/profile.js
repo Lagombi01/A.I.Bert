@@ -1,11 +1,11 @@
 import Navigation from "./navigation";
+import globalVariables from "./globals/globalVariables";
 import { useNavigate } from "react-router-dom";
 import "./components.css";
 import User from "../Images/user.png";
 import { useState, useEffect } from "react";
 import { courseData } from "./../courseData.js";
 import { Link } from "react-scroll";
-import { set } from "lodash";
 
 export default function Profile() {
   const [userData, setUserData] = useState(null);
@@ -34,6 +34,7 @@ export default function Profile() {
 
   const handleLogout = () => {
     window.localStorage.clear();
+    globalVariables.isLoggedIn = false;
     navigate("/Login");
   };
 

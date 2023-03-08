@@ -250,7 +250,7 @@ export default function Home(){
             setTimeout(function() { buttonAppear(document.getElementById('tooHard')); }, 600);
             setTimeout(function() { buttonAppear(document.getElementById('bookmark'),true); }, 800);
         } else {
-            setTimeout(function() { buttonAppear(document.getElementById('tooHard'),true); }, 600);
+            setTimeout(function() { buttonAppear(document.getElementById('t ooHard'),true); }, 600);
         }
     }
 

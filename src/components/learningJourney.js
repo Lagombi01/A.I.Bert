@@ -23,14 +23,34 @@ export default function LearningJourney() {
     }, []);
 
   async function loadLearningJourneys() {
+    if (!globalVariables.isLoggedIn) {
+        document.getElementsByClassName("learningJourneyButtons")[0].remove();
+        document.getElementById("loading").remove();
+        createSplashScreen("Login to access Learning Journeys!");
+        return;
+    }
     var journeys = await getLearningJourneys().then(data => data);
     for (var i = journeys.length-1; i >= 0; i--) {
         if (document.getElementById(journeys[i].substring(9)) == null) await buildJourney(journeys[i]);
     }
-    //marginAdjust();
+    if (journeys.length == 0) {
+        createSplashScreen("No Learning Journeys Yet!");
+    }
     document.getElementsByClassName("learningJourneyButtons")[0].className = "learningJourneyButtons fade_animation";
     document.getElementsByClassName("learningJourneyButtons")[0].style.opacity = 1;
-    if (document.getElementById("loading") != null) document.getElementById("loading").remove();
+    document.getElementById("loading").remove();
+  }
+
+  function createSplashScreen(message) {
+    var h1 = document.createElement("h1");
+    h1.innerHTML = message;
+
+    var p = document.createElement("p");
+    p.className = "description";
+    p.innerHTML = "Learning Journeys are ordered collections of courses which help you explore the topics that inspire you.";
+
+    document.getElementsByClassName("navigationPage")[0].after(p);
+    document.getElementsByClassName("navigationPage")[0].after(h1);
   }
 
   async function buildJourney(journey) {
@@ -59,7 +79,7 @@ export default function LearningJourney() {
     var h4 = document.createElement("h4");
     h4.innerHTML = "Delete";
     h4.id = journey;
-    h4.onclick = (e) => {deleteLearningJourney(e)};
+    h4.onclick = (e) => {deleteLearningJourney(e); if (document.getElementsByClassName("learningJourney").length == 0) createSplashScreen()};
     notCanvasDiv.appendChild(h4);
 
     journeyDiv.appendChild(notCanvasDiv);
@@ -67,21 +87,12 @@ export default function LearningJourney() {
 
     if (document.getElementsByClassName("learningJourneyPage").length > 0) {
         document.getElementsByClassName("learningJourneyPage")[0].insertBefore(journeyDiv,document.getElementsByClassName("learningJourneyButtons")[0])
-    } else {
-        //
     }
 
     for (var i = 0; i < document.getElementsByClassName("treeCardStyle").length; i++) {
         document.getElementsByClassName("treeCardStyle")[i].onclick = (e) => {showDetails(e)};
     }
 
-  }
-
-  function marginAdjust() {
-    for (var i = 0; i < document.getElementsByClassName("treeCourses").length; i++) {
-        var cssObj = window.getComputedStyle(document.getElementsByClassName("treeCourses")[i],null);
-        document.getElementsByClassName("treeCourses")[i].style["margin-top"] = parseFloat(150.0 - parseInt(cssObj.getPropertyValue("height"))/2.0) + "px";
-    }
   }
 
   async function showDetails (event) {

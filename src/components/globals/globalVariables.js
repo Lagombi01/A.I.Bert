@@ -25,7 +25,7 @@ const globalVariables = {
                 ["auto","automated","automatic"],
                 ["web","internet"],
                 ["voices","voice","speech"],
-                ["foundation","foundations","basic","introduction","basics"],
+                ["beginner","beginners","foundation","foundations","basic","introduction","basics"],
                 ["scikit-learn","scikit learn","scikit"],
                 ["apply","job","work","business","jobs","industry"],
                 ["scraping","scrape",],
