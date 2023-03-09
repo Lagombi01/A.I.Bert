@@ -24,22 +24,33 @@ export default function Details() {
 
 	useEffect(() => {
 		fetch("http://localhost:5000/getbookmarks", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-      }),
-    }).then((response) => response.json())
-		.then((data) => {
-			setBookmarklist(data.data);
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "Access-Control-Allow-Origin": "*",
+            },
+            body: JSON.stringify({
+                token: window.localStorage.getItem("token"),
+            }),
+        }).then((response) => response.json())
+        .then((data) => {
+            setBookmarklist(data.data);
         });
+        if (!globalVariables.isLoggedIn) {
+            var bookmark = document.getElementById("bookmark");
+            var complete = document.getElementById("markComplete");
+            var newBookmark = bookmark.cloneNode(true);
+            bookmark.parentNode.replaceChild(newBookmark, bookmark);
+            var newComplete = complete.cloneNode(true);
+            complete.parentNode.replaceChild(newComplete, complete);
+            newBookmark.style["opacity"] = "0.5";
+            newComplete.style["opacity"] = "0.5";
+        }
 	}, [startrefresh]);
 
     async function updateBookmark() {
+        console.log("bookmark")
 		const courseID = globalVariables.currentCourseID
 		let isBookmarked2 = await checkBookmark();
 		// DELETE BOOKMARK IF ALREADY BOOKMARKED
@@ -110,6 +121,7 @@ export default function Details() {
     }
 
     async function updateCompletedCourses() {
+        console.log("complete")
 		const courseID = globalVariables.currentCourseID;
         var complete = false;
 		let isComplete2 = await checkComplete();
@@ -238,21 +250,19 @@ export default function Details() {
                 <img src={book} alt="Open Course" />
               </div>
             </a>
-            <div className="responseButton" id="bookmark">
+            <div className="responseButton" id="bookmark" onClick={updateBookmark}>
               <div>
                   <img
 					className="bookmarkImage"
 					src = {isBookmarked ? bookmarkFilled : bookmark}
-                    onClick={updateBookmark}
                     alt="Bookmark"
                   />
               </div>
             </div>
-            <div className="responseButton" id="markComplete">
+            <div className="responseButton" id="markComplete" onClick={updateCompletedCourses}>
               <img
 				className="checkmarkImage"
                 src={isCompleted ? checkbox : emptyCheckbox}
-                onClick={updateCompletedCourses}
                 alt="Mark Complete"
               />
             </div>

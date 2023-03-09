@@ -107,6 +107,7 @@ function updateOpacity() {
 }
 
 export default function Courses () {
+
     return(
         <div> 
             <Navigation /> 

@@ -166,7 +166,9 @@ export default function Home() {
     var pos = "158px";
     elem.style.setProperty("margin-top", pos);
     var moveFunc = setInterval(function () {
-      var elem = document.getElementsByClassName("mascot").item(0).firstChild;
+        var elements = document.getElementsByClassName("mascot");
+      if (elements.length == 0) return;
+      var elem = elements.item(0).firstChild;
       pos = String(parseInt(pos.slice(0, -2)) - 1) + "px";
       elem.style.setProperty("margin-top", pos);
       if (parseInt(pos.slice(0, -2)) < 150) {
@@ -184,8 +186,10 @@ export default function Home() {
       .getElementsByClassName("AI-Bert-speech")
       .item(0).firstChild.style.opacity = 0;
     var textFadeFunc = setInterval(function () {
+        var elements = document.getElementsByClassName("AI-Bert-speech");
+        if (elements.length == 0) return;
       fade(
-        document.getElementsByClassName("AI-Bert-speech").item(0).firstChild,
+        elements.item(0).firstChild,
         0.1,
         [textFadeFunc]
       );
@@ -364,7 +368,8 @@ export default function Home() {
         setTimeout(function() { buttonAppear(document.getElementById('bookmark'),true); }, 800);
     } else {
         setTimeout(function() { buttonAppear(document.getElementById('tooHard'),true); }, 600);
-  }
+    }
+}
 
   function buttonVanish(elem) {
     elem.style.cursor = "default";
