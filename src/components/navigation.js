@@ -52,7 +52,7 @@ export default function Navigation() {
   }
 
   return (
-    <div>
+    <div className="navigationPage">
       <div class="bubbles home-bubbles">
         
           <div

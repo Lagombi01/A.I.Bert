@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import React from "react";
 import Acorn from "../Images/acorn.png";
 import { useForm } from "react-hook-form";
+import globalVariables from "./globals/globalVariables";
 import { useState } from "react";
 
 export default function Login() {
@@ -33,10 +34,8 @@ export default function Login() {
         if (data.status == "ok") {
           window.localStorage.setItem("token", data.data);
           window.localStorage.setItem("loggedIn", true);
-
-
-          window.location.href="/profile"
-          alert("login successful");
+          globalVariables.isLoggedIn = true;
+          navigate("/Profile")
         } else {
           // if login is unsuccessful, set error message in state
           setErrorMessage("Invalid Username or Password");

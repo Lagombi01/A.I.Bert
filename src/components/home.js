@@ -356,21 +356,14 @@ export default function Home() {
           break;
       }
     }
-    setTimeout(function () {
-      buttonAppear(document.getElementById("openCourse"));
-    }, 0);
-    setTimeout(function () {
-      buttonAppear(document.getElementById("notRelevant"));
-    }, 200);
-    setTimeout(function () {
-      buttonAppear(document.getElementById("tooEasy"));
-    }, 400);
-    setTimeout(function () {
-      buttonAppear(document.getElementById("tooHard"));
-    }, 600);
-    setTimeout(function () {
-      buttonAppear(document.getElementById("bookmark"), true);
-    }, 800);
+    setTimeout(function() { buttonAppear(document.getElementById('openCourse')); }, 0);
+    setTimeout(function() { buttonAppear(document.getElementById('notRelevant')); }, 200);
+    setTimeout(function() { buttonAppear(document.getElementById('tooEasy')); }, 400);
+    if (document.getElementById('bookmark') != null) {
+        setTimeout(function() { buttonAppear(document.getElementById('tooHard')); }, 600);
+        setTimeout(function() { buttonAppear(document.getElementById('bookmark'),true); }, 800);
+    } else {
+        setTimeout(function() { buttonAppear(document.getElementById('tooHard'),true); }, 600);
   }
 
   function buttonVanish(elem) {
