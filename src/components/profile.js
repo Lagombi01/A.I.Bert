@@ -111,7 +111,7 @@ export default function Profile() {
               <img src={User} className="userimage" alt=""></img>
             </div>
             <div className="column2">
-              {userData && <h3>Welcome {userData.data.username}!</h3>}
+              {userData && <h3>Welcome, {userData.data.username}!</h3>}
 
               {userData && userData.data.email && (
                 <h5>{userData.data.email}</h5>

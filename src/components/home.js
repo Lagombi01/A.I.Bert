@@ -5,6 +5,7 @@ import { courseData } from "../courseData.js";
 import globalVariables from "./globals/globalVariables";
 import checkBookmark from "./globals/checkBookmark";
 import fillDetails from "./globals/detailsFiller";
+import GetAllCompleted from "./globals/returnComplete";
 import fade from "./globals/elementFader";
 import spit from "./globals/speechEditor";
 import "./components.css";
@@ -421,6 +422,9 @@ export default function Home() {
   }
 
   async function search(input, difficulty = 1, disallow = []) {
+    if (globalVariables.isLoggedIn) {
+        //difficulty = await GetExperience();
+    }
     if (difficulty > 3) difficulty = 3; //due to there being no courses of difficulty 4
     if (difficulty < 1) difficulty = 1;
     var rawData = await getKeywords(input).then((result) => result);
@@ -482,10 +486,15 @@ export default function Home() {
     Object.assign(keyTerms, cleaned);
     console.log(keyTerms);
 
-    var completed = []; //should be taken from database
+    var completed;
+    if (globalVariables.isLoggedIn) {
+        completed = await GetAllCompleted().then((result) => result);
+    } else {
+        completed = [];
+    }
     var score = {};
     courseData.forEach(function (course) {
-      //Check if course already completed, skip course if so
+      if (completed.includes(course["id"])) return;
       score[course["id"]] = grade(keyTerms, course["id"]);
       if (score[course["id"]] < 1) {
         delete score[course["id"]];
@@ -593,6 +602,7 @@ export default function Home() {
       );
     }, 5);
     var matches;
+    if (input.toLowerCase() == "open course") input = "open";
     switch (input.toLowerCase()) {
       case "open":
         window.open(
@@ -772,6 +782,7 @@ export default function Home() {
         );
       }, 5);
     }
+    globalVariables.offered = [];
     globalVariables.currentReply = "";
   };
 
