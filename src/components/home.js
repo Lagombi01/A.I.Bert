@@ -26,9 +26,13 @@ export default function Home() {
         .then((data) => {
           globalVariables.session = data.session_id;
         });
-    } catch (error) {
-      console.error("Failed to fetch session: ", error);
-    }
+      } catch (error) {
+        console.error("Failed to fetch session: ", error);
+      }
+      globalVariables.offered = [];
+      if (!globalVariables.isLoggedIn) {
+        document.getElementById("bookmark").remove();
+      }
   }, []);
 
   //GENERAL WATSON FUNCTION

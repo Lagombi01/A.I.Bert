@@ -132,7 +132,7 @@ export const courseData = [
     "duration":1,
     "image":mindspark,
     "prereq":["306"],
-    "postreq":["309"],
+    "postreq":["412","309"],
     "difficulty":2,
     "terms":["Inclusivity","Equality","Bias","Teaching","AI","Students","Activity"],
     "link":"https://www.mindspark.org/ibm-on-demand-webinars/2020/2/7/creating-a-spark-for-artificial-intelligence-4b23m-5d6tj-je2m6"},
