@@ -38,7 +38,9 @@ export default function LearningJourney() {
     }
     document.getElementsByClassName("learningJourneyButtons")[0].className = "learningJourneyButtons fade_animation";
     document.getElementsByClassName("learningJourneyButtons")[0].style.opacity = 1;
+    console.log("Removing...");
     document.getElementById("loading").remove();
+    console.log("Removed");
   }
 
   function createSplashScreen(message) {
@@ -79,7 +81,7 @@ export default function LearningJourney() {
     var h4 = document.createElement("h4");
     h4.innerHTML = "Delete";
     h4.id = journey;
-    h4.onclick = (e) => {deleteLearningJourney(e); if (document.getElementsByClassName("learningJourney").length == 0) createSplashScreen()};
+    h4.onclick = (e) => {deleteLearningJourney(e); if (document.getElementsByClassName("learningJourney").length == 0) createSplashScreen("No Learning Journeys Yet!")};
     notCanvasDiv.appendChild(h4);
 
     journeyDiv.appendChild(notCanvasDiv);

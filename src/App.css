@@ -723,19 +723,20 @@ label{
 }
 
 .bookmarkItem{
-  height: 250px;
+  height: 280px;
   background-color: #167bff;
   padding: 20px;
   border-radius: 20px;
-
 }
 
 .bookmarked_courses img{
   width: 100%;
+  border-radius: 10px;
 }
 
 .completed_courses img{
   width: 100%;
+  border-radius: 10px;
 }
 
 .completed_courses p{
@@ -751,8 +752,8 @@ label{
 
 
 .completedItem{
-  height: 250px;
-  background-color: #ffa216;
+  height: 280px;
+  background-color: #e98c00;
   padding: 20px;
   border-radius: 20px;
 
@@ -773,8 +774,6 @@ label{
   display: flex;
   flex-direction: row;
 }
-
-
 
 /* LEARNING JOURNEY CSS */
 
