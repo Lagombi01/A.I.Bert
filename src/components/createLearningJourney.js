@@ -90,7 +90,10 @@ export default function CreateLearningJourney() {
 
         var course = courseData.find(item => item.id === id);
 
-        journeyList[course.difficulty-1] = course;
+        if (globalVariables.forceDifficulty != 0) {
+            journeyList[globalVariables.forceDifficulty-1] = course;
+            globalVariables.forceDifficulty = 0;
+        } else journeyList[course.difficulty-1] = course;
 
         checkFinished();
     }
@@ -119,9 +122,13 @@ export default function CreateLearningJourney() {
     }
 
     function generateOptions(idList,index) {
-        var filteredList = idList.filter(id => !completed.includes(id) && id[0] != "0");
+        var filteredList = idList.filter(id => !completed.includes(id) && id[0] != "0" && courseData.find(item => item.id === id).difficulty == index + 1);
         if (filteredList.length == 0) {
-            filteredList = idList.filter(id => id[0] != "0");;
+            filteredList = idList.filter(id => id[0] != "0" && courseData.find(item => item.id === id).difficulty == index + 1);
+        }
+        if (filteredList.length == 0) {
+            filteredList = idList.filter(id => id[0] != "0");
+            globalVariables.forceDifficulty = index + 1;
         }
         if (filteredList.length == 1) {
             journeyList[index] = courseData.find(item => item.id === filteredList[0]);
@@ -208,7 +215,13 @@ export default function CreateLearningJourney() {
     }
 
     async function postLearningJourney(courseIDs) {
-        console.log(courseIDs);
+        if (courseIDs.length < 10) {
+            console.log("REJECTED LJ: " + courseIDs);
+            return;
+        } else if (isNaN(courseIDs.substring(0,9))) {
+            console.log("REJECTED LJ: " + courseIDs);
+            return;
+        }
         await fetch("http://localhost:5000/addLearningJourney", {
             method: "POST",
             headers: {

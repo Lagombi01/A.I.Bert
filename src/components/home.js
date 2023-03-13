@@ -283,7 +283,7 @@ export default function Home() {
     buttonVanish(document.getElementById("notRelevant"));
     buttonVanish(document.getElementById("tooEasy"));
     buttonVanish(document.getElementById("tooHard"));
-    buttonVanish(document.getElementById("bookmark"));
+    if (document.getElementById('bookmark') != null) buttonVanish(document.getElementById("bookmark"));
   }
 
   async function addBookmark(courseID) {
