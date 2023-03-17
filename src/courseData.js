@@ -274,7 +274,7 @@ export const courseData = [
     "description":"Tutorials, articles, and other resources to solve your data science and machine learning needs. IBM Watson Studio simplifies the process of experimentation to deployment, as well as data exploration, model development, and training.",
     "duration":2,
     "image":developer,
-    "prereq":["403"],
+    "prereq":["101","403"],
     "postreq":["405","409","410"],
     "difficulty":2,
     "terms":["Watson","IBM","Tutorial","Data","Visualisation","Machine Learning","Deep Learning","Model","Training","Scikit"],
