@@ -19,10 +19,11 @@ import emptyCheckbox from '../Images/EmptyCheckbox.png';
 export default function CreateLearningJourney() {
 
     const navigate = useNavigate();
-    var journeyList = [null,null,null];
     var completed;
 
     useEffect(() => {
+        globalVariables.forceDifficulty = 0;
+        globalVariables.journeyList = [null,null,null];
         loadInitialCourses();
     }, []);
 
@@ -91,32 +92,36 @@ export default function CreateLearningJourney() {
         var course = courseData.find(item => item.id === id);
 
         if (globalVariables.forceDifficulty != 0) {
-            journeyList[globalVariables.forceDifficulty-1] = course;
+            globalVariables.journeyList[globalVariables.forceDifficulty-1] = course;
             globalVariables.forceDifficulty = 0;
-        } else journeyList[course.difficulty-1] = course;
+        } else globalVariables.journeyList[course.difficulty-1] = course;
 
         checkFinished();
     }
 
     function fillList() {
         document.getElementById("creationHeading").innerHTML = "";
-        if (journeyList[0] == null) {
-            if (journeyList[1] != null) {
-                generateOptions(journeyList[1].prereq,0);
+        if (globalVariables.journeyList[0] == null) {
+            if (globalVariables.journeyList[1] != null) {
+                globalVariables.forceDifficulty = 1;
+                generateOptions(globalVariables.journeyList[1].prereq,0);
                 return;
             }
         }
-        if (journeyList[1] == null) {
-            if (journeyList[0] != null) {
-                generateOptions(journeyList[0].postreq,1);
+        if (globalVariables.journeyList[1] == null) {
+            globalVariables.forceDifficulty = 2;
+            if (globalVariables.journeyList[0] != null) {
+                generateOptions(globalVariables.journeyList[0].postreq,1);
             } else {
-                generateOptions(journeyList[2].prereq,1);
+                generateOptions(globalVariables.journeyList[2].prereq,1);
             }
             return;
         }
-        if (journeyList[2] == null) {
-            if (journeyList[1] != null) {
-                generateOptions(journeyList[1].postreq,2);
+        if (globalVariables.journeyList[2] == null) {
+            if (globalVariables.journeyList[1] != null) {
+                globalVariables.forceDifficulty = 3;
+                console.log(globalVariables.journeyList[1].postreq);
+                generateOptions(globalVariables.journeyList[1].postreq,2);
             }
         }
     }
@@ -131,25 +136,29 @@ export default function CreateLearningJourney() {
             globalVariables.forceDifficulty = index + 1;
         }
         if (filteredList.length == 1) {
-            journeyList[index] = courseData.find(item => item.id === filteredList[0]);
+            globalVariables.journeyList[index] = courseData.find(item => item.id === filteredList[0]);
             checkFinished();
+        } else if (filteredList.length == 0) {
+            console.log("Filtered list is 0!\n" + idList + "\n" + index);
         } else {
             loadSpecificCourses(filteredList.map(id => courseData.find(item => item.id === id)));
         }
     }
 
     function checkFinished() {
-        if (journeyList.includes(null)) {
+        console.log(globalVariables.journeyList);
+        if (globalVariables.journeyList.includes(null)) {
             fillList();
         } else {
+            globalVariables.forceDifficulty = 0;
             displayJourney();
         }
     }
 
     async function displayJourney () {
         if (document.getElementById("loading") != null) document.getElementById("loading").remove();
-        for (var i = 0; i < journeyList.length; i++) {
-            globalVariables.journey += journeyList[i].id;
+        for (var i = 0; i < globalVariables.journeyList.length; i++) {
+            globalVariables.journey += globalVariables.journeyList[i].id;
         }
         var returnList = await learningCanvas(globalVariables.journey);
         document.getElementsByClassName("createLearningJourneyPage")[0].insertBefore(returnList[0],document.getElementById("cssGrid"));
