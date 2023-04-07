@@ -50,13 +50,13 @@ export default function Details() {
 	}, [startrefresh]);
 
     async function updateBookmark() {
-        console.log("bookmark")
 		const courseID = globalVariables.currentCourseID
 		let isBookmarked2 = await checkBookmark();
 		// DELETE BOOKMARK IF ALREADY BOOKMARKED
 		if (isBookmarked2){
-			console.log("IS DELETING")
-			console.log(courseID)
+			console.log("IS DELETING");
+            document.getElementsByClassName("bookmarkImage")[0].setAttribute("src", bookmark);
+			console.log(courseID);
 			fetch("http://localhost:5000/deletebookmark", {
 				method: "POST",
 				headers: {
@@ -72,11 +72,19 @@ export default function Details() {
 					console.log(data.data.bookmarks);
 					setIsBookmarked(false);
 				})
-				.catch((error) => console.error(error));
+                .then(() => {
+                    let thumb = document.getElementById("book"+courseID);
+                    if (thumb != null) thumb.parentNode.className = "profileCourse del";
+                })
+				.catch((error) => {
+                    console.error(error)
+                    document.getElementsByClassName("bookmarkImage")[0].setAttribute("src", bookmarkFilled);
+                });
 		}
 			else{
-				console.log("IS ADDING")
-				console.log(courseID)
+				console.log("IS ADDING");
+                document.getElementsByClassName("bookmarkImage")[0].setAttribute("src", bookmarkFilled);
+				console.log(courseID);
 			fetch("http://localhost:5000/addbookmark", {
 				method: "POST",
 				headers: {
@@ -92,9 +100,15 @@ export default function Details() {
 					console.log(data.data.bookmarks);
 					setIsBookmarked(true);
 				})
-				.catch((error) => console.error(error));
+                .then(() => {
+                    let thumb = document.getElementById("book"+courseID);
+                    if (thumb != null) thumb.parentNode.className = "profileCourse";
+                })
+				.catch((error) => {
+                    console.error(error)
+                    document.getElementsByClassName("bookmarkImage")[0].setAttribute("src", bookmark);
+                });
 		}
-
     }
    
 
@@ -126,8 +140,9 @@ export default function Details() {
         var complete = false;
 		let isComplete2 = await checkComplete();
 		if (isComplete2){
-			console.log("IS DELETING")
-			console.log(courseID)
+			console.log("IS DELETING");
+            document.getElementsByClassName("checkmarkImage")[0].setAttribute("src", emptyCheckbox);
+			console.log(courseID);
 			await fetch("http://localhost:5000/deleteCompletedCourse", {
 				method: "POST",
 				headers: {
@@ -142,11 +157,19 @@ export default function Details() {
 				.then((data) => {
 					setIsCompleted(false);
 				})
-				.catch((error) => console.error(error));
+                .then(() => {
+                    let thumb = document.getElementById("comp"+courseID);
+                    if (thumb != null) thumb.parentNode.className = "profileCourse del";
+                })
+				.catch((error) => {
+                    console.error(error);
+                    document.getElementsByClassName("checkmarkImage")[0].setAttribute("src", checkbox);
+                });
 		}
-			else{
-				console.log("IS ADDING")
-				console.log(courseID)
+			else {
+				console.log("IS ADDING");
+                document.getElementsByClassName("checkmarkImage")[0].setAttribute("src", checkbox);
+				console.log(courseID);
 			await fetch("http://localhost:5000/addCompletedCourse", {
 				method: "POST",
 				headers: {
@@ -162,7 +185,14 @@ export default function Details() {
 					setIsCompleted(true);
                     complete = true;
 				})
-				.catch((error) => console.error(error));
+                .then(() => {
+                    let thumb = document.getElementById("comp"+courseID);
+                    if (thumb != null) thumb.parentNode.className = "profileCourse";
+                })
+				.catch((error) => {
+                    console.error(error)
+                    document.getElementsByClassName("checkmarkImage")[0].setAttribute("src", emptyCheckbox);
+                });
 		}
 
         if (document.getElementsByClassName("learningJourneyPage").length != 0) {
@@ -211,6 +241,10 @@ export default function Details() {
       "pointer-events"
     ] = "none";
     document.body.style["overflow"] = "auto";
+    let toDelete = document.getElementsByClassName("del");
+    for (let i = 0; i < toDelete.length; i++) {
+        toDelete[i].remove();
+    }
   }
 
   document.addEventListener(

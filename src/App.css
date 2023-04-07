@@ -706,6 +706,9 @@ label{
   border-radius: 20px;
 }
 
+.profileCourse:hover{
+    cursor: pointer;
+}
 
 .course_list {
   display: grid !important;

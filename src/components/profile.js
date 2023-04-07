@@ -7,6 +7,16 @@ import { useState, useEffect } from "react";
 import { courseData } from "./../courseData.js";
 import { Link } from "react-scroll";
 
+import Details from "./overlayDetails.js";
+import fillDetails from "./globals/detailsFiller";
+import CheckBookmark from './globals/checkBookmark.js';
+import CheckComplete from './globals/checkComplete';
+
+import filledBookmark from '../Images/filledSmallBookmark.png'
+import Bookmark from '../Images/smallBookmark.png'
+import Checkbox from '../Images/checkbox.png';
+import emptyCheckbox from '../Images/EmptyCheckbox.png';
+
 export default function Profile() {
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
@@ -71,16 +81,40 @@ export default function Profile() {
     }
   }
 
+  async function showDetails (id) {
+    globalVariables.currentCourseID = id;
+    fillDetails(id);
+    document.getElementsByClassName("overlayCourseSpan")[0].style.opacity = 1;
+    document.getElementsByClassName("overlayCourseSpan")[0].style["pointer-events"] = "auto";
+
+    let isBookmarked = await CheckBookmark();
+    let bookmarkImage = document.getElementsByClassName("bookmarkImage")[0];
+    if (isBookmarked == true){
+        bookmarkImage.setAttribute("src", filledBookmark);
+    } else {
+        bookmarkImage.setAttribute("src", Bookmark);
+    }
+    let isComplete = await CheckComplete()
+    let CheckmarkImage = document.getElementsByClassName("checkmarkImage")[0];
+    if (isComplete == true){
+        CheckmarkImage.setAttribute("src",  Checkbox);
+    } else {
+        CheckmarkImage.setAttribute("src", emptyCheckbox);
+    }
+    
+    document.body.style["overflow"] = "hidden";
+}
+
   function renderBookmarkitem(data) {
     for (let i = 0; i < courseData.length; i++) {
       if (courseData[i].id === data) {
         return (
-          <a href={courseData[i].link}>
+          <div className="profileCourse" id={"book"+courseData[i].id} onClick={() => {showDetails(courseData[i].id)}}>
             <div className="bookmarkItem">
               <img classname="bookmarkImage" src={courseData[i].image}></img>
               <p>{courseData[i].name}</p>
             </div>
-          </a>
+          </div>
         );
       }
     }
@@ -90,12 +124,12 @@ export default function Profile() {
     for (let i = 0; i < courseData.length; i++) {
       if (courseData[i].id === data) {
         return (
-          <a href={courseData[i].link}>
+          <div className="profileCourse" id={"comp"+courseData[i].id} onClick={() => {showDetails(courseData[i].id)}}>
             <div className="completedItem">
               <img classname="courseImage" src={courseData[i].image}></img>
               <p>{courseData[i].name}</p>
             </div>
-          </a>
+          </div>
         );
       }
     }
@@ -177,6 +211,7 @@ export default function Profile() {
           </div>
         </div>
       </div>
+      <Details />
     </div>
   );
 }
